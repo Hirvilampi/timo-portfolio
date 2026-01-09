@@ -4,21 +4,21 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import classes from "./image-slideshow.module.css";
 
-import venlaImg from "@/public/tv_images/square/Venla_NikiSoukkio_640.png";
-import kakutImg from "@/public/tv_images/square/Kakut_7634_640.png";
-import mole1Img from "@/public/tv_images/square/Mole_eps10_041_640.png";
-import mole2Img from "@/public/tv_images/square/Mole_eps9_027_640.png";
-import mole3Img from "@/public/tv_images/square/Mole_eps9_030_640.png";
-import susaImg from "@/public/tv_images/square/Susa2_1008_640.png";
-import uae1Img from "@/public/tv_images/square/UAE_640.png";
-import uae2Img from "@/public/tv_images/square/UAE_8094_640.png";
+import venlaImg from "@/public/assets/tv_images/square/Venla_NikiSoukkio_640.png";
+import kakutImg from "@/public/assets/tv_images/square/Kakut_7634_640.png";
+import mole1Img from "@/public/assets/tv_images/square/Mole_eps10_041_640.png";
+import mole2Img from "@/public/assets/tv_images/square/Mole_eps9_027_640.png";
+import mole3Img from "@/public/assets/tv_images/square/Mole_eps9_030_640.png";
+import susaImg from "@/public/assets/tv_images/square/Susa2_1008_640.png";
+import uae1Img from "@/public/assets/tv_images/square/UAE_640.png";
+import uae2Img from "@/public/assets/tv_images/square/UAE_8094_640.png";
 
-import bonakotaImg from "@/public/it_images/square/Bonakota.png";
-import ideaImg from "@/public/it_images/square/Figma_idea.png";
-import firebaseImg from "@/public/it_images/square/Firebase.png";
-import personaltrainer1Img from "@/public/it_images/square/personaltrainer1.png";
-import personaltrainer2Img from "@/public/it_images/square/personaltrainer2.png";
-import stufflogImg from "@/public/it_images/square/Stufflog.png";
+import bonakotaImg from "@/public/assets/it_images/square/Bonakota.png";
+import ideaImg from "@/public/assets/it_images/square/Figma_idea.png";
+import firebaseImg from "@/public/assets/it_images/square/Firebase.png";
+import personaltrainer1Img from "@/public/assets/it_images/square/personaltrainer1.png";
+import personaltrainer2Img from "@/public/assets/it_images/square/personaltrainer2.png";
+import stufflogImg from "@/public/assets/it_images/square/Stufflog.png";
 
 // const images = [
 //   { image: venlaImg, alt: "I won Venla-award" },

@@ -1,12 +1,15 @@
+import Link from "next/link";
+
 import classes from "./page.module.css";
 
 import ImageSlideshow from "@/components/images/image-slideshow";
 
 export default function ShowTvLink() {
+
   return (
     <>
       {/* toimiva */}
-      <a href="/tv" className={classes.cardWrapper}>
+      <Link href="/tv/productions" className={classes.cardWrapper}>
         <div className={classes.cardShape}>
           <div className={classes.row}>
             <div className={classes.slideshowPlaceholder}>
@@ -40,7 +43,7 @@ export default function ShowTvLink() {
             vectorEffect="non-scaling-stroke"
           />
         </svg>
-      </a>
+      </Link>
     </>
   );
 }

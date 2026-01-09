@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 import classes from "./page.module.css";
 import ImageSlideshow from "@/components/images/image-slideshow";
@@ -8,7 +9,7 @@ export default function ShowItLink({ className, ...props }: CardProps) {
   return (
     <>
       {/* toimiva */}
-      <a href="/it" className={classes.cardWrapper}>
+      <Link href="/it/projects" className={classes.cardWrapper}>
         <div className={classes.cardShape}>
           <div className={classes.row}>
             <div className={classes.slideshowPlaceholder}>
@@ -43,7 +44,7 @@ export default function ShowItLink({ className, ...props }: CardProps) {
             vectorEffect="non-scaling-stroke"
           />
         </svg>
-      </a>
+      </Link>
     </>
   );
 }
