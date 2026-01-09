@@ -10,7 +10,7 @@ export default function ShowTvLink() {
         <div className={classes.cardShape}>
           <div className={classes.row}>
             <div className={classes.slideshowPlaceholder}>
-              <ImageSlideshow />
+              <ImageSlideshow portfolio={"tv"} />
             </div>
             {/* sisältö */}
             <div>
