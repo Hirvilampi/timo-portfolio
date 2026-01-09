@@ -1,19 +1,27 @@
 import classes from "./page.module.css";
 
+import ImageSlideshow from "@/components/images/image-slideshow";
+
 export default function ShowTvLink() {
   return (
     <>
       {/* toimiva */}
       <a href="/tv" className={classes.cardWrapper}>
         <div className={classes.cardShape}>
-          <div className={classes.slideshowPlaceholder} />
-          {/* sisältö */}
-          <div>
-            <h2 className="text-2xl font-bold uppercase">Television & Film</h2>
-            <p className="text-xl">Director, writer, editor</p>
-            <p className="mt-4 font-black underline decoration-2 underline-offset-4">
-              CLICK FOR PROJECTS
-            </p>
+          <div className={classes.row}>
+            <div className={classes.slideshowPlaceholder}>
+              <ImageSlideshow />
+            </div>
+            {/* sisältö */}
+            <div>
+              <h2 className="text-sm sm:text-2xl font-bold uppercase">
+                Television & Film
+              </h2>
+              <p className="text-xs sm:text-xl">Director, writer, editor</p>
+              <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
+                CLICK FOR PROJECTS
+              </p>
+            </div>
           </div>
         </div>
 
