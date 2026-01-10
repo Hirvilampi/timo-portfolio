@@ -25,33 +25,36 @@ export default function TVsGrid({ tvproductions }: TVsGridProps) {
     <ul>
       {tvproductions.map((p) => (
         <li key={p.id}>
-            <Link href={`/productions/${p.slug}`}>
-          <article key={p.slug} className="rounded-xl border p-4 mt-2">
-            <div className="flex flex-column sm:flex-row gap-4 ">
-              {p.image && (
-                <Image
-                  src={p.image}
-                  alt={p.slug}
-                  width={240}
-                  height={180}
-                  className="rounded-md object cover"
-                />
-              )}
-              <div>
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-                <div className="flex flex-row">
-                <p className="text-sm opacity-70 gap-2 flex flex-row">
-                {p.seasons && p.seasons} ({p.year && p.year})   
-                
-                </p>
-                </div>
+          <Link
+            href={{
+              pathname: `/tv/productions/${p.slug}`
+            }}
+          >
+            <article key={p.slug} className="rounded-xl border p-4 mt-2">
+              <div className="flex flex-column sm:flex-row gap-4 ">
+                {p.image && (
+                  <Image
+                    src={p.image}
+                    alt={p.slug}
+                    width={240}
+                    height={180}
+                    className="rounded-md object cover"
+                  />
+                )}
+                <div>
+                  <h3 className="text-lg font-semibold">{p.title}</h3>
+                  <div className="flex flex-row">
+                    <p className="text-sm opacity-70 gap-2 flex flex-row">
+                      {p.seasons && p.seasons} ({p.year && p.year})
+                    </p>
+                  </div>
 
-                <p>{p.job}</p>
-                {p.summary && <p className="mt-2 text-sm">{p.summary}</p>}
+                  <p>{p.job}</p>
+                  {p.summary && <p className="mt-2 text-sm">{p.summary}</p>}
+                </div>
               </div>
-            </div>
-          </article>
-</Link>
+            </article>
+          </Link>
         </li>
       ))}
     </ul>

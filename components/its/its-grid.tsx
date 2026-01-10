@@ -12,7 +12,7 @@ export default function ITsGrid({ itprojects }: ITsGridProps) {
     <ul>
       {itprojects.map((p) => (
         <li key={p.id}>
-          <Link href={`/projects/${p.slug}`}>
+          <Link href={`/it/projects/${p.slug}`}>
             <article key={p.slug} className="rounded-xl border p-4 mt-2">
               <div className="flex flex-column sm:flex-row gap-4 ">
                 {p.image && (

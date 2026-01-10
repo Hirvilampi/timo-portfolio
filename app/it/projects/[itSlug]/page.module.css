@@ -1,0 +1,13 @@
+.link {
+    color: #2563eb;            /* modern blue */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.link:hover {
+    color: #1d4ed8;
+    text-decoration-color: currentColor;
+    transform: translateX(10px);
+}
