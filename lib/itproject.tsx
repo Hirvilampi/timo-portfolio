@@ -1,8 +1,33 @@
-import sql from 'better-sqlite3';
-import { ITProject } from '@/components/ITProject';
+import { ITProject } from "@/components/ITProject";
+import { supabase } from "@/lib/supabase";
 
-const dbit = sql('itprojects.db');
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const itImagesPrefix = supabaseUrl
+  ? `${supabaseUrl}/storage/v1/object/public/it_images/`
+  : "";
 
-export async function getITProject(slug : string) {
-    return dbit.prepare('SELECT * FROM projects WHERE slug = ? LIMIT 1').get(slug) as ITProject;
+function toSupabaseImageUrl(image?: string | null) {
+  if (!image) return image;
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+  const trimmed = image.replace(/^\/+/, "").replace(/^assets\/it_images\//, "");
+  return `${itImagesPrefix}${trimmed}`;
+}
+
+export async function getITProject(slug: string) {
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return {
+    ...(data as ITProject),
+    image: toSupabaseImageUrl((data as ITProject).image),
+  };
 }

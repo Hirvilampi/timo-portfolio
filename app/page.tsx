@@ -9,7 +9,6 @@ export default function Home() {
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col items-center py-24 px-16 bg-white dark:bg-black sm:items-start ">
         <Image
-          className="dark:invert"
           src="/timo_logo.png"
           alt="Timo Lampinen - kuva Riitta Sourander"
           width={200}

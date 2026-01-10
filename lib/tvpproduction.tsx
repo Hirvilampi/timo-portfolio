@@ -1,8 +1,33 @@
-import sql from 'better-sqlite3';
 import { TVProduction } from "@/components/TVProduction";
+import { supabase } from "@/lib/supabase";
 
-const dbtv = sql('tvproductions.db');
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const tvImagesPrefix = supabaseUrl
+  ? `${supabaseUrl}/storage/v1/object/public/tv_images/`
+  : "";
 
-export async function getTVProduction(slug : string) {
-    return dbtv.prepare('SELECT * FROM tvproductions WHERE slug = ? LIMIT 1').get(slug) as TVProduction;
+function toSupabaseImageUrl(image?: string | null) {
+  if (!image) return image;
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+  const trimmed = image.replace(/^\/+/, "").replace(/^assets\/tv_images\//, "");
+  return `${tvImagesPrefix}${trimmed}`;
+}
+
+export async function getTVProduction(slug: string) {
+  const { data, error } = await supabase
+    .from("tvproductions")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return {
+    ...(data as TVProduction),
+    image: toSupabaseImageUrl((data as TVProduction).image),
+  };
 }
