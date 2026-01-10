@@ -20,7 +20,7 @@ export default async function AllProductionsPage({
   return (
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start ">
-        <h1>Production from my work history</h1>
+        <h1 className="mb-2">Production from my work history</h1>
         {prod.image && (
           <Image
             src={prod.image}
