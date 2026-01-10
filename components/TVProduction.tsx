@@ -9,4 +9,6 @@ export type TVProduction = {
   summary?: string | null;
   more?: string | null;
   company?: string | null;
+  image_small?: string | null;
+  link?: string | null;
 };

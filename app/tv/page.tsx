@@ -16,7 +16,7 @@ export default function ShowTvLink() {
               <ImageSlideshow portfolio={"tv"} />
             </div>
             {/* sisältö */}
-            <div>
+            <div className="py-4 sm:py-0">
               <h2 className="text-sm sm:text-2xl font-bold uppercase">
                 Television & Film
               </h2>

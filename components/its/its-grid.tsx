@@ -14,10 +14,10 @@ export default function ITsGrid({ itprojects }: ITsGridProps) {
         <li key={p.id}>
           <Link href={`/it/projects/${p.slug}`}>
             <article key={p.slug} className="rounded-xl border p-4 mt-2">
-              <div className="flex flex-column sm:flex-row gap-4 ">
-                {p.image && (
+              <div className="flex flex-col sm:flex-row gap-4 ">
+                {p.image_small && (
                   <Image
-                    src={p.image}
+                    src={p.image_small}
                     alt={p.slug}
                     width={240}
                     height={180}

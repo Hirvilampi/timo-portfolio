@@ -1,11 +1,21 @@
 import Image from "next/image";
 
+import classes from "./page.module.css";
 import { getTVProduction } from "@/lib/tvpproduction";
+
+function toAbsoluteUrl(url?: string | null) {
+  if (!url) return null;
+  const u = url.trim();
+  if (!u) return null;
+  if (u.startsWith("http://") || u.startsWith("https://")) return u;
+  return `https://${u}`;
+}
 
 export default async function AllProductionsPage({
   params,}: {  params: Promise<{ tvSlug: string }>;}) {
   const { tvSlug } = await params;
   const prod = await getTVProduction(tvSlug);
+  const href = toAbsoluteUrl(prod.link);
 
   return (
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -34,6 +44,14 @@ export default async function AllProductionsPage({
         <p className="mt-4"> {prod.summary}</p>
 
         <p className="mt-4">{prod.more}</p>
+
+                {href && (
+          <a href={href} target="_blank" rel="noopener noreferrer"
+          className={`${classes.link} mt-4`}
+          >
+            Link to video or production page
+          </a>
+        )}
 
         <p className="mt-4">Production Company:&nbsp;{prod.company}</p>
       </main>

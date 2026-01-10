@@ -11,4 +11,5 @@ export type ITProject = {
   more?: string | null;
   technologies?: string | null;
   company?: string | null;
+  image_small?: string | null;
 };

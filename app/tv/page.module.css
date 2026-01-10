@@ -1,18 +1,16 @@
 .cardWrapper {
   position: relative;
-  display: flex;   /* tärkein: korkeus = sisällön korkeus */
+  display: flex; /* tärkein: korkeus = sisällön korkeus */
   width: 100%;
-  max-width: 800px;        /* valinnainen */
+  max-width: 800px; /* valinnainen */
   min-height: 180px;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
- 
 }
 
 .cardWrapper:hover {
   transform: translateX(10px);
-  
 }
 
 .cardShape {
@@ -29,7 +27,7 @@
 }
 
 .cardShape:hover {
- background: linear-gradient(90deg, #f9572a, #ff9b05);
+  background: linear-gradient(90deg, #f9572a, #ff9b05);
 }
 
 .cardBorder {
@@ -51,24 +49,35 @@
 }
 
 .row {
-  display: flex;       
-  flex-direction: row; 
-  gap: 20px;        
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
-.title { margin: 0 0 0.5rem; font-weight: 600; }
-.text { margin: 0; opacity: 0.8; }
+.title {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+.text {
+  margin: 0;
+  opacity: 0.8;
+}
 
-@media (max-width: 768px) {
+@media (max-width: 540px) {
   .cardShape {
-    flex-direction: column;
-    /* text-align: center; */
+    padding-top: 1rem;
+    /* flex-direction: row; */
+    /* text-align: center;  */
     clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
   }
-    .slideshowPlaceholder {
-  width: 50px;
-  height: 50px;
-  background: #eee;
-  flex-shrink: 0;
-}
+  .slideshowPlaceholder {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    flex-shrink: 0;
+  }
+  .row {
+    flex-direction: column;
+    align-items: flex-start; /* or center if you want */
+  }
 }
