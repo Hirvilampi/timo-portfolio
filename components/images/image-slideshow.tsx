@@ -20,17 +20,6 @@ import personaltrainer1Img from "@/public/assets/it_images/square/personaltraine
 import personaltrainer2Img from "@/public/assets/it_images/square/personaltrainer2.png";
 import stufflogImg from "@/public/assets/it_images/square/Stufflog.png";
 
-// const images = [
-//   { image: venlaImg, alt: "I won Venla-award" },
-//   { image: kakutImg, alt: "The Great Finnish Bake-Off" },
-//   { image: mole1Img, alt: "The Mole" },
-//   { image: susaImg, alt: "Who Do You Think You Are" },
-//   { image: mole2Img, alt: "The Mole" },
-//   { image: uae1Img, alt: "Dream Holiday House" },
-//   { image: uae2Img, alt: "Dream Holiday House" },
-//   { image: mole3Img, alt: "The Mole" },
-// ];
-
 const imagestv = [
   { image: venlaImg, alt: "I won Venla-award" },
   { image: kakutImg, alt: "The Great Finnish Bake-Off" },
