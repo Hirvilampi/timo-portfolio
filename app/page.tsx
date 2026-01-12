@@ -17,7 +17,7 @@ export default function Home() {
         />
 
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-xl sm:text-2xl md:text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+          <h1 className="max-w-xs text-xl sm:text-2xl md:text-3xl font-semibold mt-2 leading-10 tracking-tight text-black dark:text-zinc-50">
             Timo Lampinen - Junior Software Developer and TV Professional
           </h1>
           <p className="max-w-md text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
@@ -34,6 +34,13 @@ export default function Home() {
 
         <div className="w-full flex justify-start mt-6">
           <ShowItLink />
+        </div>
+
+        <div className="py-10 ">
+          <p className={`${classes.thispage} "text-sm sm:text-lg"`}>
+            This page is coded in Visual Studio Code by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel. 
+            It uses Supabase as database for productions info and images.
+          </p>
         </div>
       </main>
     </div>

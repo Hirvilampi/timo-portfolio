@@ -17,6 +17,16 @@
   transform: translateX(10px);
 }
 
+.thispage {
+  color: lightgrey;
+  font-weight: bold;
+}
+
+.thispage:hover {
+  color:rgb(236, 169, 82);
+  transform:perspective(2);
+}
+
 .slideshowPlaceholder {
   width: 200px;
   height: 200px;
