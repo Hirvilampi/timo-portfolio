@@ -38,8 +38,13 @@ export default function Home() {
 
         <div className="py-10 ">
           <p className={`${classes.thispage} "text-sm sm:text-lg"`}>
-            This page is coded in Visual Studio Code by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel. 
-            It uses Supabase as database for productions info and images.
+              <a
+          href="https://github.com/Hirvilampi/timo-portfolio"
+          target="_blank"
+          rel="noopener noreferrer">
+            This page is coded in Visual Studio Code by yours truly. Built with Next.js, Typescript and Tailwind CSS, deployed with Vercel. 
+            It uses Supabase as database for productions info and images. Click to see the code in GitHub.
+            </a>
           </p>
         </div>
       </main>
