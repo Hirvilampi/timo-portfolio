@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import classes from "./page.module.css";
 import { getTVProduction } from "@/lib/tvpproduction";
+import BackButton from "@/components/BackButton";
 
 function toAbsoluteUrl(url?: string | null) {
   if (!url) return null;
@@ -68,6 +69,7 @@ export default async function AllProductionsPage({
   return (
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start ">
+          <BackButton />
         <h1 className="mb-2">Production from my work history</h1>
         <Suspense fallback={<p className={classes.loading}>Loading..</p>}>
           <ShowProductionPage slug={tvSlug} />
@@ -76,5 +78,3 @@ export default async function AllProductionsPage({
     </div>
   );
 }
-
-

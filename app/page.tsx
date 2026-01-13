@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 import classes from "./page.module.css";
 import ShowTvLink from "./tv/page";
 import ShowItLink from "./it/page";
@@ -21,10 +21,10 @@ export default function Home() {
             Timo Lampinen - Junior Software Developer and TV Professional
           </h1>
           <p className="max-w-md text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            My portfolio in software development and
-            directing/writing tv productions. Currently looking for new
-            opportunities in software development, but I'm still interested in
-            directing and writing TV productions.
+            My portfolio in software development and directing/writing tv
+            productions. Currently looking for new opportunities in software
+            development, but I'm still interested in directing and writing TV
+            productions.
           </p>
         </div>
 
@@ -36,14 +36,26 @@ export default function Home() {
           <ShowItLink />
         </div>
 
-        <div className="py-10 ">
+        <div className="mt-6 items-center">
+          Contact:
+          <p className="items-center">
+             +358405363191 lampinen.timo@gmail.com
+            <Link className={`${classes.thispage2}`} href="https://www.linkedin.com/in/timo-lampinen-4657b" target="_blank"> linkedin</Link>
+            <Link className={`${classes.thispage2}`} href="https://www.instagram.com/timolampinen" target="_blank"> instagram</Link>
+          </p>
+        </div>
+
+        <div className="mt-6 ">
           <p className={`${classes.thispage} "text-sm sm:text-lg"`}>
-              <a
-          href="https://github.com/Hirvilampi/timo-portfolio"
-          target="_blank"
-          rel="noopener noreferrer">
-            This page is coded in Visual Studio Code by yours truly. Built with Next.js, Typescript and Tailwind CSS, deployed with Vercel. 
-            It uses Supabase as database for productions info and images. Click to see the code in GitHub.
+            <a
+              href="https://github.com/Hirvilampi/timo-portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              This page is coded in Visual Studio Code by yours truly. Built
+              with Next.js, Typescript and Tailwind CSS, deployed with Vercel.
+              It uses Supabase as database for productions info and images.
+              Click to see the code in GitHub.
             </a>
           </p>
         </div>

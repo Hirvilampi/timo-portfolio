@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ITProject } from "../ITProject";
+import classes from "./its-grid.module.css"
 
 type ITsGridProps = {
   itprojects: ITProject[];
@@ -9,9 +10,9 @@ type ITsGridProps = {
 
 export default function ITsGrid({ itprojects }: ITsGridProps) {
   return (
-    <ul>
+    <ul className="classes.ul">
       {itprojects.map((p) => (
-        <li key={p.id}>
+        <li className={classes.link}  key={p.id}>
           <Link href={`/it/projects/${p.slug}`}>
             <article key={p.slug} className="rounded-xl border p-4 mt-2">
               <div className="flex flex-col sm:flex-row gap-4 ">

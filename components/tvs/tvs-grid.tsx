@@ -2,38 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { TVProduction } from "@/components/TVProduction";
-
-// export type TVProduction = {
-//   id: number;
-//   slug: string;
-//   title: string;
-//   seasons?: string | null;
-//   year?: string | null;
-//   image?: string | null;
-//   job?: string | null;
-//   summary?: string | null;
-//   more?: string | null;
-//   company?: string | null;
-// };
+import classes from "./tvs-grid.module.css";
 
 type TVsGridProps = {
   tvproductions: TVProduction[];
 };
 
 export default function TVsGrid({ tvproductions }: TVsGridProps) {
-
-
   return (
     <ul>
       {tvproductions.map((p) => (
-        <li key={p.id}>
-          <Link
+        <li  className={classes.link}  key={p.id}>
+          <Link 
+       
             href={{
               pathname: `/tv/productions/${p.slug}`
             }}
           >
             <article key={p.slug} className="rounded-xl border p-4 mt-2 flex flex-col">
-              <div className="flex flex-col sm:flex-row gap-4 ">
+              <div className="flex flex-col sm:flex-row gap-4">
                 {p.image_small && (
                   <Image
                     src={p.image_small}

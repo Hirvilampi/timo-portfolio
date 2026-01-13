@@ -5,6 +5,7 @@ import { Suspense } from "react";
 
 import classes from "./page.module.css";
 import { getITProject } from "@/lib/itproject";
+import BackButton from "@/components/BackButton";
 
 function toAbsoluteUrl(url?: string | null) {
   if (!url) return null;
@@ -85,6 +86,7 @@ export default async function AllProjectsPage({
   return (
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start ">
+        <BackButton />
         <h1 className="mb-2">IT Project from my work history</h1>
         <Suspense fallback={<p className={classes.loading}>Loading...</p>}>
           <ShowProjectInfo itSlug={itSlug} />

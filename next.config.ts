@@ -10,6 +10,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+    async redirects() {
+    return [
+      {
+        source: "/yhteys.html",
+        destination: "/",
+        permanent: true, // 301
+      },
+      {
+        source: "/:path*.html",
+        destination: "/",
+        permanent: true, // 301
+      },
+    ];
+  },
 };
 
 export default nextConfig;
