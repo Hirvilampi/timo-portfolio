@@ -10,7 +10,7 @@ type TVsGridProps = {
 
 export default function TVsGrid({ tvproductions }: TVsGridProps) {
   return (
-    <ul>
+    <ul className="classes.ul" >
       {tvproductions.map((p) => (
         <li  className={classes.link}  key={p.id}>
           <Link 
@@ -19,8 +19,8 @@ export default function TVsGrid({ tvproductions }: TVsGridProps) {
               pathname: `/tv/productions/${p.slug}`
             }}
           >
-            <article key={p.slug} className="rounded-xl border p-4 mt-2 flex flex-col">
-              <div className="flex flex-col sm:flex-row gap-4">
+            <article key={p.slug} className="rounded-xl border p-4 mt-2 flex flex-col text-black dark:text-zinc-50">
+              <div className="flex flex-col sm:flex-row gap-4  text-black dark:text-zinc-50">
                 {p.image_small && (
                   <Image
                     src={p.image_small}

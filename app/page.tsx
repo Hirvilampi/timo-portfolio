@@ -35,15 +35,35 @@ export default function Home() {
         <div className="w-full flex justify-start mt-6">
           <ShowItLink />
         </div>
-
-        <div className="mt-6 items-center">
-          Contact:
-          <p className="items-center">
-             +358405363191 lampinen.timo@gmail.com
-            <Link className={`${classes.thispage2}`} href="https://www.linkedin.com/in/timo-lampinen-4657b" target="_blank"> linkedin</Link>
-            <Link className={`${classes.thispage2}`} href="https://www.instagram.com/timolampinen" target="_blank"> instagram</Link>
-          </p>
-        </div>
+        <section>
+          <div className="mt-6 items-center">
+            <span className="text-black dark:text-zinc-50">
+              Contact:
+            </span>
+            
+            <p className="items-center text-black dark:text-zinc-50">
+              +358405363191 lampinen.timo@gmail.com
+              <Link
+                // className={`${classes.thispage2} text-black dark:text-white`}
+                className="text-black hover:text-orange-500 dark:text-zinc-50"
+                href="https://www.linkedin.com/in/timo-lampinen-4657b"
+                target="_blank"
+              >
+                {" "}
+                linkedin
+              </Link>
+              <Link
+                // className={`${classes.thispage2}  text-black dark:text-white`}
+                className="text-black hover:text-orange-500 dark:text-zinc-50"
+                href="https://www.instagram.com/timolampinen"
+                target="_blank"
+              >
+                {" "}
+                instagram
+              </Link>
+            </p>
+          </div>
+        </section>
 
         <div className="mt-6 ">
           <p className={`${classes.thispage} "text-sm sm:text-lg"`}>

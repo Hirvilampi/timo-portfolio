@@ -1,18 +1,15 @@
 .link {
-  /* display: flex;
-  align-items: center;
-  gap: 2rem;
-  background: white;
-  border: 4px solid black;
-  padding: 2rem;
-  cursor: pointer;
-  /* Tämä luo suunnikasmuodon */
-  /* clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
-  transition: transform 0.2s ease;
-  text-decoration: none;*/
   color: black; 
   align-content: flex-start;
+}
+/* 
+Dark mode */
+:global(.dark) .link {
+  color: white;
+}
 
+@media (prefers-color-scheme: dark) {
+  .link { color: white; }
 }
 
 .link:hover {

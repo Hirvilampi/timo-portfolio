@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import classes from "./page.module.css";
@@ -19,13 +19,13 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
   const prod = await getITProject(itSlug);
   const href = toAbsoluteUrl(prod.link);
 
-    if (!prod) {
-      notFound();
-    }
-
+  if (!prod) {
+    notFound();
+  }
 
   return (
     <>
+    <section className=" text-black dark:text-zinc-50">
       {prod.image && (
         <Image
           src={prod.image}
@@ -70,6 +70,7 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
         </a>
       )}
       <p className="mt-4">Company:&nbsp;{prod.company}</p>
+      </section>
     </>
   );
 }

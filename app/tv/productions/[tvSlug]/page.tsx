@@ -23,6 +23,7 @@ async function ShowProductionPage({ slug }: { slug: string }) {
 
   return (
     <>
+    <section className=" text-black dark:text-zinc-50">
       {prod.image && (
         <Image
           src={prod.image}
@@ -55,6 +56,7 @@ async function ShowProductionPage({ slug }: { slug: string }) {
         </a>
       )}
       <p className="mt-4">Production Company:&nbsp;{prod.company}</p>
+      </section>
     </>
   );
 }

@@ -31,6 +31,8 @@
   color: black;
 }
 
+/* :global(.dark) .thispage2 { color: white } */
+
 .thispage2:hover {
   color:rgb(236, 169, 82);
   transform:perspective(2);
@@ -43,6 +45,14 @@
   background: #eee;
   flex-shrink: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ededed;
+    --foreground: #0a0a0a;
+  }
+}
+
 
 /* Mobiiliresponsiivisuus */
 @media (max-width: 768px) {
