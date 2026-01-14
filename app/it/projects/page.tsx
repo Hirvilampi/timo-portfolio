@@ -28,7 +28,7 @@ export default async function Productions() {
               className={`${classes.cardWrapper} items-center mt-4 text-sm sm:text-base`}
             >
               <Link href="./tech//">
-                <p className="items-start  text-black hover:text-orange-500 dark:text-zinc-50">
+                <p className="items-start text-black hover:text-orange-500 dark:text-zinc-50">
                   Core Tehcnologies - click for more info
                 </p>
                 <ul className=" text-black dark:text-zinc-50 ">
