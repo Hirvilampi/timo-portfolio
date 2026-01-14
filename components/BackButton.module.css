@@ -15,7 +15,6 @@ Dark mode */
 .link:hover {
   transform: translateX(10px);
   color: #f9572a;
-  /* color: linear-gradient(90deg, #f9572a, #ff9b05); */
 }
 
 /* Mobiiliresponsiivisuus */
