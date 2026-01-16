@@ -49,6 +49,7 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
       <p className="mt-4"> {prod.summary}</p>
       <p className="mt-4">{prod.more}</p>
       {href && (
+        <div className="hover:translate-x-2">
         <a
           href={href}
           target="_blank"
@@ -57,9 +58,11 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
         >
           Link to project/company
         </a>
+        </div>
       )}
 
       {prod.gitlink && (
+        <div className="hover:translate-x-2">
         <a
           href={prod.gitlink}
           target="_blank"
@@ -68,6 +71,7 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
         >
           Link to github
         </a>
+        </div>
       )}
       <p className="mt-4">Company:&nbsp;{prod.company}</p>
       </section>

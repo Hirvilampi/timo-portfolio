@@ -50,7 +50,9 @@ export default function Home() {
                 target="_blank"
               >
                 {" "}
+                <span className="hover:translate-x-2">
                 linkedin
+                </span>
               </Link>
               <Link
                 // className={`${classes.thispage2}  text-black dark:text-white`}
@@ -59,7 +61,9 @@ export default function Home() {
                 target="_blank"
               >
                 {" "}
+                <span className="hover:translate-x-2">
                 instagram
+                </span>
               </Link>
             </p>
           </div>

@@ -27,11 +27,13 @@ export default async function Productions() {
             <div
               className={`${classes.cardWrapper} items-center mt-4 text-sm sm:text-base`}
             >
+               <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2">
               <Link href="./tech//">
-                <p className="items-start text-black hover:text-orange-500 dark:text-zinc-50">
+             
+                <p className="items-start">
                   Core Tehcnologies - click for more info
                 </p>
-                <ul className=" text-black dark:text-zinc-50 ">
+                <ul >
                   <li>Languages: Java, TypeScript, JavaScript, Python</li>
                   <li>Frontend: React, Next.js, Tailwind CSS, HTML, CSS</li>
                   <li>Mobile: React Native, Expo, React Navigation</li>
@@ -45,6 +47,7 @@ export default async function Productions() {
                   <li>AI-assisted development: ChatGPT, Codex</li>
                 </ul>
               </Link>
+              </section>
             </div>
           </section>
           <div className="mt-6 text-black dark:text-zinc-50">
