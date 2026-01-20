@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { TVProduction } from "@/components/TVProduction";
 import classes from "./tvs-grid.module.css";
+import OnMouseOver from "../MouseOver";
 
 type TVsGridProps = {
   tvproductions: TVProduction[];
@@ -10,6 +11,7 @@ type TVsGridProps = {
 
 export default function TVsGrid({ tvproductions }: TVsGridProps) {
   return (
+    <OnMouseOver>
     <ul className="classes.ul" >
       {tvproductions.map((p) => (
         <li  className={classes.link}  key={p.id}>
@@ -18,7 +20,7 @@ export default function TVsGrid({ tvproductions }: TVsGridProps) {
               pathname: `/tv/productions/${p.slug}`
             }}
           >
-            <article key={p.slug} className="rounded-xl border p-4 mt-2 flex flex-col text-black dark:text-zinc-50">
+            <article key={p.slug} className="rounded-xl border p-4 mt-2 flex flex-col text-black dark:text-zinc-50 hover:bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-300">
               <div className="flex flex-col sm:flex-row gap-4 s">
                 {p.image_small && (
                   <Image
@@ -46,5 +48,6 @@ export default function TVsGrid({ tvproductions }: TVsGridProps) {
         </li>
       ))}
     </ul>
+    </OnMouseOver>
   );
 }
