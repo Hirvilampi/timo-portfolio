@@ -10,7 +10,7 @@ type MouseOverProps = {
 export default function OnMouseOver({ children, className }: MouseOverProps) {
   return (
     <div
-      className={`relative overflow-hidden bg-stone-950${className ? ` ${className}` : ""}`}
+      className={`relative  bg-stone-950${className ? ` ${className}` : ""}`}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
