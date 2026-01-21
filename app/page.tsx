@@ -4,12 +4,14 @@ import classes from "./page.module.css";
 import ShowTvLink from "./tv/page";
 import ShowItLink from "./it/page";
 import OnMouseOver from "@/components/MouseOver";
+import HoverAnimation from "@/components/HoverAnimation";
 
 export default function Home() {
   return (
+    <>
     <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex w-full max-w-3xl flex-col items-center py-24 px-16 bg-[rgb(252,252,252)] dark:bg-black sm:items-start ">
-        <OnMouseOver>
+         <OnMouseOver> 
           <Image
             src="/timo_logo.png"
             alt="Timo Lampinen - kuva Riitta Sourander"
@@ -22,12 +24,14 @@ export default function Home() {
             <h1 className="max-w-xs text-xl sm:text-2xl md:text-3xl font-semibold mt-2 leading-10 tracking-tight text-black dark:text-zinc-50">
               Timo Lampinen - Junior Software Developer and TV Professional
             </h1>
-            <p className="max-w-md text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+ 
+            <p className="max-w-md text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400 hover:animate-flash-once">
               My portfolio in software development and directing/writing tv
               productions. Currently looking for new opportunities in software
               development, but I'm still interested in directing and writing TV
               productions.
             </p>
+
           </div>
 
           <div className="w-full flex items-start justify-center mt-6 sm:justify-start ">
@@ -91,8 +95,9 @@ export default function Home() {
               </span>
             </p>
           </div>
-        </OnMouseOver>
+         </OnMouseOver> 
       </main>
     </div>
+    </>
   );
 }
