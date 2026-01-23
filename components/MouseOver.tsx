@@ -21,7 +21,9 @@ export default function OnMouseOver({ children, className }: MouseOverProps) {
       }}
       style={{
         background:
-          "radial-gradient(200px circle at var(--x) var(--y), rgba(16, 185, 129, 0.12), transparent 70%)",
+          "radial-gradient(200px circle at var(--x) var(--y), rgba(185, 114, 16, 0.12), transparent 70%)",
+          //       background:
+          // "radial-gradient(200px circle at var(--x) var(--y), rgba(16, 185, 129, 0.12), transparent 70%)",
       }}
     >
       {children}

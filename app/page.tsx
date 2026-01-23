@@ -22,7 +22,7 @@ export default function Home() {
                   priority
                 />
 
-                <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+                <div className="flex flex-col gap-6 text-left sm:items-start sm:text-left">
                   <h1 className="max-w-xs text-lg sm:text-xl md:text-2xl font-semibold mt-2 leading-10 tracking-tight text-black dark:text-zinc-50">
                     Timo Lampinen - Junior Software Developer and TV
                     Professional

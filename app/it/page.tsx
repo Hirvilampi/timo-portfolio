@@ -20,7 +20,7 @@ export default function ShowItLink({ className, ...props }: CardProps) {
                 Software Developer
               </h2>
               <p className="text-xs sm:text-xl">
-                Coding, Frontend, Service Design, Backend
+                Frontend, Backend, Service Design
               </p>
               <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
                 CLICK FOR PROJECTS
