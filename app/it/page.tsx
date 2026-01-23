@@ -30,7 +30,7 @@ export default function ShowItLink({ className, ...props }: CardProps) {
         </div>
 
         {/* Reunus: piirtyy varmasti myös vinossa reunassa */}
-        <svg
+        {/* <svg
           className={classes.cardBorder}
           viewBox="0 0 200 100"
           preserveAspectRatio="none"
@@ -43,7 +43,7 @@ export default function ShowItLink({ className, ...props }: CardProps) {
             strokeWidth="2"
             vectorEffect="non-scaling-stroke"
           />
-        </svg>
+        </svg> */}
       </Link>
     </>
   );
