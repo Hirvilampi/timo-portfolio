@@ -1,12 +1,19 @@
 .cardWrapper {
   position: relative;
-  display: flex; /* tärkein: korkeus = sisällön korkeus */
+  display: flex;
   width: 100%;
-  max-width: 800px; /* valinnainen */
+  max-width: 800px;
   min-height: 180px;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
+  
+  /* TÄMÄ LUO REUNUKSEN: */
+  /* Drop-shadow noudattaa clip-pathin muotoa toisin kuin border */
+  filter: drop-shadow(2px 0px 0px black) 
+          drop-shadow(-2px 0px 0px black) 
+          drop-shadow(0px 2px 0px black) 
+          drop-shadow(0px -2px 0px black);
 }
 
 .cardWrapper:hover {
@@ -18,11 +25,8 @@
   width: 100%;
   align-items: center;
   gap: 2rem;
-  padding: 0rem;
   padding-left: 1rem;
   background: white;
-
-  /* varsinainen muoto */
   clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
 }
 
@@ -64,11 +68,9 @@
 }
 
 @media (max-width: 540px) {
-  .cardShape {
-    padding-top: 1rem;
-    /* flex-direction: row; */
-    /* text-align: center;  */
-    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+.cardShape {
+    /* Nyt sinun tarvitsee muuttaa vain tätä, "reunus" seuraa mukana */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   }
   .slideshowPlaceholder {
     width: 50px;

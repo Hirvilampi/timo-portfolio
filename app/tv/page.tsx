@@ -29,7 +29,7 @@ export default function ShowTvLink() {
         </div>
 
         {/* Reunus: piirtyy varmasti myös vinossa reunassa */}
-        <svg
+        {/* <svg
           className={classes.cardBorder}
           viewBox="0 0 200 100"
           preserveAspectRatio="none"
@@ -42,7 +42,7 @@ export default function ShowTvLink() {
             strokeWidth="2"
             vectorEffect="non-scaling-stroke"
           />
-        </svg>
+        </svg> */}
       </Link>
     </>
   );
