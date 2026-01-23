@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-5xl flex-col items-center py-24 px-16 bg-[rgb(252,252,252)] dark:bg-black sm:items-start ">
+        <main className="flex w-full max-w-4xl flex-col items-center py-24 px-16 bg-[rgb(252,252,252)] dark:bg-black sm:items-start ">
           <OnMouseOver>
-            <div className="flex grid w-full max-w-4xl gap-6 sm:grid-cols-[35%_75%]">
+            <div className="flex grid w-full max-w-4xl gap-6 sm:grid-cols-[30%_70%]">
               <section className="">
                 <Image
                   src="/timo_logo.png"
