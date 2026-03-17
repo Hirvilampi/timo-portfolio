@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import BackButton from "@/components/BackButton";
 import classes from "./page.module.css";
 import React, { useState, useEffect } from "react";
