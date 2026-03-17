@@ -33,6 +33,7 @@ export default function Chatbot() {
       }
       
       addRow("Timo-bot: " + data.answer);
+      addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
       addRow("Timo-bot: Error");
