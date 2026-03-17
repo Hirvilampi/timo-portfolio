@@ -6,6 +6,8 @@ import BackButton from "@/components/BackButton";
 import classes from "./page.module.css";
 import OnMouseOver from "@/components/MouseOver";
 
+export const dynamic = "force-dynamic";
+
 export default async function Productions() {
   const itprojects = await getITProjects();
 
@@ -40,6 +42,8 @@ export default async function Productions() {
                       <li>Mobile: React Native, Expo, React Navigation</li>
                       <li>Backend: Spring Boot, Node.js, REST APIs, GraphQL</li>
                       <li>Databases: PostgreSQL, Firebase, Supabase, SQLite</li>
+                      <li>Infrastructure & Systems: Linux, Bash, SSH, Apache HTTP Server, APT package management, Virtual machines, System troubleshooting, Log analysis
+</li>
                       <li>
                         Security & Validation: Spring Security, Bean Validation
                       </li>

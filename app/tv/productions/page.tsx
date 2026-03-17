@@ -3,6 +3,8 @@ import { getTVProductions } from "@/lib/tvproductions";
 import BackButton from "@/components/BackButton";
 import OnMouseOver from "@/components/MouseOver";
 
+export const dynamic = "force-dynamic";
+
 export default async function Productions() {
   const tvproductions = await getTVProductions();
 
