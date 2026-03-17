@@ -1,0 +1,32 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  border: 0px solid black;
+  padding: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  color: black;
+}
+
+.cardContainer:hover {
+  transform: translateX(10px);
+}
+
+.slideshowPlaceholder {
+  width: 200px;
+  height: 200px;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+/* Mobiiliresponsiivisuus */
+@media (max-width: 768px) {
+  .cardContainer {
+    flex-direction: column;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    text-align: center;
+  }
+}
