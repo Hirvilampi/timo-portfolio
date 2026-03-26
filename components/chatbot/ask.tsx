@@ -23,7 +23,7 @@ export default function Ask({ onAsk }: AskProps) {
       >
         <input
           type="text"
-          className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md
+          className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white 
              caret-black
              focus:outline-none focus:ring-2 focus:ring-zinc-400"
           value={question}
