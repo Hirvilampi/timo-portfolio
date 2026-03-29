@@ -8,12 +8,21 @@ import { setMaxListeners } from "events";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
+type ChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+}
+
+// these control, what is printed before the question in messages using roles
+const uare = 'You: ';
+const timois = 'Timo-bot: ';
+
 export default function Chatbot() {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const addRow = (newText: string) => {
+  const addRow = (newText: ChatMessage) => {
     //   setRows((prev) => [...prev, newText]);
 
     setMessages((prev) => [...prev, newText]);
@@ -32,7 +41,7 @@ export default function Chatbot() {
         ? messages
         : messages.slice(messages.length - activeCount);
   const handleAsk = async (question: string) => {
-    addRow("You: " + question);
+    addRow({role: "user", content: question});
     setIsLoading(true);
 
     try {
@@ -47,15 +56,15 @@ export default function Chatbot() {
       const data = await response.json();
 
       if (!response.ok) {
-        addRow("Timo-bot: Error");
+        addRow({role: "assistant", content: "Error"});
         return;
       }
 
-      addRow("Timo-bot: " + data.answer);
+      addRow({role: "assistant", content: data.answer});
       //   addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
-      addRow("Timo-bot: Error");
+      addRow({role: "assistant", content: "Error"});
     } finally {
       setIsLoading(false);
     }
@@ -76,14 +85,16 @@ export default function Chatbot() {
               className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
             >
               {rows.map((row, index) => (
-                <div key={index}>{row}</div>
+                <div key={index}>
+                  {row.role==="user" ? uare : timois} {row.content}
+                  </div>
               ))}
             </div>
             <div
               className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
             >
               {newRows.map((row, index) => (
-                <div key={index}>{row}</div>
+                <div key={index}>{row.role==="user" ? uare : timois} {row.content}</div>
               ))}
             </div>
 
