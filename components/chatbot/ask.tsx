@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 
+// Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
+
 type AskProps = {
   onAsk: (question: string) => void;
   isLoading: boolean;
@@ -18,7 +20,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
 
   return (
     <>
-      Ask me:{" "}
+      Ask me (Kysy minulta):{" "}
       <form
         onSubmit={handleSubmit}
         // className="mt-4 outline-1 text-sm sm:text-base text-black caret-black dark:text-zinc-50 dark:caret-white"
