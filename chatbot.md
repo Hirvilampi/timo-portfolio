@@ -33,15 +33,50 @@ I was already using Supabase in my portforlio and I quickly found you can use Su
 
 
 
-## Creating vector chuncks 
-This is about my table documents_chunks and how we made vectors there for each of the row. 
-each row has vector column called embedding.
+## Creating vector chuncks   
 
-I did this by creating script that reads all rows from the table. 
-this can be seen in file [scripts/embed-document-chunks.ts](scripts/embed-document-chunks.ts)
-For first time use, it takes only those rows which have no embeddings.
-Then we use embedding model text-embedding-3-small from OpenAI to create the embeddings.
-The embeddings are then inserted into rows in supabase. 
+This is about my table documents_chunks and how we made vectors there for each of the row.   
+each row has vector column called embedding.  
+
+I did this by creating script that reads all rows from the table.   
+this can be seen in file [scripts/embed-document-chunks.ts](scripts/embed-document-chunks.ts). 
+For first time use, it takes only those rows which have no embeddings.  
+Then we use embedding model text-embedding-3-small from OpenAI to create the embeddings.  
+The embeddings are then inserted into rows in supabase.   
+
+## Using chuncks as part of the search. 
+
+Tämä oli melko hankalaa, enkä tosiaankaan ole saamassa sitä heti toimimaan.   
+
+Tuo tuli osaksi route.ts, koska siellähän sitä käytetään.   
+ 
+Tosin funktio, joka tekee selvittelyn on tehty Supabaseen ja toimii näin:   
+"
+create extension if not exists vector with schema extensions;
+
+create or replace function match_document_chunks (
+  query_embedding vector(1536),
+  match_threshold float,
+  match_count int
+)
+returns setof document_chunks
+language sql
+as $$
+  select *
+  from document_chunks
+  where embedding <=> query_embedding < 1 - match_threshold
+  order by embedding <=> query_embedding asc
+  limit least(match_count, 200);
+$$;
+"
+
+Tuo vektoriarvo voi olla väärä ja olla myös syynä siihen, että thresholdia on joutunut laskemaan tosi alas, että tulee yhtään match:jä. Muistaakseni se on kuitenkin tuo, joten testataan sitä huomenna.
+
+Tässä on kyse siitä, että taulukko on luotu jollain vektoriarvolla ja jos vertoriarvo on väärä, eivät tulokset osu oikein.
+
+TESTAA ERI VEKTORIARVOILLA ()!!!
+
+Lisäksi tulee mieleen, että kirjoittaessani suomeksi vastaukset eivät ole kovin hyviä. Mietin pitäisikö minun muuttaa document_chunks mieluummin kokonaan suomeksi tai sitten luoda suomenkielelle toiset chunkit. Silloin kysymyksen kielen tunnistuksen jälkeen voi valita kummasta chunkista etsitään.
 
 
 
