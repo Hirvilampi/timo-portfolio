@@ -42,7 +42,7 @@ export default function Chatbot() {
   };
 
   useEffect(() => {
-    if (!conversationId) return;
+    if (!conversationId || isLoading) return;
 
     const loadMessages = async () => {
       const response = await fetch(
