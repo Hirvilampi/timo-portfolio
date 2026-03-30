@@ -23,7 +23,7 @@ export default function Chatbot() {
   // id creator for each new message
   const [conversationId, setConversationId] = useState<string | null>(null);
 
-   const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedConversationid = localStorage.getItem("conversationId");
@@ -68,8 +68,6 @@ export default function Chatbot() {
     setMessages([]);
   };
 
-
-
   const activeCount =
     messages.length === 0 ? 0 : messages.length % 2 === 0 ? 2 : 1;
 
@@ -89,8 +87,6 @@ export default function Chatbot() {
       el.scrollTop = el.scrollHeight;
     }
   }, [messages]);
-
-
 
   const handleAsk = async (question: string) => {
     addRow({ role: "user", content: question });
@@ -137,7 +133,10 @@ export default function Chatbot() {
           </button>
           <section>
             <Ask onAsk={handleAsk} isLoading={isLoading} />
-            <div ref={containerRef}  className="max-h-64 overflow-y-auto border p-4">
+            <div
+              ref={containerRef}
+              className="max-h-64 overflow-y-auto border p-4 w-full"
+            >
               <div
                 className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
               >

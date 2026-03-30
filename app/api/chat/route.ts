@@ -1,33 +1,63 @@
-import { generateText } from "ai";
+import { embed, generateText, embedMany } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { supabaseAdmin } from "@/lib/supabase-admin";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
+
+const supabaseAdmin = getSupabaseAdmin();
 
 const model = openai("gpt-4o-mini-2024-07-18");
 // const model = openai("gpt-4.1-2025-04-14");
 
-// const embeddingModel = openai.embedding("text-embedding-3-small");
+const embeddingModel = openai.embedding("text-embedding-3-small");
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
+
+type MatchDocumentChunksParams = {
+  queryEmbedding: number[];
+  matchThreshold?: number;
+  matchCount?: number;
+};
+
+export async function matchDocumentChunks({
+  queryEmbedding,
+  matchThreshold = 0.78,
+  matchCount = 10,
+}: MatchDocumentChunksParams) {
+  const { data, error } = await supabaseAdmin.rpc("match_document_chunks", {
+    query_embedding: queryEmbedding,
+    match_threshold: matchThreshold,
+    match_count: matchCount,
+  });
+
+  if (error) {
+    console.error("RPC error:", error);
+    throw new Error(`match_document_chunks failed: ${error.message}`);
+  }
+
+  return data;
+}
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const conversationId = searchParams.get("conversationId");
 
   if (!conversationId) {
-    return Response.json({error: "Conversation id is required"}, { status: 400});
+    return Response.json(
+      { error: "Conversation id is required" },
+      { status: 400 },
+    );
   }
 
   const { data, error } = await supabaseAdmin
-  .from("messages")
-  .select("role, content")
-  .eq("conversation_id", conversationId)
-  .order("created_at", {ascending: true});
+    .from("messages")
+    .select("role, content")
+    .eq("conversation_id", conversationId)
+    .order("created_at", { ascending: true });
 
   if (error) {
-    return Response.json( {error:"Failed to load messages"}, {status:500});
+    return Response.json({ error: "Failed to load messages" }, { status: 500 });
   }
-  
-  return Response.json({messages: data ?? []})
+
+  return Response.json({ messages: data ?? [] });
 }
 
 export async function POST(req: Request) {
@@ -87,7 +117,7 @@ export async function POST(req: Request) {
         .from("messages")
         .select("role, content")
         .eq("conversation_id", conversationId)
-        .order("created_at", { ascending: true })
+        .order("created_at", { ascending: false })
         .limit(20);
 
     if (storedMessagesError) {
@@ -95,16 +125,62 @@ export async function POST(req: Request) {
     }
 
     // muutetaan messaget oikeaan muotoon
-    const modelMessages = (storedMessages ?? []).map((message) => ({
+    const modelMessages = (storedMessages ?? [])
+      .reverse()
+      .map((message) => ({
       role: message.role,
       content: message.content,
     }));
+
+    // tähän väliin toteutetaan vektorien avulla query phase, eli haetaan kontekstia kysymykselle tallenuista chunkeista
+
+    // viimeinen viesti embeddingiin
+    const { embedding } = await embed({
+      model: embeddingModel,
+      value: latestUserMessage.content,
+    });
+
+    // kutsutaan Supabasen funtkiota match_document_chunks
+    const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+      "match_document_chunks",
+      {
+        query_embedding: embedding,
+        match_threshold: 0.30,
+        match_count: 5,
+      },
+    );
+
+    if (ragError) {
+      throw ragError;
+    }
+
+    const ragContext = (ragMatches ?? [])
+      .map((match: { content: string; document_id?: string }) => {
+        return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+      })
+      .join("\n\n---\n\n");
+
+    console.log(
+      "RAG matches:",
+      (ragMatches ?? []).map((match: { document_id: any; similarity?: number; content: string | any[]; }) => ({
+        document_id: match.document_id,
+        similarity: match.similarity,
+        contentPreview: match.content.slice(0, 120),
+      })),
+    );
 
     const { text } = await generateText({
       model,
       messages: modelMessages,
       system: `System:
         You are Timo Lampinen. You are not roleplaying Timo — you ARE Timo.
+
+        Use the retrieved context as the primary source for factual claims about Timo, his background, projects, and work history.
+        If retrieved context conflicts with assumptions, prefer the retrieved context.
+        If no relevant context is provided, answer so that you don't remember but you can continue after that.
+
+        Retrieved context:
+        ${ragContext}
 
         Tone & communication style:
         - You speak in a natural, slightly direct and thoughtful way.
@@ -176,7 +252,11 @@ export async function POST(req: Request) {
         Boundaries:
         - Do not mention being an AI.
         - You can say you live in Espoo, but never give exact address.
-        - You can mention having a family (wife and three sons), but do not go into private details.`,
+        - You can mention having a family (wife and three sons).
+        - You can tell about your father, mother and sister. Their names and all you know about them.
+        
+
+        `,
       //`System: You are digital avatar of Timo Lampinen. You speak and act as Timo. ` +
       //`Languages: Finnish is your mother tongue, but you are excellent in english. You also now some swedish, and basics of french and german.` +
       // `You can answer questions about you. ` +

@@ -23,13 +23,13 @@
 }
 
 .link {
-  color: black; 
+  color: green; 
   align-content: flex-start;
 }
 /* 
 Dark mode */
 :global(.dark) .link {
-  color: white;
+  color: yellow;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -29,6 +29,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
           type="text"
           // className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white  caret-blackfocus:outline-none focus:ring-2 focus:ring-zinc-400"
           className="
+              w-80
               border border-zinc-700
               bg-white text-black
               dark:bg-zinc-900 dark:text-white
