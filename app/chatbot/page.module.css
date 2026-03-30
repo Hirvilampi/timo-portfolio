@@ -22,6 +22,25 @@
   flex-shrink: 0;
 }
 
+.link {
+  color: black; 
+  align-content: flex-start;
+}
+/* 
+Dark mode */
+:global(.dark) .link {
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link { color: white; }
+}
+
+.link:hover {
+  transform: translateX(10px);
+  color: #f9572a;
+}
+
 /* Mobiiliresponsiivisuus */
 @media (max-width: 768px) {
   .cardContainer {

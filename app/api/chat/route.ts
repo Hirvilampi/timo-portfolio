@@ -1,29 +1,109 @@
-import { type ModelMessage, generateText } from "ai";
+import { generateText } from "ai";
 import { openai } from "@ai-sdk/openai";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
 const model = openai("gpt-4o-mini-2024-07-18");
 // const model = openai("gpt-4.1-2025-04-14");
 
-const embeddingModel = openai.embedding("text-embedding-3-small");
+// const embeddingModel = openai.embedding("text-embedding-3-small");
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
-const messages: ModelMessage[] = [];
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const conversationId = searchParams.get("conversationId");
+
+  if (!conversationId) {
+    return Response.json({error: "Conversation id is required"}, { status: 400});
+  }
+
+  const { data, error } = await supabaseAdmin
+  .from("messages")
+  .select("role, content")
+  .eq("conversation_id", conversationId)
+  .order("created_at", {ascending: true});
+
+  if (error) {
+    return Response.json( {error:"Failed to load messages"}, {status:500});
+  }
+  
+  return Response.json({messages: data ?? []})
+}
 
 export async function POST(req: Request) {
   try {
-    const { question } = await req.json();
+    const { conversationId, messages } = await req.json();
 
-    if (!question || typeof question !== "string") {
-      return Response.json({ error: "Question is required" }, { status: 400 });
+    // tarkastetaan, että conversationId ja messages on olemassa
+    if (!conversationId || typeof conversationId !== "string") {
+      return Response.json(
+        { error: "Conversation ID is required" },
+        { status: 400 },
+      );
     }
 
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return Response.json({ error: "Messages are required" }, { status: 400 });
+    }
+
+    // lähetetään API:lle vain 20 viimeistä viestiä, eli 10 kysymystä ja 10 vastausta
+    const recentMessages = messages.slice(-20);
+    const latestUserMessage = recentMessages[recentMessages.length - 1];
+
+    if (
+      !latestUserMessage ||
+      latestUserMessage.role !== "user" ||
+      typeof latestUserMessage.content !== "string"
+    ) {
+      return Response.json(
+        { error: "Latest message must be a user message" },
+        { status: 400 },
+      );
+    }
+
+    const { error: conversationError } = await supabaseAdmin
+      .from("conversations")
+      .upsert({ id: conversationId });
+
+    if (conversationError) {
+      throw conversationError;
+    }
+
+    const { error: userMessageError } = await supabaseAdmin
+      .from("messages")
+      .insert({
+        conversation_id: conversationId,
+        role: "user",
+        content: latestUserMessage.content,
+      });
+
+    if (userMessageError) {
+      throw userMessageError;
+    }
+
+    // haetaan supabasesta historia
+    const { data: storedMessages, error: storedMessagesError } =
+      await supabaseAdmin
+        .from("messages")
+        .select("role, content")
+        .eq("conversation_id", conversationId)
+        .order("created_at", { ascending: true })
+        .limit(20);
+
+    if (storedMessagesError) {
+      throw storedMessagesError;
+    }
+
+    // muutetaan messaget oikeaan muotoon
+    const modelMessages = (storedMessages ?? []).map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
 
     const { text } = await generateText({
       model,
-      prompt: question,
-      system: 
-        `System:
+      messages: modelMessages,
+      system: `System:
         You are Timo Lampinen. You are not roleplaying Timo — you ARE Timo.
 
         Tone & communication style:
@@ -117,6 +197,18 @@ export async function POST(req: Request) {
       //   Don't reveal your exact street of living, but you can tell the city is Espoo.
       //   Never reveal you are an AI; maintain the "Timo" persona throughout`,
     });
+
+    const { error: assistantMessageError } = await supabaseAdmin
+      .from("messages")
+      .insert({
+        conversation_id: conversationId,
+        role: "assistant",
+        content: text,
+      });
+
+    if (assistantMessageError) {
+      throw assistantMessageError;
+    }
 
     return Response.json({ answer: text });
   } catch (error) {

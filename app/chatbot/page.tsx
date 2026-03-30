@@ -1,9 +1,9 @@
 "use client";
 
 import BackButton from "@/components/BackButton";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Ask from "@/components/chatbot/ask";
-import { setMaxListeners } from "events";
+import classes from "./page.module.css";
 // import { answer } from "@/components/chatbot/answer";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
@@ -11,22 +11,64 @@ import { setMaxListeners } from "events";
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
-}
+};
 
 // these control, what is printed before the question in messages using roles
-const uare = 'You: ';
-const timois = 'Timo-bot: ';
+const askername = "You: ";
+const botname = "Timo-bot: ";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-
   const [isLoading, setIsLoading] = useState(false);
+  // id creator for each new message
+  const [conversationId, setConversationId] = useState<string | null>(null);
+
+   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const storedConversationid = localStorage.getItem("conversationId");
+    if (storedConversationid) {
+      setConversationId(storedConversationid);
+      return;
+    }
+    const newConversationId = crypto.randomUUID();
+    localStorage.setItem("conversationId", newConversationId);
+    setConversationId(newConversationId);
+  }, []);
 
   const addRow = (newText: ChatMessage) => {
     //   setRows((prev) => [...prev, newText]);
-
     setMessages((prev) => [...prev, newText]);
   };
+
+  useEffect(() => {
+    if (!conversationId) return;
+
+    const loadMessages = async () => {
+      const response = await fetch(
+        `/api/chat?conversationId=${conversationId}`,
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Failed to load messages");
+        return;
+      }
+
+      setMessages(data.messages ?? []);
+    };
+
+    loadMessages();
+  }, [conversationId]);
+
+  const startNewConversation = () => {
+    const newConversationId = crypto.randomUUID();
+    localStorage.setItem("conversationId", newConversationId);
+    setConversationId(newConversationId);
+    setMessages([]);
+  };
+
+
 
   const activeCount =
     messages.length === 0 ? 0 : messages.length % 2 === 0 ? 2 : 1;
@@ -40,31 +82,43 @@ export default function Chatbot() {
       : messages.length < 3
         ? messages
         : messages.slice(messages.length - activeCount);
-  const handleAsk = async (question: string) => {
-    addRow({role: "user", content: question});
-    setIsLoading(true);
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [messages]);
+
+
+
+  const handleAsk = async (question: string) => {
+    addRow({ role: "user", content: question });
+    setIsLoading(true);
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({
+          conversationId,
+          messages: [...messages, { role: "user", content: question }],
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        addRow({role: "assistant", content: "Error"});
+        addRow({ role: "assistant", content: "Error" });
         return;
       }
 
-      addRow({role: "assistant", content: data.answer});
+      addRow({ role: "assistant", content: data.answer });
       //   addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
-      addRow({role: "assistant", content: "Error"});
+      addRow({ role: "assistant", content: "Error" });
     } finally {
       setIsLoading(false);
     }
@@ -78,26 +132,31 @@ export default function Chatbot() {
           <h1 className="text-3xl  text-black dark:text-zinc-50">
             Chat with AI-Timo
           </h1>
+          <button className={classes.link} onClick={startNewConversation}>
+            Start new chat
+          </button>
           <section>
             <Ask onAsk={handleAsk} isLoading={isLoading} />
-
-            <div
-              className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
-            >
-              {rows.map((row, index) => (
-                <div key={index}>
-                  {row.role==="user" ? uare : timois} {row.content}
+            <div ref={containerRef}  className="max-h-64 overflow-y-auto border p-4">
+              <div
+                className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
+              >
+                {rows.map((row, index) => (
+                  <div key={index}>
+                    {row.role === "user" ? askername : botname} {row.content}
                   </div>
-              ))}
+                ))}
+              </div>
+              <div
+                className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
+              >
+                {newRows.map((row, index) => (
+                  <div key={index}>
+                    {row.role === "user" ? askername : botname} {row.content}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div
-              className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
-            >
-              {newRows.map((row, index) => (
-                <div key={index}>{row.role==="user" ? uare : timois} {row.content}</div>
-              ))}
-            </div>
-
             <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2"></section>
           </section>
           <div className="mt-6 text-black dark:text-zinc-50"></div>
