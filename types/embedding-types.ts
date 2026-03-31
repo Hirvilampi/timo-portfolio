@@ -32,3 +32,8 @@ export type RagMatchBigFin = {
   };
   similarity: number;
 };
+
+export type ChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+};
