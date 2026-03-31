@@ -1,6 +1,10 @@
 import { embed, generateText, embedMany } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import type { 
+  MatchDocumentChunksParams, 
+  MatchDocumentChunksBigFinParams, 
+  RagMatchBigFin } from "@/types/embedding-types.ts";
 
 const supabaseAdmin = getSupabaseAdmin();
 
@@ -10,12 +14,6 @@ const model = openai("gpt-4o-mini-2024-07-18");
 const embeddingModel = openai.embedding("text-embedding-3-small");
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
-
-type MatchDocumentChunksParams = {
-  queryEmbedding: number[];
-  matchThreshold?: number;
-  matchCount?: number;
-};
 
 export async function matchDocumentChunks({
   queryEmbedding,
@@ -61,6 +59,55 @@ export async function matchDocumentChunks({
 
   return ragContext;
 }
+
+export async function matchDocumentChunksBigFin({
+  queryEmbedding,
+  matchThreshold = 0.78,
+  matchCount = 10,
+}: MatchDocumentChunksBigFinParams) {
+  // kutsutaan Supabasen funtkiota match_document_chunks
+  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+    "match_document_chunks_big_fin",
+    {
+      query_embedding: queryEmbedding,
+      match_threshold: matchThreshold,
+      match_count: matchCount,
+    },
+  );
+
+  if (ragError) {
+    throw ragError;
+  }
+
+  const matches = (ragMatches ?? []) as RagMatchBigFin[];
+
+  const ragContext = matches
+    .map((match) => {
+      return [
+           `Document: ${match.document_id ?? "unknown"}`,
+           `Title: ${match.title}`,
+           `Category: ${match.category}`,
+           `Content: ${match.content_display}`,
+      ].join("\n");
+    })
+    .join("\n\n---\n\n");
+
+  console.log(
+    "RAG matches:",
+    matches.map((match) => ({
+      document_id: match.document_id,
+      title: match.title,
+      category: match.category,
+      similarity: match.similarity,
+      contentPreview: match.content_display.slice(0, 120),
+    })),
+    "RAG count:",
+    matches.length
+  );
+
+  return ragContext;
+}
+
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -164,39 +211,17 @@ export async function POST(req: Request) {
       value: latestUserMessage.content,
     });
 
-    // // kutsutaan Supabasen funtkiota match_document_chunks
-    // const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
-    //   "match_document_chunks",
-    //   {
-    //     query_embedding: embedding,
-    //     match_threshold: 0.20,
-    //     match_count: 10,
-    //   },
-    // );
+    // käyttäen document_chunks 
+    // const ragContext = await matchDocumentChunks({
+    //   queryEmbedding: embedding,
+    //   matchThreshold: 0.4,
+    //   matchCount: 10,
+    // });
 
-    // if (ragError) {
-    //   throw ragError;
-    // }
-
-    // const ragContext = (ragMatches ?? [])
-    //   .map((match: { content: string; document_id?: string }) => {
-    //     return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
-    //   })
-    //   .join("\n\n---\n\n");
-
-    // console.log(
-    //   "RAG matches:",
-    //   (ragMatches ?? []).map((match: { document_id: any; similarity?: number; content: string | any[]; }) => ({
-    //     document_id: match.document_id,
-    //     similarity: match.similarity,
-    //     contentPreview: match.content.slice(0, 120),
-    //   })),
-    //   "RAG count:", ragMatches.length
-    // );
-
-    const ragContext = await matchDocumentChunks({
+    // käyttäen match_document_chunks_big_fin
+        const ragContext = await matchDocumentChunks({
       queryEmbedding: embedding,
-      matchThreshold: 0.4,
+      matchThreshold: 0.2,
       matchCount: 10,
     });
 
@@ -258,7 +283,7 @@ export async function POST(req: Request) {
         - You like to talk about something else than work. Start talking about work when people refer to that, not before.
 
         Hobbies:
-        - Ice Hockey, I play rec series or beer league in Ice Tigers. I also like watch hockey. I support Kiekko-Espoo and Chicago Blackhawks.
+        - Ice Hockey, I play recreational league or beer league in Hockey Club Ice Tigers. I also like watch hockey. I support Kiekko-Espoo and Chicago Blackhawks.
         - Dungeons and Dragons. I have played this over 40-years as table top game. I have been dungeon master and player. 
         - Other roleplaying games I have played include Top Secret, Runequest, Paranoia, Traveller.
         - Family, raising 3 sons and having 2 dogs is fun.

@@ -792,7 +792,7 @@ create index if not exists idx_document_chunks_big_fin_embedding
 
 Policy is not needed because we only access supabase from server side.  
 
-*alter table document_chunks_big_fin enable row level security;*
+*alter table document_chunks_big_fin enable row level security;*. 
 
 
 
@@ -1066,3 +1066,50 @@ values
   array['Timo Lampinen','Kuhmo','Pentti Lampinen','Irma Lampinen','Päivi Lampinen'],
   '{"source":"manual","source_type":"manual","visibility":"private","audience":"private_assistant","confidence":"high","updated_at":"2026-03-31"}'::jsonb
 );
+
+
+#### supabase match hakuna käytetään uudessa muotoa: 
+
+create or replace function match_document_chunks_big_fin (
+  query_embedding vector(1536),
+  match_threshold float ,
+  match_count int
+)
+returns table (
+  id text,
+  document_id text,
+  chunk_index integer,
+  title text,
+  category text,
+  language text,
+  content_original text,
+  content_display text,
+  content_search text,
+  keywords text[],
+  entities text[],
+  metadata jsonb,
+  similarity float
+)
+language sql
+as $$
+  select
+    id,
+    document_id,
+    chunk_index,
+    title,
+    category,
+    language,
+    content_original,
+    content_display,
+    content_search,
+    keywords,
+    entities,
+    metadata,
+    1 - (embedding <=> query_embedding) as similarity
+  from document_chunks_big_fin
+  where embedding is not null
+    and coalesce(metadata->>'visibility', 'public') = 'public'
+  order by embedding <=> query_embedding
+  limit match_count;
+$$;
+

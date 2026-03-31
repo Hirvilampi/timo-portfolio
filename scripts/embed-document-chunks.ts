@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
 
+// aja komennolla npm run embed:chunks
+
 import { embedMany } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
