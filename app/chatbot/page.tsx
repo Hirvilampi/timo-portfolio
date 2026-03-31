@@ -20,6 +20,7 @@ const botname = "Timo-bot: ";
 export default function Chatbot() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSentFirstQuestion, setHasSentFirstQuestion] = useState(false);
   // id creator for each new message
   const [conversationId, setConversationId] = useState<string | null>(null);
 
@@ -110,6 +111,8 @@ export default function Chatbot() {
         return;
       }
 
+      setHasSentFirstQuestion(true);
+
       addRow({ role: "assistant", content: data.answer });
       //   addRow(" ");
     } catch (error) {
@@ -133,31 +136,36 @@ export default function Chatbot() {
           </button>
           <section>
             <Ask onAsk={handleAsk} isLoading={isLoading} />
-            <div
-              ref={containerRef}
-              className="max-h-64 overflow-y-auto border p-4 w-full"
-            >
+            {hasSentFirstQuestion ? (
               <div
-                className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
+                ref={containerRef}
+                className="max-h-64 overflow-y-auto border p-4 w-full"
               >
-                {rows.map((row, index) => (
-                  <div key={index}>
-                    {row.role === "user" ? askername : botname} {row.content}
-                  </div>
-                ))}
+                <div
+                  className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
+                >
+                  {rows.map((row, index) => (
+                    <div key={index}>
+                      {row.role === "user" ? askername : botname} {row.content}
+                    </div>
+                  ))}
+                </div>
+                <div
+                  className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
+                >
+                  {newRows.map((row, index) => (
+                    <div key={index}>
+                      {row.role === "user" ? askername : botname} {row.content}
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div
-                className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
-              >
-                {newRows.map((row, index) => (
-                  <div key={index}>
-                    {row.role === "user" ? askername : botname} {row.content}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2"></section>
+            ) : (
+              <div></div>
+            )}
           </section>
+          <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2"></section>
+
           <div className="mt-6 text-black dark:text-zinc-50"></div>
         </main>
       </div>

@@ -22,18 +22,44 @@ export async function matchDocumentChunks({
   matchThreshold = 0.78,
   matchCount = 10,
 }: MatchDocumentChunksParams) {
-  const { data, error } = await supabaseAdmin.rpc("match_document_chunks", {
-    query_embedding: queryEmbedding,
-    match_threshold: matchThreshold,
-    match_count: matchCount,
-  });
+  // kutsutaan Supabasen funtkiota match_document_chunks
+  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+    "match_document_chunks",
+    {
+      query_embedding: queryEmbedding,
+      match_threshold: matchThreshold,
+      match_count: matchCount,
+    },
+  );
 
-  if (error) {
-    console.error("RPC error:", error);
-    throw new Error(`match_document_chunks failed: ${error.message}`);
+  if (ragError) {
+    throw ragError;
   }
 
-  return data;
+  const ragContext = (ragMatches ?? [])
+    .map((match: { content: string; document_id?: string }) => {
+      return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+    })
+    .join("\n\n---\n\n");
+
+  console.log(
+    "RAG matches:",
+    (ragMatches ?? []).map(
+      (match: {
+        document_id: any;
+        similarity?: number;
+        content: string | any[];
+      }) => ({
+        document_id: match.document_id,
+        similarity: match.similarity,
+        contentPreview: match.content.slice(0, 120),
+      }),
+    ),
+    "RAG count:",
+    ragMatches.length,
+  );
+
+  return ragContext;
 }
 
 export async function GET(req: Request) {
@@ -125,14 +151,12 @@ export async function POST(req: Request) {
     }
 
     // muutetaan messaget oikeaan muotoon
-    const modelMessages = (storedMessages ?? [])
-      .reverse()
-      .map((message) => ({
+    const modelMessages = (storedMessages ?? []).reverse().map((message) => ({
       role: message.role,
       content: message.content,
     }));
 
-    // tähän väliin toteutetaan vektorien avulla query phase, eli haetaan kontekstia kysymykselle tallenuista chunkeista
+    // tähän vektorien avulla query phase, eli haetaan kontekstia kysymykselle tallenuista chunkeista
 
     // viimeinen viesti embeddingiin
     const { embedding } = await embed({
@@ -140,34 +164,41 @@ export async function POST(req: Request) {
       value: latestUserMessage.content,
     });
 
-    // kutsutaan Supabasen funtkiota match_document_chunks
-    const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
-      "match_document_chunks",
-      {
-        query_embedding: embedding,
-        match_threshold: 0.30,
-        match_count: 5,
-      },
-    );
+    // // kutsutaan Supabasen funtkiota match_document_chunks
+    // const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+    //   "match_document_chunks",
+    //   {
+    //     query_embedding: embedding,
+    //     match_threshold: 0.20,
+    //     match_count: 10,
+    //   },
+    // );
 
-    if (ragError) {
-      throw ragError;
-    }
+    // if (ragError) {
+    //   throw ragError;
+    // }
 
-    const ragContext = (ragMatches ?? [])
-      .map((match: { content: string; document_id?: string }) => {
-        return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
-      })
-      .join("\n\n---\n\n");
+    // const ragContext = (ragMatches ?? [])
+    //   .map((match: { content: string; document_id?: string }) => {
+    //     return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+    //   })
+    //   .join("\n\n---\n\n");
 
-    console.log(
-      "RAG matches:",
-      (ragMatches ?? []).map((match: { document_id: any; similarity?: number; content: string | any[]; }) => ({
-        document_id: match.document_id,
-        similarity: match.similarity,
-        contentPreview: match.content.slice(0, 120),
-      })),
-    );
+    // console.log(
+    //   "RAG matches:",
+    //   (ragMatches ?? []).map((match: { document_id: any; similarity?: number; content: string | any[]; }) => ({
+    //     document_id: match.document_id,
+    //     similarity: match.similarity,
+    //     contentPreview: match.content.slice(0, 120),
+    //   })),
+    //   "RAG count:", ragMatches.length
+    // );
+
+    const ragContext = await matchDocumentChunks({
+      queryEmbedding: embedding,
+      matchThreshold: 0.4,
+      matchCount: 10,
+    });
 
     const { text } = await generateText({
       model,
