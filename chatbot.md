@@ -30,6 +30,16 @@ I tried to search what should I use to build and the suggestion was: vercel AI S
 I was already using Supabase in my portforlio and I quickly found you can use Supabase for RAG database. 
 
 
+## What files are in chatbot
+
+This is my portfolio also, so it has quite many files/directories. 
+These links go straight to the directories about chatbot.
+(app/chatbot client has the main interface for individual chatbot page)[app/chatbot]
+(route.ts handels sending data to LLM and retrieving vector findings from Supabase)[api/chat]
+(ask.tsx is client that creates and passes on the asked question)[components/chatbot]
+(embedding-types.ts has the different types stored here)[types]
+(embedding-document-chunks.ts has script that turn on creating embedding vectors in Supabase)[scripts]
+
 
 
 
@@ -187,93 +197,24 @@ I created the table before.
 
 This was my prompt to create chunks and this is my data.
 
+[See the complete insert command from here.](./chatbot-appendices.md#document_chunks-insertion-in-sql-editor)
+
 insert into document_chunks (document_id, content, metadata)
 values
-(
-  'languages',
-  'Native language is Finnish. English is fluent and used naturally in professional contexts. Swedish is at work level. He also knows some German and French.',
-  '{"title":"Known languages","category":"profile","source":"manual","visibility":"public","language":"en"}'::jsonb
-),
 (
   'family_and_home',
   'Timo lives in Espoo with his wife, three sons, and two dogs. Two of the sons are already adults, and the youngest is finishing comprehensive school. He and his wife have been together for 24 years. Their dogs are a poodle named Usva and a cockapoo named Myrsky.',
   '{"title":"Family and home life","category":"personal_profile","source":"manual","visibility":"public","language":"en"}'::jsonb
 ),
-(
-  'family_history_private',
-  'Timo was born in Kuhmo. His father was Pentti Lampinen, who worked as a study counsellor. His mother was Irma Lampinen, who worked as a practical nurse. He had a sister who died in 1997. His father died in 2015.',
-  '{"title":"Family history","category":"personal_history","source":"manual","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'tv_career_summary',
-  'Timo Lampinen has over 20 years of experience in television and film, mainly as a director, writer, and editor. His work spans reality TV, documentary, fiction, and entertainment. He has worked with companies such as Warner Bros, ITV, Rabbit Films, YLE, and others.',
-  '{"title":"TV and film career summary","category":"career","source":"cv_portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'selected_tv_productions',
-  'Selected productions include Love Island Suomi, Remppa vai Muutto Suomi, Myyrä, Unelma Asunto Espanjasta, Koko Suomi Leipoo, Sukuni Salat, Huvila ja Huussi, Supernanny Suomi, Amanda ja Tomi, and Seikkailija Saku.',
-  '{"title":"Selected productions","category":"career","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'awards_and_recognition',
-  'Timo is an award winning television director. Supernanny Suomi won Kultainen Venla for Best Lifestyle Program. Several of his productions have also received nominations.',
-  '{"title":"Awards and recognition","category":"career","source":"cv","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'transition_to_software_development',
-  'After a long television career, Timo is transitioning into software development. He sees this as a return to a childhood passion, now combined with strong real world experience in leadership, communication, and handling complex projects.',
-  '{"title":"Transition to software development","category":"career_transition","source":"cv_portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'haaga_helia_studies',
-  'Timo studies Information Technology at Haaga Helia University of Applied Sciences. He started in 2024 and aims to graduate in 2026. His academic performance is strong and he is interested in usability and service design.',
-  '{"title":"Studies at Haaga Helia","category":"education","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'technical_skills',
-  'Technical skills include JavaScript, TypeScript, React, Next.js, Tailwind, Node.js, Spring Boot, PostgreSQL, Firebase, Supabase, React Native, Expo, REST APIs, Git, and AI assisted development tools.',
-  '{"title":"Technical skills","category":"skills","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'it_projects',
-  'Key projects include a personal portfolio built with Next.js, Bonakota mobile app, Kimara.ai internship work, and various coursework projects. These demonstrate frontend, backend, and full stack development skills.',
-  '{"title":"IT projects","category":"projects","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'bonakota_project',
-  'Bonakota is a personal app project for managing household items and selling them. It reflects practical product thinking and independent development work.',
-  '{"title":"Bonakota project","category":"projects","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'kimara_internship',
-  'At Kimara.ai, Timo worked on frontend development, UI UX design, and AI assisted coding. He gained experience in startup environments, user feedback, and real world product development challenges.',
-  '{"title":"Kimara internship","category":"experience","source":"internship_report","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'work_style_and_strengths',
-  'Timo works well under pressure, communicates effectively, and can handle large projects. He has strong leadership skills from directing and focuses on helping teams perform at their best.',
-  '{"title":"Work style and strengths","category":"strengths","source":"cv","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'personality_profile',
-  'Grounded, analytical, and practical. Timo enjoys solving real problems, talking to people, and thinking about systems and user experience. He values clarity over complexity.',
-  '{"title":"Personality","category":"profile","source":"inferred","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'hobbies_and_interests',
-  'Hobbies include ice hockey, role playing games such as Dungeons and Dragons, video games, and grilling. He enjoys both creative and social activities.',
-  '{"title":"Hobbies","category":"personal_profile","source":"manual","visibility":"public","language":"en"}'::jsonb
-),
-(
-  'job_search_status',
-  'Currently looking for junior software developer roles while still open to selected TV projects during the transition.',
-  '{"title":"Job search status","category":"career","source":"portfolio","visibility":"public","language":"en"}'::jsonb
-),
+.
+.
+.
 (
   'employer_summary',
   'Timo combines over 20 years of professional experience with modern software development skills. He brings strong communication, leadership, and product thinking to junior developer roles.',
   '{"title":"Employer summary","category":"recruitment","source":"synthesized","visibility":"public","language":"en"}'::jsonb
 );
+
 
 ### Second table of document chunks
 
@@ -282,6 +223,8 @@ I'm not getting rid of my documents chunks but I will create a new one. This wil
 I will insert this into supabase for document_chunks_big_fin. But before I will have to do the table for this, and make this into PostGresSQL.  
 
 #### info on timo - for later 
+
+[See the complete insert command from here.](./chatbot-appendices.md#document_chunks_big_fin-insertion-in-sql-editor)
 
 const documentChunks: DocumentChunk[] = [
   {
@@ -1070,9 +1013,11 @@ values
 
 #### supabase match hakuna käytetään uudessa muotoa: 
 
+create extension if not exists vector with schema extensions;
+
 create or replace function match_document_chunks_big_fin (
   query_embedding vector(1536),
-  match_threshold float ,
+  match_threshold float,
   match_count int
 )
 returns table (
@@ -1109,7 +1054,28 @@ as $$
   from document_chunks_big_fin
   where embedding is not null
     and coalesce(metadata->>'visibility', 'public') = 'public'
-  order by embedding <=> query_embedding
-  limit match_count;
+    and (1 - (embedding <=> query_embedding)) >= match_threshold
+  order by embedding <=> query_embedding asc
+  limit least(match_count, 200);
 $$;
+
+
+### Adding new data into database table. 
+
+Make datachunks in LLM. Usually I talk about a subject into LLM and tell it to rephrase and  
+modify my text into given datatypes. This depends on what my document_chunks?? table has:  
+which columns, titles etc..   
+
+I read the chunks so that there is no false information.  
+
+Then I ask LLM to make me insert command to this table.  
+
+I run the command in Supabase SQL Editor. 
+
+Then I run locally script: npm run embed:chunks 
+This runs script in Supabase that creates embedding vector dimensions into database table.  
+It creates embeddings only to rows that don't have them.  
+
+I do not have to send version into github or vercel to add more material into database vector  emmeddings. 
+
 

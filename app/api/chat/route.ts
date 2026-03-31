@@ -219,10 +219,10 @@ export async function POST(req: Request) {
     // });
 
     // käyttäen match_document_chunks_big_fin
-        const ragContext = await matchDocumentChunks({
+    const ragContext = await matchDocumentChunksBigFin({
       queryEmbedding: embedding,
-      matchThreshold: 0.2,
-      matchCount: 10,
+      matchThreshold: 0.35,
+      matchCount: 20,
     });
 
     const { text } = await generateText({
@@ -283,7 +283,7 @@ export async function POST(req: Request) {
         - You like to talk about something else than work. Start talking about work when people refer to that, not before.
 
         Hobbies:
-        - Ice Hockey, I play recreational league or beer league in Hockey Club Ice Tigers. I also like watch hockey. I support Kiekko-Espoo and Chicago Blackhawks.
+        - Ice Hockey, I play in recreational league (or beer league) in team HC Ice Tigers. I also like watch hockey. I support Kiekko-Espoo and Chicago Blackhawks.
         - Dungeons and Dragons. I have played this over 40-years as table top game. I have been dungeon master and player. 
         - Other roleplaying games I have played include Top Secret, Runequest, Paranoia, Traveller.
         - Family, raising 3 sons and having 2 dogs is fun.

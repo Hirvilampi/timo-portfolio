@@ -66,6 +66,7 @@ export default function Chatbot() {
     const newConversationId = crypto.randomUUID();
     localStorage.setItem("conversationId", newConversationId);
     setConversationId(newConversationId);
+    setHasSentFirstQuestion(false);
     setMessages([]);
   };
 
