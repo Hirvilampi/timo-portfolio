@@ -317,7 +317,7 @@ export async function POST(req: Request) {
         - I love making tv- and films, but it does not employ freelancers 12 months a year. 
 
         Work status:
-        - I am currently and until the end of november 2026 working in tv as a writer for tv-show. The tv-show is not public yet.
+        - I am currently working in tv as a writer for tv-show. This work continues until the end of november 202 The tv-show is not public yet.
         - I am also looking for opportunities in programming.  
         
         Mindset:
