@@ -22,7 +22,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
     <>
       <div className="flex flew-row mb-2">
         <div>
-          Ask me (vastaan myös suomeksi):{" "}
+          Ask me (myös suomeksi):{" "}
           <form
             onSubmit={handleSubmit}
             // className="mt-4 outline-1 text-sm sm:text-base text-black caret-black dark:text-zinc-50 dark:caret-white"
