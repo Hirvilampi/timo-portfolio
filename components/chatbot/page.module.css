@@ -1,0 +1,51 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  border: 0px solid black;
+  padding: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  color: black;
+}
+
+.cardContainer:hover {
+  transform: translateX(10px);
+}
+
+.slideshowPlaceholder {
+  width: 200px;
+  height: 200px;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+.link {
+  color: green; 
+  align-content: flex-start;
+}
+/* 
+Dark mode */
+:global(.dark) .link {
+  color: yellow;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link { color: white; }
+}
+
+.link:hover {
+  transform: translateX(10px);
+  color: #f9572a;
+}
+
+/* Mobiiliresponsiivisuus */
+@media (max-width: 768px) {
+  .cardContainer {
+    flex-direction: column;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    text-align: center;
+  }
+}

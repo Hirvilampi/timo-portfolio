@@ -102,7 +102,8 @@ export async function matchDocumentChunksBigFin({
       contentPreview: match.content_display.slice(0, 120),
     })),
     "RAG count:",
-    matches.length
+    matches.length, 
+    "Threshold:",matchThreshold,
   );
 
   return ragContext;
@@ -221,7 +222,7 @@ export async function POST(req: Request) {
     // käyttäen match_document_chunks_big_fin
     const ragContext = await matchDocumentChunksBigFin({
       queryEmbedding: embedding,
-      matchThreshold: 0.35,
+      matchThreshold: 0.30,
       matchCount: 20,
     });
 
