@@ -11,7 +11,7 @@ import ParseTextToReact from "./ReactTextParser";
 
 // these control, what is printed before the question in messages using roles
 const askername = "You: ";
-const botname = "Timo-bot: ";
+const botname = "AI-Timo: ";
 
 // type ChatbotPanelProps = {
 //   chatHeader: string;
@@ -130,19 +130,23 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
   };
 
   return (
-    <>
+    <section>
           <h1 className="text-3xl  text-black dark:text-zinc-50">
             {chatHeader}
           </h1>
-          <button className={classes.link} onClick={startNewConversation}>
-            Start new chat
-          </button>
+
           <section>
+            <div className="flex flex-row gap-4">
             <Ask onAsk={handleAsk} isLoading={isLoading} />
+          <button className={classes.link} onClick={startNewConversation}>
+            Reset chat
+          </button>
+            </div>
+
             {hasSentFirstQuestion ? (
               <div
                 ref={containerRef}
-                className="max-h-64 overflow-y-auto border p-4 w-full"
+                className="max-h-80 overflow-y-auto border p-4 w-full"
               >
                 <div
                   className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
@@ -167,10 +171,6 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
               <div></div>
             )}
           </section>
-          <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2"></section>
-
-          <div className="mt-6 text-black dark:text-zinc-50"></div>
-
-    </>
+    </section>
   );
 }

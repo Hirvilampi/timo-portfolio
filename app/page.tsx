@@ -5,8 +5,10 @@ import ShowTvLink from "./tv/page";
 import ShowItLink from "./it/page";
 import OnMouseOver from "@/components/MouseOver";
 import HoverAnimation from "@/components/HoverAnimation";
+import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
+  const pageHeader: string = "Chat with AI-Timo";
   return (
     <>
       <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -38,6 +40,10 @@ export default function Home() {
               </section>
 
               <section>
+                <div className="w-full flex items-start justify-center mt-6 mb-3 sm:mt-0 sm:justify-start ">
+                  <ChatbotPanel chatHeader={pageHeader} />
+                </div>
+
                 <div className="w-full flex items-start justify-center mt-6 sm:mt-0 sm:justify-start ">
                   <ShowTvLink />
                 </div>
