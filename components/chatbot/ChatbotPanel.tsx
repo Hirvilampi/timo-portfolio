@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Ask from "@/components/chatbot/ask";
 import classes from "./page.module.css";
-import type { ChatMessage} from "@/types/embedding-types.ts";
+import type { ChatMessage, ChatbotPanelProps} from "@/types/embedding-types.ts";
+import ParseTextToReact from "./ReactTextParser";
 // import { answer } from "@/components/chatbot/answer";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
@@ -12,13 +13,13 @@ import type { ChatMessage} from "@/types/embedding-types.ts";
 const askername = "You: ";
 const botname = "Timo-bot: ";
 
-type ChatbotPanelProps = {
-  chatHeader: string;
-  compact?: boolean;
-  showHeader?: boolean;
-  showNewChatButton?: boolean;
-  maxHeight?: string;
-};
+// type ChatbotPanelProps = {
+//   chatHeader: string;
+//   compact?: boolean;
+//   showHeader?: boolean;
+//   showNewChatButton?: boolean;
+//   maxHeight?: string;
+// };
 
 export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -73,6 +74,7 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
     setMessages([]);
   };
 
+  // riippuen onko message-määrä parillinen vai parint saa activeCount parillisella arvon 2 ja parittomalla 1
   const activeCount =
     messages.length === 0 ? 0 : messages.length % 2 === 0 ? 2 : 1;
 
@@ -117,7 +119,7 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
 
       setHasSentFirstQuestion(true);
 
-      addRow({ role: "assistant", content: data.answer });
+      addRow({ role: "assistant", content: data.answer});
       //   addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
@@ -155,8 +157,8 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
                   className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
                 >
                   {newRows.map((row, index) => (
-                    <div key={index}>
-                      {row.role === "user" ? askername : botname} {row.content}
+                    <div key={index} className="inline-block">
+                      {row.role === "user" ? askername : botname} <ParseTextToReact text={row.content} /> 
                     </div>
                   ))}
                 </div>

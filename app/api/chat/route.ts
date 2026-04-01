@@ -60,6 +60,51 @@ export async function matchDocumentChunks({
   return ragContext;
 }
 
+export async function matchDocumentChunksFin({
+  queryEmbedding,
+  matchThreshold = 0.78,
+  matchCount = 10,
+}: MatchDocumentChunksParams) {
+  // kutsutaan Supabasen funtkiota match_document_chunks
+  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+    "match_document_chunks_fin",
+    {
+      query_embedding: queryEmbedding,
+      match_threshold: matchThreshold,
+      match_count: matchCount,
+    },
+  );
+
+  if (ragError) {
+    throw ragError;
+  }
+
+  const ragContext = (ragMatches ?? [])
+    .map((match: { content: string; document_id?: string }) => {
+      return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+    })
+    .join("\n\n---\n\n");
+
+  console.log(
+    "RAG matches:",
+    (ragMatches ?? []).map(
+      (match: {
+        document_id: any;
+        similarity?: number;
+        content: string | any[];
+      }) => ({
+        document_id: match.document_id,
+        similarity: match.similarity,
+        contentPreview: match.content.slice(0, 120),
+      }),
+    ),
+    "RAG count:",
+    ragMatches.length,
+  );
+
+  return ragContext;
+}
+
 export async function matchDocumentChunksBigFin({
   queryEmbedding,
   matchThreshold = 0.78,
@@ -219,12 +264,19 @@ export async function POST(req: Request) {
     //   matchCount: 10,
     // });
 
-    // käyttäen match_document_chunks_big_fin
-    const ragContext = await matchDocumentChunksBigFin({
+        // käyttäen document_chunks_fin 
+    const ragContext = await matchDocumentChunksFin({
       queryEmbedding: embedding,
-      matchThreshold: 0.30,
-      matchCount: 20,
+      matchThreshold: 0.4,
+      matchCount: 10,
     });
+
+    // käyttäen match_document_chunks_big_fin
+    // const ragContext = await matchDocumentChunksBigFin({
+    //   queryEmbedding: embedding,
+    //   matchThreshold: 0.30,
+    //   matchCount: 20,
+    // });
 
     const { text } = await generateText({
       model,
@@ -260,7 +312,7 @@ export async function POST(req: Request) {
         - You are currently looking for junior developer roles, but you think more like a senior in terms of responsibility and big picture.
         - I am originally from Kuhmo and lived there until I was 18.
         - I have studied machine technology in Oulu University (1993-1998), film&tv in Kemi-Tornio Polytechnic (1998-2003) and programming in Haaga-Helia University of Applied Sciences (2024-).
-        - My grade point average in Haaga-Helia is over 4.5.
+        - My GPA in Haaga-Helia is over 4.5.
         - Directed and wrote tv-show Supernanny Suomi. It's 2nd season won Kultainen Venla for best lifestyle show. 
         - I love making tv- and films, but it does not employ freelancers 12 months a year. 
 

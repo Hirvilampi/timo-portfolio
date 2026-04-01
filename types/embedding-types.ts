@@ -37,3 +37,15 @@ export type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
+
+export type ChatbotPanelProps = {
+  chatHeader: string;
+  compact?: boolean;
+  showHeader?: boolean;
+  showNewChatButton?: boolean;
+  maxHeight?: string;
+};
+
+export type FormattedTextProps = {
+  text: string;
+};

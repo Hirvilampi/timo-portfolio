@@ -64,7 +64,7 @@ type ChunkForEmbedding = Pick<
 
 const embeddingModel = openai.embedding("text-embedding-3-small");
 
-export async function embedDocumentChunksBig() {
+export async function embedDocumentChunksBigFin() {
   const supabaseAdmin = getSupabaseAdmin();
   const { data, error } = await supabaseAdmin
     .from("document_chunks_big_fin")
@@ -107,6 +107,8 @@ export async function embedDocumentChunksBig() {
   console.log(`Embedded ${documents.length} document chunks.`);
 }
 
+
+// tyhjille kohdille taulussa document_chunks
 export async function embedDocumentChunks() {
   const supabaseAdmin = getSupabaseAdmin();
   const { data, error } = await supabaseAdmin
@@ -145,13 +147,57 @@ export async function embedDocumentChunks() {
   console.log(`Embedded ${documents.length} document chunks.`);
 }
 
+
+
+// tyhjille kohdille taulussa document_chunks_fin
+export async function embedDocumentChunksFin() {
+  const supabaseAdmin = getSupabaseAdmin();
+  const { data, error } = await supabaseAdmin
+    .from("document_chunks_fin")
+    .select("id, document_id, content, metadata, embedding")
+    .is("embedding", null);
+
+  if (error) {
+    console.log("Got error on loading data");
+    throw error;
+  }
+
+  const documents = (data as DocumentChunk[]).filter(
+    (row) => row.content && row.metadata?.visibility === "public",
+  );
+
+  if (documents.length === 0) {
+    console.log("No document chunks without embeddings.");
+    return;
+  }
+
+  const { embeddings } = await embedMany({
+    model: embeddingModel,
+    values: documents.map((doc) => doc.content),
+  });
+
+  for (const [index, doc] of documents.entries()) {
+    const { error: updateError } = await supabaseAdmin
+      .from("document_chunks_fin")
+      .update({ embedding: embeddings[index] })
+      .eq("id", doc.id);
+
+    if (updateError) throw updateError;
+  }
+
+  console.log(`Embedded ${documents.length} document chunks.`);
+}
+
 // for running the script from CLI
 async function main() {
   console.log("Starting embedDocumentChunks...");
   await embedDocumentChunks();
 
+    console.log("Starting embedDocumentChunksFin...");
+  await embedDocumentChunksFin();
+
   console.log("Starting embedDocumentChunksBig...");
-  await embedDocumentChunksBig();
+  await embedDocumentChunksBigFin();
 
   console.log("All embeddings completed.");
 }
