@@ -54,6 +54,31 @@ flowchart TB
     n2@{ shape: rect}
 
 
+---
+config:
+  layout: fixed
+---
+flowchart TB
+    n2["User Input"] --> A["Front Guardrails"]
+    A --> B["Retriever<br/>(Embeddings + Vector Search)"]
+    B --> D["Retrieved Context"]
+    D --> E["LLM (API)"]
+    A --> n1["System Prompt<br/>Behavior Rules"]
+    n1 --> E
+    E --> F["Grounded Response"]
+
+
+
+flowchart TB
+    n2["User Input"] --> A["Front Guardrails"]
+    A --> B["Retriever (Embeddings + Vector Search)"]
+    B --> D["Retrieved Context"]
+    D --> E["LLM (API)"]
+    A --> n1["System Prompt / Behavior Rules"]
+    n1 --> E
+    E --> F["Grounded Response"]
+
+
 ## What files are in chatbot
 
 This is my portfolio also, so it has quite many files/directories. 
