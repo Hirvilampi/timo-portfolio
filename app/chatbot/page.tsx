@@ -1,6 +1,6 @@
 import BackButton from "@/components/BackButton";
 import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
-
+import Link from "next/link";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
@@ -12,22 +12,26 @@ type ChatbotPanelProps = {
   maxHeight?: string;
 };
 
-
 export default function Chatbot() {
-  const pageHeader : string = "Chat with AI-Timo";
+  const chatHeader: string = "Chat with AI-Timo";
+  const chatVersion: string =
+    "(Beta – This chatbot is still in development and may produce incomplete or inaccurate responses.)";
 
   return (
     <>
       <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black dark:text-zinc-50">
         <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start dark:text-zinc-50">
-          <BackButton />
-         <ChatbotPanel chatHeader={pageHeader} />
+          <Link href={"https://timolampinen.com"}>
+            ← Back to timolampinen.com
+          </Link>
+          <div className="mt-2">
+            <ChatbotPanel chatHeader={chatHeader} chatVersion={chatVersion} />
+          </div>
         </main>
       </div>
     </>
   );
 }
-
 
 // "use client";
 

@@ -40,6 +40,7 @@ export type ChatMessage = {
 
 export type ChatbotPanelProps = {
   chatHeader: string;
+  chatVersion?: string;
   compact?: boolean;
   showHeader?: boolean;
   showNewChatButton?: boolean;

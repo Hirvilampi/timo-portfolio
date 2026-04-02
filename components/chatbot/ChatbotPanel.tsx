@@ -15,13 +15,14 @@ const botname = "AI-Timo: ";
 
 // type ChatbotPanelProps = {
 //   chatHeader: string;
+//   chatVersion?: string;
 //   compact?: boolean;
 //   showHeader?: boolean;
 //   showNewChatButton?: boolean;
 //   maxHeight?: string;
 // };
 
-export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
+export default function ChatbotPanel({chatHeader, chatVersion}: ChatbotPanelProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSentFirstQuestion, setHasSentFirstQuestion] = useState(false);
@@ -131,9 +132,12 @@ export default function ChatbotPanel({chatHeader}: ChatbotPanelProps) {
 
   return (
     <section>
+        <div className="items-center">
           <h1 className="text-3xl  text-black dark:text-zinc-50">
             {chatHeader}
           </h1>
+          {chatVersion ? (<div className="text-xs ml-1 mb-2  sm:ml-3">{chatVersion}</div>) : (<div></div>)}
+          </div>
 
           <section>
             <div className="flex flex-row gap-4">
