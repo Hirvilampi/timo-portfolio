@@ -29,6 +29,30 @@ I tried to search what should I use to build and the suggestion was: vercel AI S
 
 I was already using Supabase in my portforlio and I quickly found you can use Supabase for RAG database. 
 
+## How the AI System works  
+
+I am using Retrieval-augmented generetion (RAG) system + AI agent  
+
+---
+config:
+  layout: fixed
+---
+flowchart TB
+    A["Front Guardrails"] -- <br> --> B["Retriever 
+    (Embeddings + Vector 
+    Search)"]
+    B --> D["Retrieved Context"]
+    D --> E["LLM (API)"]
+    n1["System Promt
+    Behavior Rules"] --> E
+    E --> F["Grounded Response"]
+    A --> n1
+    n2["User Input"] --> A
+
+    B@{ shape: rect}
+    n1@{ shape: rect}
+    n2@{ shape: rect}
+
 
 ## What files are in chatbot
 
@@ -36,7 +60,7 @@ This is my portfolio also, so it has quite many files/directories.
 These links go straight to the directories about chatbot.
 (app/chatbot client has the main interface for individual chatbot page)[app/chatbot]
 (route.ts handels sending data to LLM and retrieving vector findings from Supabase)[api/chat]
-(ask.tsx is client that creates and passes on the asked question)[components/chatbot]
+(ask.tsx is client that creates and passes on the asked question, chatbotpanel is the interface)[components/chatbot]
 (embedding-types.ts has the different types stored here)[types]
 (embedding-document-chunks.ts has script that turn on creating embedding vectors in Supabase)[scripts]
 
