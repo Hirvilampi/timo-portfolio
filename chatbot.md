@@ -33,50 +33,7 @@ I was already using Supabase in my portforlio and I quickly found you can use Su
 
 I am using Retrieval-augmented generetion (RAG) system + AI agent  
 
----
-config:
-  layout: fixed
----
-flowchart TB
-    A["Front Guardrails"] -- <br> --> B["Retriever 
-    (Embeddings + Vector 
-    Search)"]
-    B --> D["Retrieved Context"]
-    D --> E["LLM (API)"]
-    n1["System Promt
-    Behavior Rules"] --> E
-    E --> F["Grounded Response"]
-    A --> n1
-    n2["User Input"] --> A
-
-    B@{ shape: rect}
-    n1@{ shape: rect}
-    n2@{ shape: rect}
-
-
----
-config:
-  layout: fixed
----
-flowchart TB
-    n2["User Input"] --> A["Front Guardrails"]
-    A --> B["Retriever<br/>(Embeddings + Vector Search)"]
-    B --> D["Retrieved Context"]
-    D --> E["LLM (API)"]
-    A --> n1["System Prompt<br/>Behavior Rules"]
-    n1 --> E
-    E --> F["Grounded Response"]
-
-
-
-flowchart TB
-    n2["User Input"] --> A["Front Guardrails"]
-    A --> B["Retriever (Embeddings + Vector Search)"]
-    B --> D["Retrieved Context"]
-    D --> E["LLM (API)"]
-    A --> n1["System Prompt / Behavior Rules"]
-    n1 --> E
-    E --> F["Grounded Response"]
+(kuvio siitä mikä on systeemin rakenne)[assets/chatbot-rakenne.png]
 
 
 ## What files are in chatbot
