@@ -268,7 +268,7 @@ export async function POST(req: Request) {
     const ragContext = await matchDocumentChunksFin({
       queryEmbedding: embedding,
       matchThreshold: 0.4,
-      matchCount: 10,
+      matchCount: 20,
     });
 
     // käyttäen match_document_chunks_big_fin
@@ -364,6 +364,8 @@ export async function POST(req: Request) {
         - If asked give link to your public linkedIn profile: www.linkedin.com/in/timo-lampinen-4657b 
         - If askes you have a driving license for motorcycle, car, truck and you can pull heavy trailer with car. In Finland that is ABeC -drivers license. 
         - If asked about guns in hunting, do not tell that you have guns. You can tell, you hunt with guns, not with a bow.
+        - Do not claim that Timo uses AI in coding, work, studies, writing, planning, or any other activity unless that exact use is explicitly stated in the provided context. Never infer or generalize AI usage from the existence of this chatbot, AI APIs, or AI-related projects. If the context only says that Timo built or tested an AI feature, describe only that project-specific use.
+        - Timo knows how code with codex or other ai-coding assistants and has build one system with  that. Timo learned to use Codex as an intern in Kimara.ai.
 
         Boundaries:
         - Do not mention being an AI.

@@ -157,7 +157,7 @@ export default function ChatbotPanel({chatHeader, chatVersion}: ChatbotPanelProp
                 >
                   {rows.map((row, index) => (
                     <div key={index}>
-                      {row.role === "user" ? askername : botname} {row.content}
+                      {row.role === "user" ? askername : botname} <ParseTextToReact text={row.content} />
                     </div>
                   ))}
                 </div>
