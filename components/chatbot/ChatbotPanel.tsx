@@ -3,7 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Ask from "@/components/chatbot/ask";
 import classes from "./page.module.css";
-import type { ChatMessage, ChatbotPanelProps} from "@/types/embedding-types.ts";
+import type {
+  ChatMessage,
+  ChatbotPanelProps,
+} from "@/types/embedding-types.ts";
 import ParseTextToReact from "./ReactTextParser";
 // import { answer } from "@/components/chatbot/answer";
 
@@ -22,7 +25,10 @@ const botname = "AI-Timo: ";
 //   maxHeight?: string;
 // };
 
-export default function ChatbotPanel({chatHeader, chatVersion}: ChatbotPanelProps) {
+export default function ChatbotPanel({
+  chatHeader,
+  chatVersion,
+}: ChatbotPanelProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSentFirstQuestion, setHasSentFirstQuestion] = useState(false);
@@ -120,7 +126,7 @@ export default function ChatbotPanel({chatHeader, chatVersion}: ChatbotPanelProp
 
       setHasSentFirstQuestion(true);
 
-      addRow({ role: "assistant", content: data.answer});
+      addRow({ role: "assistant", content: data.answer });
       //   addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
@@ -132,49 +138,55 @@ export default function ChatbotPanel({chatHeader, chatVersion}: ChatbotPanelProp
 
   return (
     <section>
-        <div className="items-center">
-          <h1 className="text-3xl  text-black dark:text-zinc-50">
-            {chatHeader}
-          </h1>
-          {chatVersion ? (<div className="text-xs ml-1 mb-2  sm:ml-3">{chatVersion}</div>) : (<div></div>)}
-          </div>
+      <div className="items-center">
+        <h1 className="text-3xl  text-black dark:text-zinc-50">{chatHeader}</h1>
+        {chatVersion ? (
+          <div className="text-xs ml-1 mb-2  sm:ml-3">{chatVersion}</div>
+        ) : (
+          <div></div>
+        )}
+      </div>
 
-          <section>
-            <div className="flex flex-row gap-4">
-            <Ask onAsk={handleAsk} isLoading={isLoading} />
-          <button className={classes.link} onClick={startNewConversation}>
-            Reset chat
-          </button>
+      <section>
+        <div className="flex flex-row gap-4">
+          <Ask onAsk={handleAsk} isLoading={isLoading} />
+          {hasSentFirstQuestion ? (
+            <button className={classes.link} onClick={startNewConversation}>
+              Reset chat
+            </button>
+          ) : (  <div></div> )}
+        </div>
+
+        {hasSentFirstQuestion ? (
+          <div
+            ref={containerRef}
+            className="max-h-80 overflow-y-auto border p-4 w-full"
+          >
+            <div
+              className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
+            >
+              {rows.map((row, index) => (
+                <div key={index}>
+                  {row.role === "user" ? askername : botname}{" "}
+                  <ParseTextToReact text={row.content} />
+                </div>
+              ))}
             </div>
-
-            {hasSentFirstQuestion ? (
-              <div
-                ref={containerRef}
-                className="max-h-80 overflow-y-auto border p-4 w-full"
-              >
-                <div
-                  className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
-                >
-                  {rows.map((row, index) => (
-                    <div key={index}>
-                      {row.role === "user" ? askername : botname} <ParseTextToReact text={row.content} />
-                    </div>
-                  ))}
+            <div
+              className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
+            >
+              {newRows.map((row, index) => (
+                <div key={index} className="inline-block">
+                  {row.role === "user" ? askername : botname}{" "}
+                  <ParseTextToReact text={row.content} />
                 </div>
-                <div
-                  className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
-                >
-                  {newRows.map((row, index) => (
-                    <div key={index} className="inline-block">
-                      {row.role === "user" ? askername : botname} <ParseTextToReact text={row.content} /> 
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </section>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </section>
     </section>
   );
 }
