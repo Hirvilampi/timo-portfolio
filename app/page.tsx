@@ -9,7 +9,7 @@ import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
   const pageHeader: string = "Chat with AI-Timo";
-  const chatVersion: string = "(Beta – This chatbot is still in development and may produce incomplete or inaccurate responses.)";
+  const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (Beta – This chatbot is still in development and may produce incomplete or inaccurate responses.)";
   return (
     <>
       <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -42,15 +42,15 @@ export default function Home() {
 
               <section>
                 <div className="w-full flex items-start justify-center mt-6 mb-3 sm:mt-0 sm:justify-start ">
-                  <ChatbotPanel chatHeader={pageHeader} chatVersion={chatVersion} />
+                  <ChatbotPanel chatHeader={pageHeader} chatDisclaimer={chatDisclaimer} />
                 </div>
 
-                <div className="w-full flex items-start justify-center mt-6 sm:mt-0 sm:justify-start ">
-                  <ShowTvLink />
+                <div className="w-full flex items-start justify-center mt-6  sm:mt-0 sm:justify-start ">
+                  <ShowItLink />
                 </div>
 
                 <div className="w-full flex justify-start mt-6">
-                  <ShowItLink />
+                  <ShowTvLink />
                 </div>
 
                 <div className="mt-6 items-center">

@@ -27,12 +27,12 @@ const botname = "AI-Timo: ";
 
 export default function ChatbotPanel({
   chatHeader,
-  chatVersion,
+  chatDisclaimer,
 }: ChatbotPanelProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSentFirstQuestion, setHasSentFirstQuestion] = useState(false);
-  // id creator for each new message
+  // id creator for each new conversation
   const [conversationId, setConversationId] = useState<string | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,11 +48,14 @@ export default function ChatbotPanel({
     setConversationId(newConversationId);
   }, []);
 
+
+  // add row to messages 
   const addRow = (newText: ChatMessage) => {
     //   setRows((prev) => [...prev, newText]);
     setMessages((prev) => [...prev, newText]);
   };
 
+  // when conversionID is set, load old messages for that conversationId - this is our "long" memory
   useEffect(() => {
     if (!conversationId || isLoading) return;
 
@@ -80,14 +83,17 @@ export default function ChatbotPanel({
     setHasSentFirstQuestion(false);
     setMessages([]);
   };
-
+ 
+  // These are used to to put old messages in rows and new question and answer in newRows
   // riippuen onko message-määrä parillinen vai parint saa activeCount parillisella arvon 2 ja parittomalla 1
   const activeCount =
     messages.length === 0 ? 0 : messages.length % 2 === 0 ? 2 : 1;
 
+  // old rows - shown normall when rendered
   const rows =
     messages.length < 3 ? [] : messages.slice(0, messages.length - activeCount);
 
+  // new rows - shown bold when rendered
   const newRows =
     messages.length === 0
       ? []
@@ -95,6 +101,7 @@ export default function ChatbotPanel({
         ? messages
         : messages.slice(messages.length - activeCount);
 
+ // scrolls chat-list down every time messages changes
   useEffect(() => {
     const el = containerRef.current;
     if (el) {
@@ -102,10 +109,12 @@ export default function ChatbotPanel({
     }
   }, [messages]);
 
+  // sends question to ask.tsx for creating answer. The returned data is then processed forward into messages.
   const handleAsk = async (question: string) => {
     addRow({ role: "user", content: question });
     setIsLoading(true);
     try {
+      // fetch request POST to app/api/chat/route.ts
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
@@ -127,7 +136,6 @@ export default function ChatbotPanel({
       setHasSentFirstQuestion(true);
 
       addRow({ role: "assistant", content: data.answer });
-      //   addRow(" ");
     } catch (error) {
       console.error("Error loading", error);
       addRow({ role: "assistant", content: "Error" });
@@ -140,8 +148,8 @@ export default function ChatbotPanel({
     <section>
       <div className="items-center">
         <h1 className="text-3xl  text-black dark:text-zinc-50">{chatHeader}</h1>
-        {chatVersion ? (
-          <div className="text-xs ml-1 mb-2  sm:ml-3">{chatVersion}</div>
+        {chatDisclaimer ? (
+          <div className="text-xs ml-1 mb-2  sm:ml-3">{chatDisclaimer}</div>
         ) : (
           <div></div>
         )}
