@@ -8,141 +8,26 @@ import type {
   ChatbotPanelProps,
 } from "@/types/embedding-types.ts";
 import ParseTextToReact from "./ReactTextParser";
-// import { answer } from "@/components/chatbot/answer";
+import ChatMessages from "./ChatMessages";
+import { useChatbotConversation } from "./useChatbotConversation";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
-
-// these control, what is printed before the question in messages using roles
-const askername = "You: ";
-const botname = "AI-Timo: ";
-
-// type ChatbotPanelProps = {
-//   chatHeader: string;
-//   chatVersion?: string;
-//   compact?: boolean;
-//   showHeader?: boolean;
-//   showNewChatButton?: boolean;
-//   maxHeight?: string;
-// };
 
 export default function ChatbotPanel({
   chatHeader,
   chatDisclaimer,
 }: ChatbotPanelProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasSentFirstQuestion, setHasSentFirstQuestion] = useState(false);
   // id creator for each new conversation
   const [conversationId, setConversationId] = useState<string | null>(null);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const storedConversationid = localStorage.getItem("conversationId");
-    if (storedConversationid) {
-      setConversationId(storedConversationid);
-      return;
-    }
-    const newConversationId = crypto.randomUUID();
-    localStorage.setItem("conversationId", newConversationId);
-    setConversationId(newConversationId);
-  }, []);
-
-
-  // add row to messages 
-  const addRow = (newText: ChatMessage) => {
-    //   setRows((prev) => [...prev, newText]);
-    setMessages((prev) => [...prev, newText]);
-  };
-
-  // when conversionID is set, load old messages for that conversationId - this is our "long" memory
-  useEffect(() => {
-    if (!conversationId || isLoading) return;
-
-    const loadMessages = async () => {
-      const response = await fetch(
-        `/api/chat?conversationId=${conversationId}`,
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Failed to load messages");
-        return;
-      }
-
-      setMessages(data.messages ?? []);
-    };
-
-    loadMessages();
-  }, [conversationId]);
-
-  const startNewConversation = () => {
-    const newConversationId = crypto.randomUUID();
-    localStorage.setItem("conversationId", newConversationId);
-    setConversationId(newConversationId);
-    setHasSentFirstQuestion(false);
-    setMessages([]);
-  };
- 
-  // These are used to to put old messages in rows and new question and answer in newRows
-  // riippuen onko message-määrä parillinen vai parint saa activeCount parillisella arvon 2 ja parittomalla 1
-  const activeCount =
-    messages.length === 0 ? 0 : messages.length % 2 === 0 ? 2 : 1;
-
-  // old rows - shown normall when rendered
-  const rows =
-    messages.length < 3 ? [] : messages.slice(0, messages.length - activeCount);
-
-  // new rows - shown bold when rendered
-  const newRows =
-    messages.length === 0
-      ? []
-      : messages.length < 3
-        ? messages
-        : messages.slice(messages.length - activeCount);
-
- // scrolls chat-list down every time messages changes
-  useEffect(() => {
-    const el = containerRef.current;
-    if (el) {
-      el.scrollTop = el.scrollHeight;
-    }
-  }, [messages]);
-
-  // sends question to ask.tsx for creating answer. The returned data is then processed forward into messages.
-  const handleAsk = async (question: string) => {
-    addRow({ role: "user", content: question });
-    setIsLoading(true);
-    try {
-      // fetch request POST to app/api/chat/route.ts
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          conversationId,
-          messages: [...messages, { role: "user", content: question }],
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        addRow({ role: "assistant", content: "Error" });
-        return;
-      }
-
-      setHasSentFirstQuestion(true);
-
-      addRow({ role: "assistant", content: data.answer });
-    } catch (error) {
-      console.error("Error loading", error);
-      addRow({ role: "assistant", content: "Error" });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const {
+    messages,
+    isLoading,
+    hasSentFirstQuestion,
+    startNewConversation,
+    handleAsk,
+  } = useChatbotConversation();
 
   return (
     <section>
@@ -162,35 +47,13 @@ export default function ChatbotPanel({
             <button className={classes.link} onClick={startNewConversation}>
               Reset chat
             </button>
-          ) : (  <div></div> )}
+          ) : (
+            <div></div>
+          )}
         </div>
 
         {hasSentFirstQuestion ? (
-          <div
-            ref={containerRef}
-            className="max-h-80 overflow-y-auto border p-4 w-full"
-          >
-            <div
-              className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
-            >
-              {rows.map((row, index) => (
-                <div key={index}>
-                  {row.role === "user" ? askername : botname}{" "}
-                  <ParseTextToReact text={row.content} />
-                </div>
-              ))}
-            </div>
-            <div
-              className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
-            >
-              {newRows.map((row, index) => (
-                <div key={index} className="inline-block">
-                  {row.role === "user" ? askername : botname}{" "}
-                  <ParseTextToReact text={row.content} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ChatMessages messages={messages} />
         ) : (
           <div></div>
         )}
