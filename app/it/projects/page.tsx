@@ -40,8 +40,9 @@ export default async function Productions() {
                       <li>Languages: Java, TypeScript, JavaScript, Python</li>
                       <li>Frontend: React, Next.js, Tailwind CSS, HTML, CSS</li>
                       <li>Mobile: React Native, Expo, React Navigation</li>
-                      <li>Backend: Spring Boot, Node.js, REST APIs, GraphQL</li>
-                      <li>Databases: PostgreSQL, Firebase, Supabase, SQLite</li>
+                      <li>Backend:  Node.js, Spring Boot, REST APIs, GraphQL, Vector Search / RAG</li>
+                      <li>AI/Backend: Vercel AI SDK, OpenAI API,  RAG Architecture, Vector search, Embeddings</li>
+                      <li>Databases: PostgreSQL, Firebase, Supabase, SQLite, Supabase Vector Database</li>
                       <li>Infrastructure & Systems: Linux, Bash, SSH, Apache HTTP Server, APT package management, Virtual machines, System troubleshooting, Log analysis
 </li>
                       <li>

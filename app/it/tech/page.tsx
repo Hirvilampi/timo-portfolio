@@ -67,6 +67,17 @@ export default async function Technologies() {
                 <li>REST APIs</li>
               </ul>
 
+            <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+                AI / Backend &amp; APIs
+              </h3>
+              <ul className="text-sm sm:text-base">
+                <li>OpenAI API</li>
+                <li>Vercel AI SDK</li>
+                <li>Supabase Vector Search</li>
+                <li>RAG Architecture</li>
+                <li>Embeddings</li>
+              </ul>
+
               <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
                 Databases &amp; Storage
               </h3>
