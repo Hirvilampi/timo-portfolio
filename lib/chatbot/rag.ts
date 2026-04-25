@@ -7,7 +7,6 @@ import type {
 
   const supabaseAdmin = getSupabaseAdmin();
 
-
 const model = openai("gpt-4o-mini-2024-07-18");
 // const model = openai("gpt-4.1-2025-04-14");
 
@@ -15,57 +14,15 @@ const embeddingModel = openai.embedding("text-embedding-3-small");
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
-export async function matchDocumentChunks({
-  queryEmbedding,
-  matchThreshold = 0.78,
-  matchCount = 10,
-}: MatchDocumentChunksParams) {
-  // kutsutaan Supabasen funtkiota match_document_chunks
-  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
-    "match_document_chunks",
-    {
-      query_embedding: queryEmbedding,
-      match_threshold: matchThreshold,
-      match_count: matchCount,
-    },
-  );
-
-  if (ragError) {
-    throw ragError;
-  }
-
-  const ragContext = (ragMatches ?? [])
-    .map((match: { content: string; document_id?: string }) => {
-      return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
-    })
-    .join("\n\n---\n\n");
-
-  console.log(
-    "RAG matches:",
-    (ragMatches ?? []).map(
-      (match: {
-        document_id: any;
-        similarity?: number;
-        content: string | any[];
-      }) => ({
-        document_id: match.document_id,
-        similarity: match.similarity,
-        contentPreview: match.content.slice(0, 120),
-      }),
-    ),
-    "RAG count:",
-    ragMatches.length,
-  );
-
-  return ragContext;
-}
+// created three different RAG searches, as I have created three different RAG databases. matchDoumentChunksFin is what is currently used
 
 export async function matchDocumentChunksFin({
   queryEmbedding,
   matchThreshold = 0.78,
   matchCount = 10,
 }: MatchDocumentChunksParams) {
-  // kutsutaan Supabasen funtkiota match_document_chunks
+  // kutsutaan Supabasen funktiota match_document_chunks_fin 
+  // Tämä tekee tietokantapyynnön supabasessa databasesta document_chunks_fin
   const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
     "match_document_chunks_fin",
     {
@@ -105,12 +62,61 @@ export async function matchDocumentChunksFin({
   return ragContext;
 }
 
+export async function matchDocumentChunks({
+  queryEmbedding,
+  matchThreshold = 0.78,
+  matchCount = 10,
+}: MatchDocumentChunksParams) {
+  // kutsutaan Supabasen funtkiota match_document_chunks
+    // Tämä tekee tietokantapyynnön supabasessa databasesta document_chunks
+  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+    "match_document_chunks",
+    {
+      query_embedding: queryEmbedding,
+      match_threshold: matchThreshold,
+      match_count: matchCount,
+    },
+  );
+
+  if (ragError) {
+    throw ragError;
+  }
+
+  const ragContext = (ragMatches ?? [])
+    .map((match: { content: string; document_id?: string }) => {
+      return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+    })
+    .join("\n\n---\n\n");
+
+  console.log(
+    // "RAG matches:",
+    // (ragMatches ?? []).map(
+    //   (match: {
+    //     document_id: any;
+    //     similarity?: number;
+    //     content: string | any[];
+    //   }) => ({
+    //     document_id: match.document_id,
+    //     similarity: match.similarity,
+    //     contentPreview: match.content.slice(0, 120),
+    //   }),
+    ),
+    "RAG match count:",
+    ragMatches.length,
+  );
+
+  return ragContext;
+}
+
+
+
 export async function matchDocumentChunksBigFin({
   queryEmbedding,
   matchThreshold = 0.78,
   matchCount = 10,
 }: MatchDocumentChunksBigFinParams) {
-  // kutsutaan Supabasen funtkiota match_document_chunks
+  // kutsutaan Supabasen funtkiota match_document_chunks_big_fin
+    // Tämä tekee tietokantapyynnön supabasessa databasesta document_chunks_big_fin
   const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
     "match_document_chunks_big_fin",
     {

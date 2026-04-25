@@ -50,3 +50,8 @@ export type ChatbotPanelProps = {
 export type FormattedTextProps = {
   text: string;
 };
+
+export type ParseChatRequestResult = {
+  conversationId: string;
+  latestUserMessage: ChatMessage;
+};
