@@ -39,22 +39,22 @@ Portfolioni käytti jo Supabasea ja kun huomasin sen tukevan RAG tietokantoja. P
 
 ## Kuinka chatbot toimii  
 
-I am using Retrieval-augmented generetion (RAG) system + AI agent  
+I am using Retrieval-augmented generetion (RAG) system + AI agent   
 
 ```mermaid
 flowchart TD
-    A[User Input] --> B[Frontend Chat UI]
-    B --> C[/api/chat route]
-    C --> D[Validate Request]
-    D --> E[Load Conversation History]
-    D --> F[Create Embedding]
-    F --> G[Vector Search in Supabase]
-    G --> H[Retrieved Context]
-    E --> I[LLM Prompt]
+    A["User Input"] --> B["Frontend Chat UI"]
+    B --> C["/api/chat route"]
+    C --> D["Validate Request"]
+    D --> E["Load Conversation History"]
+    D --> F["Create Embedding"]
+    F --> G["Vector Search in Supabase"]
+    G --> H["Retrieved Context"]
+    E --> I["LLM Prompt"]
     H --> I
-    I --> J[OpenAI Model]
-    J --> K[Assistant Response]
-    K --> L[Store Response in Supabase]
+    I --> J["OpenAI Model"]
+    J --> K["Assistant Response"]
+    K --> L["Store Response in Supabase"]
     L --> B
 ```
 
