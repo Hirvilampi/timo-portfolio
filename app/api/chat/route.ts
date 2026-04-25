@@ -1,5 +1,5 @@
 
-import { getConversationMessages } from "@/lib/chatbot/chat-service";
+import { getConversationMessages } from "@/lib/chatbot/chat-history";
 import { parseChatRequest, createChatAnswer } from "@/lib/chatbot/service";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk

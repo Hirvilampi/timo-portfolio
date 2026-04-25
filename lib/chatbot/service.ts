@@ -32,7 +32,6 @@ export async function parseChatRequest(
   }
 
   const latestUserMessage = messages[messages.length - 1];
-
   console.log("LATEST MESSAGE ", latestUserMessage);
 
   if (
@@ -43,7 +42,6 @@ export async function parseChatRequest(
     throw new Error("Latest message must be a user message");
   }
 
-
   return { conversationId, latestUserMessage };
 }
 
@@ -52,7 +50,8 @@ export async function createChatAnswer(
 ): Promise<string> {
   const { conversationId, latestUserMessage } = input;
 
-   const { error: conversationError } = await supabaseAdmin
+  // lisää tai päivittää supabase conversations taulukkoon conversationId:n
+  const { error: conversationError } = await supabaseAdmin
     .from("conversations")
     .upsert({ id: conversationId });
 
@@ -60,6 +59,7 @@ export async function createChatAnswer(
     throw conversationError;
   }
 
+  // lisää supabase messages taulukkoon käyttäjän kysymyksen ja conversationId:n
   const { error: userMessageError } = await supabaseAdmin
     .from("messages")
     .insert({
@@ -93,7 +93,7 @@ export async function createChatAnswer(
 
   // tähän vektorien avulla query phase, eli haetaan kontekstia kysymykselle tallenuista chunkeista
 
-  // viimeinen viesti embeddingiin
+  // muutetaan käyttäjän kysymys embedding vektoriksi käyttäen OpenAi:n embedding mallia
   const { embedding } = await embed({
     model: embeddingModel,
     value: latestUserMessage.content,
@@ -106,7 +106,6 @@ export async function createChatAnswer(
     matchThreshold: 0.4,
     matchCount: 20,
   });
-
 
   // käyttäen document_chunks
   // const ragContext = await matchDocumentChunks({

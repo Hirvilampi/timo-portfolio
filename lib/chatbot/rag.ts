@@ -36,28 +36,29 @@ export async function matchDocumentChunksFin({
     throw ragError;
   }
 
+  // muutetaan ragMatches taulukko yhdeksi pitkäksi tekstikontekstiksi kielimallia varten
   const ragContext = (ragMatches ?? [])
     .map((match: { content: string; document_id?: string }) => {
       return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
     })
     .join("\n\n---\n\n");
 
-  console.log(
-    // "RAG matches:",
-    // (ragMatches ?? []).map(
-    //   (match: {
-    //     document_id: any;
-    //     similarity?: number;
-    //     content: string | any[];
-    //   }) => ({
-    //     document_id: match.document_id,
-    //     similarity: match.similarity,
-    //     contentPreview: match.content.slice(0, 120),
-    //   }),
-    // ),
-    "RAG match count:",
-    ragMatches.length,
-  );
+  // console.log(
+  //   // "RAG matches:",
+  //   // (ragMatches ?? []).map(
+  //   //   (match: {
+  //   //     document_id: any;
+  //   //     similarity?: number;
+  //   //     content: string | any[];
+  //   //   }) => ({
+  //   //     document_id: match.document_id,
+  //   //     similarity: match.similarity,
+  //   //     contentPreview: match.content.slice(0, 120),
+  //   //   }),
+  //   // ),
+  //   "RAG match count:",
+  //   ragMatches.length,
+  // );
 
   return ragContext;
 }
