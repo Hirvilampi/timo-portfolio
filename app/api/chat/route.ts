@@ -1,6 +1,7 @@
 import { embed, generateText, embedMany } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { matchDocumentChunksFin } from "@/lib/chatbot/rag";
 import type { 
   MatchDocumentChunksParams, 
   MatchDocumentChunksBigFinParams, 
@@ -60,50 +61,50 @@ export async function matchDocumentChunks({
   return ragContext;
 }
 
-export async function matchDocumentChunksFin({
-  queryEmbedding,
-  matchThreshold = 0.78,
-  matchCount = 10,
-}: MatchDocumentChunksParams) {
-  // kutsutaan Supabasen funtkiota match_document_chunks
-  const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
-    "match_document_chunks_fin",
-    {
-      query_embedding: queryEmbedding,
-      match_threshold: matchThreshold,
-      match_count: matchCount,
-    },
-  );
+// export async function matchDocumentChunksFin({
+//   queryEmbedding,
+//   matchThreshold = 0.78,
+//   matchCount = 10,
+// }: MatchDocumentChunksParams) {
+//   // kutsutaan Supabasen funtkiota match_document_chunks
+//   const { data: ragMatches, error: ragError } = await supabaseAdmin.rpc(
+//     "match_document_chunks_fin",
+//     {
+//       query_embedding: queryEmbedding,
+//       match_threshold: matchThreshold,
+//       match_count: matchCount,
+//     },
+//   );
 
-  if (ragError) {
-    throw ragError;
-  }
+//   if (ragError) {
+//     throw ragError;
+//   }
 
-  const ragContext = (ragMatches ?? [])
-    .map((match: { content: string; document_id?: string }) => {
-      return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
-    })
-    .join("\n\n---\n\n");
+//   const ragContext = (ragMatches ?? [])
+//     .map((match: { content: string; document_id?: string }) => {
+//       return `Document: ${match.document_id ?? "unknown"}\n${match.content}`;
+//     })
+//     .join("\n\n---\n\n");
 
-  console.log(
-    "RAG matches:",
-    (ragMatches ?? []).map(
-      (match: {
-        document_id: any;
-        similarity?: number;
-        content: string | any[];
-      }) => ({
-        document_id: match.document_id,
-        similarity: match.similarity,
-        contentPreview: match.content.slice(0, 120),
-      }),
-    ),
-    "RAG count:",
-    ragMatches.length,
-  );
+//   console.log(
+//     "RAG matches:",
+//     (ragMatches ?? []).map(
+//       (match: {
+//         document_id: any;
+//         similarity?: number;
+//         content: string | any[];
+//       }) => ({
+//         document_id: match.document_id,
+//         similarity: match.similarity,
+//         contentPreview: match.content.slice(0, 120),
+//       }),
+//     ),
+//     "RAG count:",
+//     ragMatches.length,
+//   );
 
-  return ragContext;
-}
+//   return ragContext;
+// }
 
 export async function matchDocumentChunksBigFin({
   queryEmbedding,
