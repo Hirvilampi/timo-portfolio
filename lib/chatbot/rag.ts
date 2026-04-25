@@ -43,19 +43,19 @@ export async function matchDocumentChunksFin({
     .join("\n\n---\n\n");
 
   console.log(
-    "RAG matches:",
-    (ragMatches ?? []).map(
-      (match: {
-        document_id: any;
-        similarity?: number;
-        content: string | any[];
-      }) => ({
-        document_id: match.document_id,
-        similarity: match.similarity,
-        contentPreview: match.content.slice(0, 120),
-      }),
-    ),
-    "RAG count:",
+    // "RAG matches:",
+    // (ragMatches ?? []).map(
+    //   (match: {
+    //     document_id: any;
+    //     similarity?: number;
+    //     content: string | any[];
+    //   }) => ({
+    //     document_id: match.document_id,
+    //     similarity: match.similarity,
+    //     contentPreview: match.content.slice(0, 120),
+    //   }),
+    // ),
+    "RAG match count:",
     ragMatches.length,
   );
 
@@ -100,7 +100,7 @@ export async function matchDocumentChunks({
     //     similarity: match.similarity,
     //     contentPreview: match.content.slice(0, 120),
     //   }),
-    ),
+    // ),
     "RAG match count:",
     ragMatches.length,
   );
@@ -144,14 +144,14 @@ export async function matchDocumentChunksBigFin({
     .join("\n\n---\n\n");
 
   console.log(
-    "RAG matches:",
-    matches.map((match) => ({
-      document_id: match.document_id,
-      title: match.title,
-      category: match.category,
-      similarity: match.similarity,
-      contentPreview: match.content_display.slice(0, 120),
-    })),
+    // "RAG matches:",
+    // matches.map((match) => ({
+    //   document_id: match.document_id,
+    //   title: match.title,
+    //   category: match.category,
+    //   similarity: match.similarity,
+    //   contentPreview: match.content_display.slice(0, 120),
+    // })),
     "RAG count:",
     matches.length, 
     "Threshold:",matchThreshold,

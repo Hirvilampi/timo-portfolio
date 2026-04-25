@@ -16,6 +16,7 @@ typescript and tailwind
 vercel (where the project is actually running)
 Vercel AI SDK - tookit used to build chatbot  
 gpt-4o-mini-2024-07-18 - large language model from OPENAI that is used to power the chat
+text-embedding-3-small - embedding model 
 supabase - database to storage chats and information, this is the RAG database also
 
 

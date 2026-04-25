@@ -13,6 +13,8 @@ Sisällysluettelo
   
 Tarkoituksenani on rakentaa chatbot Timo, joka toimii portfolio sivullani. Chatbot vastaa kysymyksiin  
 kokemuksestani, opiskeluistani, tv-projekteista, koodausprojekteista, minusta sekä tietenkin tämän chatbotin luomisesta.  
+
+Valitsin chatbotin, koska halusin oppia käyttämään laajaa kielimallia chatbotin tekemiseen. Samalla voisin saada sivuilleni toimivan elementin, joka myös pystyy antamaan minusta lisätietoa.  
   
 ## Käytetyt teknologiat  
 next.js  - next.js toimii koko portfolion pohjana  
@@ -25,17 +27,36 @@ supabase - database, johon tallennetaan RAG tietokanta sekä chatin kysymykset j
 
 **Miksi valitsin nämä teknologiat**
 
-Valitsin chatbotin, koska halusin oppia käyttämään laajaa kielimallia chatbotin tekemiseen. Samalla voisin saada sivuilleni toimivan elementin, joka myös pystyy antamaan minusta lisätietoa.  
-
 Olin jo tehnyt portfolion käyttäen next.js, supabase, vercel yhdistelmää, joten sain pistettyä enemmän paukkuja itse asiaan, eli chatbottiin. Samassa ympäristössä ne toimivat parhaiten yhteen.  
+Samalla typescript ja tailwind olivat tutuiksi.
 
-I tried to search what should I use to build and the suggestion was: vercel AI SDK, a ready llm model that is cheap to use and RAG vector database. 
+Lähtiessäni rakentamaan chatbottia, löysin AI Hero videosarjan, jossa opetettiin käyttämään Vercel AI SDK:ta. Koska käytin myös verceliä jo muutenkin alustana, päätin ottaa kyseisen teknologian käyttööni. Kyseinen tutoriaali toimi pääasiallisena lähteenä sovellusta rakentaessa.
 
-I was already using Supabase in my portforlio and I quickly found you can use Supabase for RAG database. 
+Vercel SDK AI tutoriaali AIHero sivuilla https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
-## How the AI System works  
+Portfolioni käytti jo Supabasea ja kun huomasin sen tukevan RAG tietokantoja. Päätin käyttää Supabasea. 
+
+
+## Kuinka chatbot toimii  
 
 I am using Retrieval-augmented generetion (RAG) system + AI agent  
+
+```mermaid
+flowchart TD
+    A[User Input] --> B[Frontend Chat UI]
+    B --> C[/api/chat route]
+    C --> D[Validate Request]
+    D --> E[Load Conversation History]
+    D --> F[Create Embedding]
+    F --> G[Vector Search in Supabase]
+    G --> H[Retrieved Context]
+    E --> I[LLM Prompt]
+    H --> I
+    I --> J[OpenAI Model]
+    J --> K[Assistant Response]
+    K --> L[Store Response in Supabase]
+    L --> B
+```
 
 ![kuvio siitä mikä on systeemin rakenne](assets/chatbot-rakenne.png)
 
