@@ -94,29 +94,37 @@ ChatbotPanel.tsx on chatbotin pääkäyttöliittymäkomponentti. Näyttää otsi
 <details>
 <summary>
 &nbsp;&nbsp;&nbsp;&nbsp;ChatMessages.tsx  </summary>
-
+Vastaa kysymysten ja vastausten renderöimisestä. Jakaa viestit (messages) kahteen osaan: uusin kysymys/vastaus lihavoituna ja aiemmat normalina tekstinä. Vierittää aina viestikentän loppuun.
+ Kutsuu ParseTextToReact, joka muokkaa vastaustekstin luettavampaan muotoon.
 </details>
 <details>
 <summary>
 &nbsp;&nbsp;&nbsp;&nbsp;ReactTextParser.tsx   </summary>
+Muokkaa vastaustekstit luettavaan muotoon. Osaa lisätä rivinvinvaihtoja joihinkin numeroituihin kohtiin. Tunnistaa lihavoidun tekstin. Palauttaa tekstin < span > sisältönä niin, että muotoilu säilyy paremmin. Tämä komponentti on tehty tekoälyllä.
 </details>
 <details>
 <summary>
 &nbsp;&nbsp;&nbsp;&nbsp;useChatbotConversations.tsx </summary>
+Tämä on custom hook, joka hoitaa chatbotin tilalogiikan.  
+Hakee localstoragesta conversationId:n tai luo uuden. Lataa vanhat viestit GET /api/chat kutsulla. Lähettää kysymyksen POST /api/chat kutsulla. Ylläpitää tiloja, kuten isLoading, messages ja hasSentFirstQuestion.
 </details>
 <details> 
 <summary>
 &nbsp;&nbsp;&nbsp;&nbsp;page.module.css  </summary>
-</details>
-
-
-
-
+Tyylitiedosto, josta käytössä vain .link jota käytetään "Reset chat" napin tyylittelyy.
+</details>  
+  
   
 Hakemistopolku API-route handleriin
-[app/api/chat/](app/api/chat)  
+[app/api/chat/](app/api/chat)
+<details>
+<summary>
 &nbsp;&nbsp;&nbsp;&nbsp;route.ts  
-[handels sending data to LLM and retrieving vector findings from Supabase](app/api/chat/route.ts)  
+</summary>
+Vastaa kaiken datan lähettämisestä kielimallille ja vastauksen palauttamisesta frontendiin. 
+Data sisältää RAG hauan tiedot, promptin, viestihistorian ja guardrailsit.
+</details>  
+
   
 Hakemistopolku route.ts käyttämiin tiedostoihin 
 [lib/chatbot](lib/chatbot)

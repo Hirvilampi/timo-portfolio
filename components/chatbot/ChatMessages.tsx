@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import classes from "./page.module.css";
+import { useEffect, useRef } from "react";
 import type {
   ChatMessage,
-  ChatbotPanelProps,
 } from "@/types/embedding-types.ts";
 import ParseTextToReact from "./ReactTextParser";
 
