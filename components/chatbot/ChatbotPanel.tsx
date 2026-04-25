@@ -14,6 +14,7 @@ import { useChatbotConversation } from "./useChatbotConversation";
 export default function ChatbotPanel({
   chatHeader,
   chatDisclaimer,
+  maxHeight = "80",
 }: ChatbotPanelProps) {
   // id creator for each new conversation
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -51,7 +52,7 @@ export default function ChatbotPanel({
         </div>
 
         {hasSentFirstQuestion ? (
-          <ChatMessages messages={messages} />
+          <ChatMessages messages={messages} maxHeight={maxHeight}/>
         ) : (
           <div></div>
         )}

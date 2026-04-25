@@ -12,6 +12,11 @@ const model = openai("gpt-4o-mini-2024-07-18");
 
 const embeddingModel = openai.embedding("text-embedding-3-small");
 
+// Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
+// lähteenä OpenAI Developers dokumentaatio https://developers.openai.com/api/docs
+// lähteenä Supabase dokumentaatio https://supabase.com/docs/guides/ai
+// https://supabase.com/docs/guides/ai/examples/nextjs-vector-search
+
 export type ParseChatRequestResult = {
   conversationId: string;
   latestUserMessage: ChatMessage;

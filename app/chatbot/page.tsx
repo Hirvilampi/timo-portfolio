@@ -1,4 +1,3 @@
-import BackButton from "@/components/BackButton";
 import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 import Link from "next/link";
 
@@ -13,7 +12,9 @@ type ChatbotPanelProps = {
 };
 
 export default function Chatbot() {
-  const chatHeader: string = "Chat with AI-Timo";   const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (Beta – This chatbot is still in development and may produce incomplete or inaccurate responses.)";
+  const chatHeader: string = "Chat with AI-Timo";
+  const chatDisclaimer: string =
+    "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is chatbot and may produce incomplete or inaccurate responses.)";
 
   return (
     <>
@@ -23,7 +24,11 @@ export default function Chatbot() {
             ← Back to timolampinen.com
           </Link>
           <div className="mt-2">
-            <ChatbotPanel chatHeader={chatHeader} chatDisclaimer={chatDisclaimer} />
+            <ChatbotPanel
+              chatHeader={chatHeader}
+              chatDisclaimer={chatDisclaimer}
+              maxHeight="10"
+            />
           </div>
         </main>
       </div>

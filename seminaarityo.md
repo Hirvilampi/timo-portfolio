@@ -264,17 +264,20 @@ Hallusinointi. Tämä kielimalli hallusinoi välillä aika pahasti. Se on väitt
 Refaktorointi. Sitä tein tässä aika paljon ja pyrin jakamaan koodia pienemmäksi luettavuuden parantamiseksi. Olen aiemmin lähes erikoistunut äärimmäisen pitkien kooditiedostojen tekemiseen. Niitä on hankala lukea. Nyt onnistuin aika saamaan pienempiin osiin eri kokonaisuuksia. Aloitin siitä, että itse api/chat/page.tsx ei enää sisällä mitään toimintoja vaan kutsuu ChatbotPanel.tsx. Samalla pystyin lisäämään chatbotin myös portfolioni etusivulle. Pilkoin toimintoja vielä ask.tsx, ChatMessages ja useChatBotConversations tiedostoihin. Sen jälkeen oli route.ts:n vuoro. 
 Alunperin route.ts sisälsi kaiken API kutsuihin liittyvän, nyt se on palasteltu 4 eri tiedostoon, joista service.ts createChatAnwer funktion olisi voinut pilkkoa vielä pienemmiksi. Tämäkin oli hyvä alku ja tekee luettavuudesta helpompaa. Olen onneksi lisännyt väliin kommentteja, että pysyn enemmän kärryillä siitä, mitä mihinkin kohtaan on tullut tehtyä. Hassusti kommenttini ovat välillä englanniksi ja välillä suomeksi.  
 
+Minulla kävi hyvä tuuri, sillä olin ilmoittaunut yrityksille tarkoitettuun Haaga-Helian järjestämään AIOps/MLOps työpajaan Making AI software development smooth and scalable. Vaikka siellä käytiin asioita yleisellä tasolla läpi toi Jukka Remeksen esitys minulle monia ajatuksia miten kehittää omaa projektia eteenpäin. Samalla huomasin, että olin myös tehnyt pipelinessa paljon asioita oikein. Luulen, että olin huomannut ilmoituksen tästä työpajasta LinkedIn-sovelluksessa, enkä edes katsonut kovin tarkasti mistä oli kysymys. Onneksi päädyin paikalle. Nyt minulla on olemassa malleja mitä erilaisia ongelmia AI malleihin ja prosesseihin liittyy.
 
 
-## Lähteet  
+## Lähteet
 
-Vercel SDK AI tutoriaali AIHero sivuilla https://www.aihero.dev/tool-calls-with-vercel-ai-sdk  
+1. AIHero. Tool Calls with Vercel AI SDK. https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
+   Käytetty chatbotin perusrakenteen ja Vercel AI SDK:n opetteluun.
 
-Supabase dokumentaatio  
-https://supabase.com/docs/guides/ai  
-https://supabase.com/docs/guides/ai/examples/nextjs-vector-search  
+2. Supabase. AI and Vector Search Documentation. https://supabase.com/docs/guides/ai
+   Käytetty RAG-ratkaisun ja vektorihakujen toteutuksen tukena.
 
-OpenAI Developers dokumentaatio
-https://developers.openai.com/api/docs
+3. Supabase. Next.js Vector Search Example. https://supabase.com/docs/guides/ai/examples/nextjs-vector-search
+   Käytetty Supabasen ja Next.js:n yhteiskäytön hahmottamiseen.
 
-ReactTextParser komponentti on luotu ChatGTP 5.4 tekoälyllä.
+4. OpenAI. OpenAI API Documentation. https://developers.openai.com/api/docs
+   Käytetty OpenAI-mallien ja embedding-kutsujen ymmärtämiseen.
+

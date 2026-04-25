@@ -8,13 +8,17 @@ import ParseTextToReact from "./ReactTextParser";
 
 type ChatMessagesProps = {
   messages: ChatMessage[];
+  maxHeight?: string;
 };
 
 const askername = "You: ";
 const botname = "AI-Timo: ";
 
-export default function ChatMessages({ messages }: ChatMessagesProps) {
+export default function ChatMessages({ messages, maxHeight="80" }: ChatMessagesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+ // const maxHeight : string = "180";
+  const height = "max-h-"+maxHeight;
+// max-h-80
 
   // These are used to to put old messages in rows and new question and answer in newRows
   // riippuen onko message-määrä parillinen vai parint saa activeCount parillisella arvon 2 ja parittomalla 1
@@ -45,7 +49,7 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
     <>
       <div
         ref={containerRef}
-        className="max-h-80 overflow-y-auto border p-4 w-full"
+        className={`${height} overflow-y-auto border p-4 w-full`}
       >
         <div
           className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}

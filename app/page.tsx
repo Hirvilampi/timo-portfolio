@@ -9,7 +9,7 @@ import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
   const pageHeader: string = "Chat with AI-Timo";
-  const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (Beta – This chatbot is still in development and may produce incomplete or inaccurate responses.)";
+  const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is chatbot and may produce incomplete or inaccurate responses.)";
   return (
     <>
       <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
