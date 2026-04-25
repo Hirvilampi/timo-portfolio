@@ -39,7 +39,9 @@ Portfolioni käytti jo Supabasea ja kun huomasin sen tukevan RAG tietokantoja. P
 
 ## Kuinka chatbot toimii  
 
-I am using Retrieval-augmented generetion (RAG) system + AI agent   
+Yksinkertaistettuna chatbot ottaa vastaan käyttäjän kysymyksen, lataa aiemman kysymyshistorian ja validoi kysymyksen siten, että kysymys on olemassa. Luodaan embedding edellisestä kysymyksestä ja aiemmin muodostetusta embedding mallista.  Tehdään RAG haku tietokannasta embeddingin avulla. Syötetään kielimalliin kysymys, kysymyshistoria ja RAG hausta saatu konteksti sekä Prompt, missä on annettu ohjeet vastauksien antamiseen. Kielimalli palauttaa vastauksen, joka näytetään käyttäjälle.  
+
+Mermaid malli näyttää hyvin miten prosessi etenee.
 
 ```mermaid
 flowchart TD
@@ -58,19 +60,79 @@ flowchart TD
     L --> B
 ```
 
-![kuvio siitä mikä on systeemin rakenne](assets/chatbot-rakenne.png)
 
+## Chatbot tiedostot 
 
-## What files are in chatbot
-
-This is my portfolio also, so it has quite many files/directories.  
+Kyseessä on myös portfolioni, joten tässä on paljon tiedostoja ja kansioita. Olen jakanut This is my portfolio also, so it has quite many files/directories.  
 These links go straight to the directories about chatbot.  
+
+Hakemistopolku itsenäiseen chatbot sivuun  
+[app/chatbot/](app/chatbot)
+<details>
+<summary>  
+&nbsp;&nbsp;&nbsp;&nbsp;page.tsx  </summary>
+Chatbotin oma sivu. Ei sisällä chatbotin toimintalogiikkaa, eikä UI muotoilua. 
+</details>
+<details>
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;page.moduce.css  </summary>
+Ei käytössä
+</details>  
   
-[app/chatbot/: client has the main interface for individual chatbot page](app/chatbot) 
   
-[api/chat/: route.ts handels sending data to LLM and retrieving vector findings from Supabase](api/chat)  
+Hakemistopolku frontend komponentteihin  
+[components/chatbot/](components/chatbot)
+<details>
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;ask.tsx</summary>
+Tämä on kysymyslomake, johon käyttäjä kirjoittaa kysymyksen. Palauttaa kysymyksen. Implementoi myös latauksen ajaksi hiukan animoidun tekstin: Hmm...
+</details>
+<details>  
+<summary>&nbsp;&nbsp;&nbsp;&nbsp;ChatbotPanel.tsx </summary>
+ChatbotPanel.tsx on chatbotin pääkäyttöliittymäkomponentti. Näyttää otsikon ja disclamerin, renderöi kysymyskentän Ask komponentilla ja välittää viestit ChatMessages komponentille. Käyttää useChatbotConversation hookkia saadakseen viestit ja toiminnot.  
+</details>
+<details>
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;ChatMessages.tsx  </summary>
+
+</details>
+<details>
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;ReactTextParser.tsx   </summary>
+</details>
+<details>
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;useChatbotConversations.tsx </summary>
+</details>
+<details> 
+<summary>
+&nbsp;&nbsp;&nbsp;&nbsp;page.module.css  </summary>
+</details>
+
+
+
+
   
-[components/chatbot/: ask.tsx is client that creates and passes on the asked question, chatbotpanel is the interface](components/chatbot). 
+Hakemistopolku API-route handleriin
+[app/api/chat/](app/api/chat)  
+&nbsp;&nbsp;&nbsp;&nbsp;route.ts  
+[handels sending data to LLM and retrieving vector findings from Supabase](app/api/chat/route.ts)  
+  
+Hakemistopolku route.ts käyttämiin tiedostoihin 
+[lib/chatbot](lib/chatbot)
+<details> 
+<summary>&nbsp;&nbsp;&nbsp;&nbsp;chat-service.ts  </summary>
+</details>
+<details> 
+<summary>&nbsp;&nbsp;&nbsp;&nbsp;prompts.ts  </summary>
+</details>
+<details> 
+<summary>&nbsp;&nbsp;&nbsp;&nbsp;rag.ts  </summary>
+</details>
+<details> 
+<summary>&nbsp;&nbsp;&nbsp;&nbsp;service.ts   </summary>
+</details>
+ 
   
 [types/: embedding-types.ts has the different types stored here](types). 
   
