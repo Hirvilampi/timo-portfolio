@@ -17,7 +17,7 @@ export default function ChatbotPanel({
   maxHeight = "80",
 }: ChatbotPanelProps) {
   // id creator for each new conversation
-  const [conversationId, setConversationId] = useState<string | null>(null);
+  // const [conversationId, setConversationId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const {

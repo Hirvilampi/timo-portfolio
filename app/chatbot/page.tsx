@@ -14,7 +14,7 @@ type ChatbotPanelProps = {
 export default function Chatbot() {
   const chatHeader: string = "Chat with AI-Timo";
   const chatDisclaimer: string =
-    "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is chatbot and may produce incomplete or inaccurate responses.)";
+    "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
 
   return (
     <>
