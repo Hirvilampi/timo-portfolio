@@ -5,6 +5,9 @@ Kurssin sivu löytyy osoitteesta ![https://github.com/haagahelia/ohke-teknologia
 
 Tämän seminaarityön on tehnyt Haaga-Helian opiskelija Timo Lampinen.
 
+Linkki videoon [Seminaarityön esittelyvideo youtubessa](https://www.youtube.com/watch?v=wsUUlxjjUBw)  
+Linkki github repositorioon [timo-portfolio github](https://github.com/Hirvilampi/timo-portfolio/)  
+
 **Sisällysluettelo**
 
 - [Chatbot projekti ja sen tarkoitus](#chatbot-projekti-ja-sen-tarkoitus)
