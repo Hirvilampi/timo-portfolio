@@ -7,6 +7,9 @@ The course page can be found at [https://github.com/haagahelia/ohke-teknologiat]
 
 This seminar project was created by Haaga-Helia student Timo Lampinen.
 
+Link to video [Chatbot presentation video inyoutube](https://youtu.be/jlgG4DOlAi4)  
+Link to code in Github repository [timo-portfolio github code](https://github.com/Hirvilampi/timo-portfolio/)  
+
 **Table of Contents**
 
 - [Chatbot Project and Purpose](#chatbot-project-and-purpose)

@@ -6,14 +6,15 @@ Kurssin sivu löytyy osoitteesta ![https://github.com/haagahelia/ohke-teknologia
 Tämän seminaarityön on tehnyt Haaga-Helian opiskelija Timo Lampinen.
 
 Linkki videoon [Seminaarityön esittelyvideo youtubessa](https://www.youtube.com/watch?v=wsUUlxjjUBw)  
-Linkki github repositorioon [timo-portfolio github](https://github.com/Hirvilampi/timo-portfolio/)  
+Linkki Timo-portfolio koodiin Github repossa [timo-portfolio github](https://github.com/Hirvilampi/timo-portfolio/)  
+Suorat linkit chatbotin kansioihin kohdassa: [chatbot kansiot ja tiedostot sekä mitä ne tekevät](#chatbot-kansiot-ja-tiedostot-sekä-mitä-ne-tekevät)
 
 **Sisällysluettelo**
 
 - [Chatbot projekti ja sen tarkoitus](#chatbot-projekti-ja-sen-tarkoitus)
 - [Käytetyt teknologiat](#käytetyt-teknologiat)
 - [Kuinka chatbot toimii](#kuinka-chatbot-toimii)
-- [Chatbot tiedostot ja mitä ne tekevät](#chatbot-tiedostot-ja-mitä-ne-tekevät)
+- [Chatbot kansiot ja tiedostot sekä mitä ne tekevät](#chatbot-kansiot-ja-tiedostot-sekä-mitä-ne-tekevät)
 - [Tietokanta ja sen toiminallisuudet](#tietokanta-ja-sen-toiminallisuudet)
 - &nbsp;&nbsp;&nbsp;&nbsp;[conversations & messages](#conversations--messages)
 - &nbsp;&nbsp;&nbsp;&nbsp;[RAG - document_chunks_fin](#rag---document_chunks_fin)
@@ -95,7 +96,7 @@ Vastaus avaa ikkunan, missä voi selata keskusteluhistoriaa. Uusin kysymys ja va
 Keskustelua voi tämän jälkeen jatkaa kirjoittamalla aina uusi kysymys kysymyslaatikkoon.
 
 
-## Chatbot tiedostot ja mitä ne tekevät
+## Chatbot kansiot ja tiedostot sekä mitä ne tekevät
 
 Kyseessä on myös portfolioni, joten tässä on paljon tiedostoja ja kansioita. Nämä tiedostot ovat käytössä chatbotissa.
 
