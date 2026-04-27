@@ -29,6 +29,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
           >
             <input
               type="text"
+              placeholder="Type your question"
               // className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white  caret-blackfocus:outline-none focus:ring-2 focus:ring-zinc-400"
               className="
               w-full sm:w-80

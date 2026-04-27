@@ -83,6 +83,17 @@ flowchart TD
     K --> L["Store Response in Supabase"]
     L --> B
 ```
+  
+Chatbot avautuu ensin osana portfoliota. Kysymyslaatikkoon voi kirjoittaa kysymyksen.  
+
+![kuva-nettisivusta](assets/frontpage-chatbot.png)
+
+Vastaus avaa ikkunan, missä voi selata keskusteluhistoriaa. Uusin kysymys ja vastaus näkyvät lihavoituna.  
+
+![kuva-vastausikkunasta](assets/chabot-with-answer-window.png) 
+
+Keskustelua voi tämän jälkeen jatkaa kirjoittamalla aina uusi kysymys kysymyslaatikkoon.
+
 
 ## Chatbot tiedostot ja mitä ne tekevät
 
