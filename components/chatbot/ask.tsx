@@ -48,7 +48,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
         <div className="flex w-12 h-12 justify-center items-center h-full ">
           {isLoading && (
             <div className="w-10 h-8 animate-pulse">
-              <p className="mt-4 ml-2 text-sm text-zinc-900 dark:text-zinc-800 ">
+              <p className="mt-4 ml-2 text-sm text-zinc-900 dark:text-zinc-900 ">
                 Hmm..
               </p>
             </div>
