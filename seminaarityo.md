@@ -32,13 +32,13 @@ Valitsin chatbotin, koska halusin oppia käyttämään laajaa kielimallia chatbo
 
 ## Käytetyt teknologiat
 
-next.js - next.js toimii koko portfolion pohjana  
-typescript and tailwind - ohjelmointikieli ja muotoilu  
-vercel.com - portfolio pyörii vercel.com palvelun alla ja on ohjattu cname asetuksella verceliin  
-Vercel AI SDK - tookit, mitä on käytetty chatbotin rakentamisessa.  
-gpt-4o-mini-2024-07-18 - OPENAI kielimalli, jota käytetään luomaan vastaukset
-text-embedding-3-small - OPENAI embedding malli, joka muuttaa tekstin numerovektoreiksi. Vektoreita käytetään RAG hakuun
-supabase - database, johon tallennetaan RAG tietokanta sekä chatin kysymykset ja vastaukset
+**next.js** - next.js toimii koko portfolion pohjana.   
+**typescript** ja **tailwind** - ohjelmointikieli ja muotoilu.   
+**vercel.com** - portfolio pyörii vercel.com palvelun alla ja on ohjattu cname asetuksella verceliin.   
+**Vercel AI SDK** - tookit, mitä on käytetty chatbotin rakentamisessa.  
+**gpt-4o-mini-2024-07-18** - OPENAI kielimalli, jota käytetään luomaan vastaukset. 
+**text-embedding-3-small** - OPENAI embedding malli, joka muuttaa tekstin numerovektoreiksi. Vektoreita käytetään RAG hakuun.  
+**supabase** - database, johon tallennetaan RAG tietokanta sekä chatin kysymykset ja vastaukset. 
 
 **Miksi valitsin nämä teknologiat**
 
@@ -86,11 +86,11 @@ flowchart TD
   
 Chatbot avautuu ensin osana portfoliota. Kysymyslaatikkoon voi kirjoittaa kysymyksen.  
 
-![kuva-nettisivusta](assets/frontpage-chatbot.png)
+![kuva-nettisivusta](assets/chatbot-frontpage2.png)
 
 Vastaus avaa ikkunan, missä voi selata keskusteluhistoriaa. Uusin kysymys ja vastaus näkyvät lihavoituna.  
 
-![kuva-vastausikkunasta](assets/chabot-with-answer-window.png) 
+![kuva-vastausikkunasta](assets/chatbot-answer.png) 
 
 Keskustelua voi tämän jälkeen jatkaa kirjoittamalla aina uusi kysymys kysymyslaatikkoon.
 

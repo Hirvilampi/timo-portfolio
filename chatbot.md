@@ -84,6 +84,17 @@ flowchart TD
     L --> B
 ```
 
+The chatbot first opens as part of the portfolio. The user can write a question in the question box.  
+
+![screenshot of the website](assets/chatbot-frontpage2.png)  
+
+The answer opens a window where the user can browse the conversation history. The newest question and answer are shown in bold.  
+
+![screenshot of the answer window](assets/chatbot-answer.png)  
+
+After this, the conversation can be continued by writing a new question in the question box.  
+  
+
 ## Chatbot Files and What They Do
 
 This is also my portfolio, so there are many files and directories in the project. The following files are used by the chatbot.
