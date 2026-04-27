@@ -103,8 +103,9 @@ After this, the conversation can be continued by writing a new question in the q
 This is also my portfolio, so there are many files and directories in the project. The following files are used by the chatbot.
 
 Path to the standalone chatbot page  
-[app/chatbot/](app/chatbot) (click the file name)
+[app/chatbot/](app/chatbot)  
 
+(click the file name to open text)
 <details>
 <summary>  
 &nbsp;&nbsp;&nbsp;&nbsp;page.tsx  </summary>
