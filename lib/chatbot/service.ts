@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { matchDocumentChunksFin } from "@/lib/chatbot/rag";
 import { chatPrompt } from "@/lib/chatbot/prompts";
 import { ChatMessage } from "@/types/embedding-types";
+import todayAsDate from "@/components/chatbot/todayAsDate";
 
 const supabaseAdmin = getSupabaseAdmin();
 
@@ -126,11 +127,13 @@ export async function createChatAnswer(
   //   matchCount: 20,
   // });
 
+  const datenow: string = todayAsDate();
+
   // send question with history and guardrails
   const { text } = await generateText({
     model,
     messages: modelMessages,
-    system: chatPrompt(ragContext),
+    system: chatPrompt(ragContext, datenow),
   });
 
   const { error: assistantMessageError } = await supabaseAdmin

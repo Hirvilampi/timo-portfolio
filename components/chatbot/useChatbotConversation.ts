@@ -57,7 +57,10 @@ export function useChatbotConversation() {
   // sends question to ask.tsx for creating answer. The returned data is then processed forward into messages.
   const handleAsk = async (question: string) => {
     // addRow({ role: "user", content: question });
-    const nextMessages = [...messages, { role: "user", content: question } as ChatMessage, ];
+    const nextMessages = [
+      ...messages,
+      { role: "user", content: question } as ChatMessage,
+    ];
     setMessages(nextMessages);
     setIsLoading(true);
     try {
@@ -91,11 +94,30 @@ export function useChatbotConversation() {
     }
   };
 
+  const todayAsDate = () => {
+    const now = new Date();
+
+    const date = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/Helsinki",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(now);
+
+    const weekday = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Europe/Helsinki",
+      weekday: "long",
+    }).format(now);
+
+    return `Current date: ${date}. Today is ${weekday}. Timezone: Europe/Helsinki.`;
+  };
+
   return {
     messages,
     isLoading,
     handleAsk,
     hasSentFirstQuestion,
     startNewConversation,
+    todayAsDate,
   };
 }
