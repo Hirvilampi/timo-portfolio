@@ -13,7 +13,7 @@ export default async function Productions() {
   return (
       <div className="page-shell">
         <main className="page-frame page-stack max-w-4xl">
-          <OnMouseOver>
+
             <BackButton />
             <h1>IT projects and school work</h1>
             <section>
@@ -57,7 +57,7 @@ export default async function Productions() {
             <div className="mt-6">
               <ITsGrid itprojects={itprojects} />
             </div>
-          </OnMouseOver>
+
         </main>
       </div>
   );

@@ -13,5 +13,6 @@ export default function BackButton() {
         } else { router.push('/');}
     };
 
-    return <button className={classes.link} onClick={handleBack}>← Back</button>
+    return <button className="font-bold text-[var(--text-secondary)] transition-colors hover:text-[var(--color-gold)]" 
+    onClick={handleBack}>← Back</button>
 }

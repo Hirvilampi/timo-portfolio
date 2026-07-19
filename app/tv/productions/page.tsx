@@ -11,7 +11,7 @@ export default async function Productions() {
   return (
       <div className="page-shell">
         <main className="page-frame page-stack max-w-4xl">
-          <OnMouseOver>
+
             <BackButton />
             <h1>TV and Film productions</h1>
             <p className="mt-4">
@@ -26,7 +26,7 @@ export default async function Productions() {
             <div className="mt-6">
               <TVsGrid tvproductions={tvproductions} />
             </div>
-          </OnMouseOver>
+
         </main>
       </div>
   );
