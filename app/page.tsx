@@ -12,8 +12,8 @@ export default function Home() {
   const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-4xl flex-col items-center py-24 px-16 bg-[rgb(252,252,252)] dark:bg-black sm:items-start ">
+      <div className="flex min-h-screen items-start justify-center font-sans ">
+        <main className="flex w-full max-w-4xl flex-col items-center py-24 px-16 sm:items-start ">
           <OnMouseOver>
             <div className="flex grid w-full max-w-4xl gap-6 sm:grid-cols-[30%_70%]">
               <section className="">
@@ -26,12 +26,12 @@ export default function Home() {
                 />
 
                 <div className="flex flex-col gap-6 text-left sm:items-start sm:text-left">
-                  <h1 className="max-w-xs text-lg sm:text-xl md:text-2xl font-semibold mt-2 leading-10 tracking-tight text-black dark:text-zinc-50">
-                    Timo Lampinen - Junior Software Developer and TV
+                  <h1 className="max-w-xs text-lg sm:text-xl md:text-2xl font-semibold mt-2 leading-10 tracking-tight">
+                    Timo Lampinen - Software Developer and TV
                     Professional
                   </h1>
 
-                  <p className="max-w-xs text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400 hover:animate-flash-once">
+                  <p className="max-w-xs text-base sm:text-lg leading-8 text-secondary hover:animate-flash-once">
                     My portfolio in software development and directing/writing
                     tv productions. Currently looking for new opportunities in
                     software development, but I'm still interested in directing
