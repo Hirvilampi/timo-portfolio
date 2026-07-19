@@ -1,66 +1,72 @@
 import Image from "next/image";
 import Link from "next/link";
-import classes from "./page.module.css";
 import ShowTvLink from "./tv/page";
 import ShowItLink from "./it/page";
 import OnMouseOver from "@/components/MouseOver";
-import HoverAnimation from "@/components/HoverAnimation";
 import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
   const pageHeader: string = "Chat with AI-Timo";
-  const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
+  const chatDisclaimer: string =
+    "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center font-sans ">
-        <main className="flex w-full max-w-4xl flex-col items-center py-24 px-16 sm:items-start ">
-          <OnMouseOver>
-            <div className="flex grid w-full max-w-4xl gap-6 sm:grid-cols-[30%_70%]">
-              <section className="">
+      <div className="page-shell">
+        <main className="page-frame">
+<hr className="my-6 w-7/8 border-t border-[var(--text-secondary)]" />
+ 
+            <div className="grid w-full gap-6 ">
+              <section className="flex items-center justify-between gap-6">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-[4.5rem] sm:text-[6.5rem] leading-none">TIMO LAMPINEN</h1>
+                  <h2 className="mt-2 text-lg sm:text-2xl"> - Software Developer and TV Professional</h2>
+<div className="flex flex-col gap-6 mt-2 text-left sm:items-start sm:text-left">
+                <p className="text-secondary max-w-xs hover:animate-flash-once">
+                  My portfolio in software development and directing/writing tv
+                  productions. Currently looking for new opportunities in
+                  software development, but I'm still interested in directing
+                  and writing TV productions.
+                </p>
+              </div>
+                </div>
                 <Image
                   src="/timo_logo.png"
                   alt="Timo Lampinen - kuva Riitta Sourander"
                   width={200}
                   height={50}
                   priority
+                  className="rounded-xl"
                 />
-
-                <div className="flex flex-col gap-6 text-left sm:items-start sm:text-left">
-                  <h1 className="max-w-xs text-lg sm:text-xl md:text-2xl font-semibold mt-2 leading-10 tracking-tight">
-                    Timo Lampinen - Software Developer and TV
-                    Professional
-                  </h1>
-
-                  <p className="max-w-xs text-base sm:text-lg leading-8 text-secondary hover:animate-flash-once">
-                    My portfolio in software development and directing/writing
-                    tv productions. Currently looking for new opportunities in
-                    software development, but I'm still interested in directing
-                    and writing TV productions.
-                  </p>
-                </div>
               </section>
-
+              
+<hr className="my-6 w-7/8 border-t border-[var(--text-secondary)]" />
+ 
               <section>
-                <div className="w-full flex items-start justify-center mt-6 mb-3 sm:mt-0 sm:justify-start ">
-                  <ChatbotPanel chatHeader={pageHeader} chatDisclaimer={chatDisclaimer} />
+                <div className="mt-6 mb-3 flex w-full items-start justify-center sm:mt-0 sm:justify-start">
+                  <ChatbotPanel
+                    chatHeader={pageHeader}
+                    chatDisclaimer={chatDisclaimer}
+                  />
                 </div>
 
-                <div className="w-full flex items-start justify-center mt-6  sm:mt-0 sm:justify-start ">
+                <div className="mt-6 flex w-full items-start justify-center sm:mt-0 sm:justify-start">
                   <ShowItLink />
                 </div>
 
-                <div className="w-full flex justify-start mt-6">
+                <div className="mt-6 flex w-full justify-start">
                   <ShowTvLink />
                 </div>
 
-                <div className="mt-6 items-center">
-                  <span className="text-black dark:text-zinc-50">Contact:</span>
+<hr className="my-6 w-7/8 border-t border-[var(--text-secondary)]" />
+                <div className="section-gap items-center">
+                  <span className="text-secondary">Contact:</span>
 
-                  <p className="items-center text-black dark:text-zinc-50">
+
+                  <p className="items-center text-secondary">
                     +358405363191 lampinen.timo@gmail.com
                     <Link
                       // className={`${classes.thispage2} text-black dark:text-white`}
-                      className="text-black hover:text-orange-500 dark:text-zinc-50"
+                      className="hover:text-orange-500"
                       href="https://www.linkedin.com/in/timo-lampinen-4657b"
                       target="_blank"
                     >
@@ -69,7 +75,7 @@ export default function Home() {
                     </Link>
                     <Link
                       // className={`${classes.thispage2}  text-black dark:text-white`}
-                      className="text-black hover:text-orange-500 dark:text-zinc-50"
+                      className="hover:text-orange-500"
                       href="https://www.instagram.com/timolampinen"
                       target="_blank"
                     >
@@ -79,14 +85,12 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="mt-6 ">
-                  {/* <p className={`${classes.thispage} "text-sm sm:text-lg"`}> */}
-                  {/* <p className="text-sm sm:text-lg font-bold text-gray-300 hover:text-gradient-to-r from-orange-500 to-orange-400 transition-all duration-400"> */}
-                  <p className="">
+                <div className="mt-6">
+                  <p>
                     <span
                       className="
-                        text-sm sm:text-lg font-bold
-                        text-gray-300
+                      text-primary
+                        text-sm sm:text-lg 
                         hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400
                         hover:bg-clip-text hover:text-transparent
                         transition-colors duration-150
@@ -108,7 +112,7 @@ export default function Home() {
                 </div>
               </section>
             </div>
-          </OnMouseOver>
+
         </main>
       </div>
     </>

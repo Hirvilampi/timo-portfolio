@@ -31,9 +31,9 @@ export default function ChatbotPanel({
   return (
     <section>
       <div className="items-center">
-        <h1 className="text-3xl  text-black dark:text-zinc-50">{chatHeader}</h1>
+        <h2 className="text-xl">{chatHeader}</h2>
         {chatDisclaimer ? (
-          <div className="text-xs ml-1 mb-2  sm:ml-3 dark:text-zinc-50">{chatDisclaimer}</div>
+          <div className="text-secondary ml-1 mb-2 sm:ml-3">{chatDisclaimer}</div>
         ) : (
           <div></div>
         )}

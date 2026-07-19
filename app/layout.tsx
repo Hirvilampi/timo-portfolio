@@ -1,34 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google";
-import { Poppins, Montserrat } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lato", // vapaaehtoinen, mutta suositeltava
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-poppins",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-montserrat",
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -44,13 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-          // className={`${poppins.variable} ${montserrat.variable}`}
-                      // className={`${poppins.variable} `}
-                    // className={`$ ${montserrat.variable}`}
-        className={`${lato.variable} antialiased`} 
-              //  className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${manrope.variable} antialiased`}>
         {children}
       </body>
     </html>

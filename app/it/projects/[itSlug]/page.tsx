@@ -28,7 +28,7 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
 
   return (
     <>
-      <section className=" text-black dark:text-zinc-50">
+      <section>
         {prod.image && (
           <Image
             src={prod.image}
@@ -38,15 +38,15 @@ async function ShowProjectInfo({ itSlug }: { itSlug: string }) {
             className="rounded-md object cover"
           />
         )}
-        <div className="flex flex-row justify-items-strech content-center">
-          <h1 className="text-3xl gap-6">{prod.title}</h1>
-          <p className="text-base opacity-70 px-8 py-2">
+        <div className="flex flex-row content-center justify-items-strech">
+          <h1 className="gap-6">{prod.title}</h1>
+          <p className="px-8 py-2 text-base opacity-70">
             ({prod.year && prod.year})
           </p>
         </div>
 
-        <div className="flex flex-row items-center mt-4">
-          <h2 className="text-2xl">My Job:&nbsp; {prod.job}</h2>
+        <div className="mt-4 flex flex-row items-center">
+          <h2>My Job:&nbsp; {prod.job}</h2>
         </div>
 
         <p className="mt-4"> {prod.summary}</p>
@@ -92,8 +92,8 @@ export default async function AllProjectsPage({
   const href = toAbsoluteUrl(prod.link);
 
   return (
-    <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start ">
+    <div className="page-shell">
+      <main className="page-frame page-stack max-w-4xl">
         <OnMouseOver>
           <BackButton />
           <h1 className="mb-2">IT Project from my work history</h1>

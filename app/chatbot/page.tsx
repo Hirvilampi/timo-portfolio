@@ -1,15 +1,7 @@
-import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 import Link from "next/link";
+import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
-
-type ChatbotPanelProps = {
-  chatHeader: string;
-  compact?: boolean;
-  showHeader?: boolean;
-  showNewChatButton?: boolean;
-  maxHeight?: string;
-};
 
 export default function Chatbot() {
   const chatHeader: string = "Chat with AI-Timo";
@@ -17,10 +9,9 @@ export default function Chatbot() {
     "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
 
   return (
-    <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black dark:text-zinc-50">
-        <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start dark:text-zinc-50">
-          <Link href={"https://timolampinen.com"}>
+    <div className="page-shell">
+      <main className="page-frame page-stack max-w-4xl">
+          <Link className="eyebrow-link" href={"https://timolampinen.com"}>
             ← Back to timolampinen.com
           </Link>
           <div className="mt-2">
@@ -30,9 +21,8 @@ export default function Chatbot() {
               maxHeight="10"
             />
           </div>
-        </main>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
 
