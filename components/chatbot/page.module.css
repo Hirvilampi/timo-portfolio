@@ -23,23 +23,32 @@
 }
 
 .link {
-  color: green; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-primary);
   align-content: flex-start;
-  padding-top: 10;
-}
-/* 
-Dark mode */
-:global(.dark) .link {
-  color: yellow;
-}
-
-@media (prefers-color-scheme: dark) {
-  .link { color: white; }
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
 }
 
 .link:hover {
-  transform: translateX(10px);
-  color: #f9572a;
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: rgba(255, 243, 234, 0.12);
+  color: var(--accent-strong);
+  text-decoration: none;
 }
 
 /* Mobiiliresponsiivisuus */

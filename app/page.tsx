@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import classes from "./page.module.css";
 import ShowTvLink from "./tv/page";
 import ShowItLink from "./it/page";
 import OnMouseOver from "@/components/MouseOver";
-import HoverAnimation from "@/components/HoverAnimation";
 import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
@@ -12,10 +10,10 @@ export default function Home() {
   const chatDisclaimer: string = "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-4xl flex-col items-center py-24 px-16 bg-[rgb(252,252,252)] dark:bg-black sm:items-start ">
+      <div className="page-shell">
+        <main className="page-frame">
           <OnMouseOver>
-            <div className="flex grid w-full max-w-4xl gap-6 sm:grid-cols-[30%_70%]">
+            <div className="grid w-full gap-10 sm:grid-cols-[minmax(240px,30%)_1fr]">
               <section className="">
                 <Image
                   src="/timo_logo.png"
@@ -25,13 +23,13 @@ export default function Home() {
                   priority
                 />
 
-                <div className="flex flex-col gap-6 text-left sm:items-start sm:text-left">
-                  <h1 className="max-w-xs text-lg sm:text-xl md:text-2xl font-semibold mt-2 leading-10 tracking-tight text-black dark:text-zinc-50">
+                <div className="mt-4 flex flex-col gap-4 text-left sm:items-start sm:text-left">
+                  <h1 className="max-w-sm">
                     Timo Lampinen - Junior Software Developer and TV
                     Professional
                   </h1>
 
-                  <p className="max-w-xs text-base sm:text-lg leading-8 text-zinc-600 dark:text-zinc-400 hover:animate-flash-once">
+                  <p className="max-w-sm text-secondary hover:animate-flash-once">
                     My portfolio in software development and directing/writing
                     tv productions. Currently looking for new opportunities in
                     software development, but I'm still interested in directing
@@ -41,69 +39,54 @@ export default function Home() {
               </section>
 
               <section>
-                <div className="w-full flex items-start justify-center mt-6 mb-3 sm:mt-0 sm:justify-start ">
+                <div className="mb-6 flex w-full items-start justify-center sm:mt-0 sm:justify-start">
                   <ChatbotPanel chatHeader={pageHeader} chatDisclaimer={chatDisclaimer} />
                 </div>
 
-                <div className="w-full flex items-start justify-center mt-6  sm:mt-0 sm:justify-start ">
+                <div className="flex w-full items-start justify-center sm:mt-0 sm:justify-start">
                   <ShowItLink />
                 </div>
 
-                <div className="w-full flex justify-start mt-6">
+                <div className="mt-6 flex w-full justify-start">
                   <ShowTvLink />
                 </div>
 
-                <div className="mt-6 items-center">
-                  <span className="text-black dark:text-zinc-50">Contact:</span>
+                <div className="section-gap items-center">
+                  <span className="text-[16px] font-semibold tracking-[0.02em] text-[var(--text-primary)]">
+                    Contact:
+                  </span>
 
-                  <p className="items-center text-black dark:text-zinc-50">
+                  <p className="mt-2 items-center">
                     +358405363191 lampinen.timo@gmail.com
                     <Link
-                      // className={`${classes.thispage2} text-black dark:text-white`}
-                      className="text-black hover:text-orange-500 dark:text-zinc-50"
+                      className="ml-3"
                       href="https://www.linkedin.com/in/timo-lampinen-4657b"
                       target="_blank"
                     >
-                      {" "}
-                      <span className="hover:translate-x-2">linkedin</span>
+                      linkedin
                     </Link>
                     <Link
-                      // className={`${classes.thispage2}  text-black dark:text-white`}
-                      className="text-black hover:text-orange-500 dark:text-zinc-50"
+                      className="ml-3"
                       href="https://www.instagram.com/timolampinen"
                       target="_blank"
                     >
-                      {" "}
-                      <span className="hover:translate-x-2">instagram</span>
+                      instagram
                     </Link>
                   </p>
                 </div>
 
-                <div className="mt-6 ">
-                  {/* <p className={`${classes.thispage} "text-sm sm:text-lg"`}> */}
-                  {/* <p className="text-sm sm:text-lg font-bold text-gray-300 hover:text-gradient-to-r from-orange-500 to-orange-400 transition-all duration-400"> */}
-                  <p className="">
-                    <span
-                      className="
-                        text-sm sm:text-lg font-bold
-                        text-gray-300
-                        hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400
-                        hover:bg-clip-text hover:text-transparent
-                        transition-colors duration-150
-                      "
+                <div className="mt-6">
+                  <p className="meta-text max-w-[44rem]">
+                    <a
+                      href="https://github.com/Hirvilampi/timo-portfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href="https://github.com/Hirvilampi/timo-portfolio"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        This page is coded in Visual Studio Code by yours truly.
-                        Built with Next.js, Typescript and Tailwind CSS,
-                        deployed with Vercel. It uses Supabase as database for
-                        productions info and images. Click to see the code in
-                        GitHub.
-                      </a>
-                    </span>
+                      This page is coded in Visual Studio Code by yours truly.
+                      Built with Next.js, Typescript and Tailwind CSS, deployed
+                      with Vercel. It uses Supabase as database for productions
+                      info and images. Click to see the code in GitHub.
+                    </a>
                   </p>
                 </div>
               </section>

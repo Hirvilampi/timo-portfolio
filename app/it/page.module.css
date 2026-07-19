@@ -6,33 +6,30 @@
   min-height: 180px;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
-  
-  /* TÄMÄ LUO REUNUKSEN: */
-  /* Drop-shadow noudattaa clip-pathin muotoa toisin kuin border */
-  filter: drop-shadow(2px 0px 0px black) 
-          drop-shadow(-2px 0px 0px black) 
-          drop-shadow(0px 2px 0px black) 
-          drop-shadow(0px -2px 0px black);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .cardWrapper:hover {
-  transform: translateX(10px);
-  
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(88, 39, 19, 0.12);
 }
 
 .cardShape {
   display: flex;
   width: 100%;
+  min-height: 180px;
   align-items: center;
   gap: 2rem;
-  padding-left: 1rem;
-  background: white;
-  clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid rgba(255, 243, 234, 0.45);
+  border-radius: 28px;
 }
 
 .cardShape:hover {
- background: linear-gradient(90deg, #f9572a, #ff9b05);
+  background: rgba(255, 243, 234, 0.22);
 }
 
 .cardBorder {
@@ -59,15 +56,27 @@
   gap: 20px;        
 }
 
-.title { margin: 0 0 0.5rem; font-weight: 600; }
-.text { margin: 0; opacity: 0.8; }
+.title {
+  margin: 0;
+  color: #4f2f20;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  color: #7a533d;
+}
+
+.cta {
+  margin-top: 1rem;
+  color: #8e4728;
+}
 
 @media (max-width: 540px) {
-.cardShape {
-    /* Nyt sinun tarvitsee muuttaa vain tätä, "reunus" seuraa mukana */
-    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  .cardShape {
+    border-radius: 24px;
   }
-    .slideshowPlaceholder {
+
+  .slideshowPlaceholder {
   width: 50px;
   height: 50px;
   top: 200px;

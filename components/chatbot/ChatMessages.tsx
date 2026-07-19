@@ -16,9 +16,7 @@ const botname = "AI-Timo: ";
 
 export default function ChatMessages({ messages, maxHeight="80" }: ChatMessagesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
- // const maxHeight : string = "180";
-  const height = "max-h-"+maxHeight;
-// max-h-80
+  const height = maxHeight ? `${Number(maxHeight) / 4}rem` : "20rem";
 
   // These are used to to put old messages in rows and new question and answer in newRows
   // riippuen onko message-määrä parillinen vai parint saa activeCount parillisella arvon 2 ja parittomalla 1
@@ -49,24 +47,29 @@ export default function ChatMessages({ messages, maxHeight="80" }: ChatMessagesP
     <>
       <div
         ref={containerRef}
-        className={`${height} overflow-y-auto border p-4 w-full`}
+        style={{ maxHeight: height }}
+        className="w-full overflow-y-auto rounded-[24px] border border-[var(--border-soft)] bg-[var(--surface)] p-6"
       >
         <div
-          className={`items-center mt-4 text-sm  text-blue sm:text-base dark:text-zinc-50`}
+          className="space-y-3 text-[17px] leading-[1.65] text-[#4f2f20]"
         >
           {rows.map((row, index) => (
             <div key={index}>
-              {row.role === "user" ? askername : botname}{" "}
+              <span className="font-semibold tracking-[0.01em]">
+                {row.role === "user" ? askername : botname}
+              </span>{" "}
               <ParseTextToReact text={row.content} />
             </div>
           ))}
         </div>
         <div
-          className={`items-center mt-4 text-sm sm:text-base font-bold dark:text-zinc-50`}
+          className="mt-4 space-y-3 text-[17px] font-semibold leading-[1.65] text-[#4f2f20]"
         >
           {newRows.map((row, index) => (
-            <div key={index} className="inline-block">
-              {row.role === "user" ? askername : botname}{" "}
+            <div key={index}>
+              <span className="tracking-[0.01em]">
+                {row.role === "user" ? askername : botname}
+              </span>{" "}
               <ParseTextToReact text={row.content} />
             </div>
           ))}

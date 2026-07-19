@@ -13,15 +13,13 @@ export default async function Productions() {
 
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start ">
+      <div className="page-shell">
+        <main className="page-frame page-stack max-w-4xl">
           <OnMouseOver>
             <BackButton />
-            <h1 className="text-3xl  text-black dark:text-zinc-50">
-              IT projects and school work
-            </h1>
+            <h1>IT projects and school work</h1>
             <section>
-              <p className="mt-4 text-sm sm:text-base  text-black dark:text-zinc-50">
+              <p className="mt-4">
                 I started studying software development in Haaga-Helia
                 University of Applied Sciences in the fall of 2024 and it looks
                 like I'm graduating by the end of 2026. 2,5 years for 3,5 year
@@ -29,9 +27,9 @@ export default async function Productions() {
                 very good performance.
               </p>
               <div
-                className={`${classes.cardWrapper} items-center mt-4 text-sm sm:text-base`}
+                className={`${classes.cardWrapper} mt-6 items-center`}
               >
-                <section className=" text-black hover:text-orange-500 dark:text-zinc-50  hover:translate-x-2">
+                <section>
                   <Link href="./tech//">
                     <p className="items-start">
                       Core Tehcnologies - click for more info
@@ -58,7 +56,7 @@ export default async function Productions() {
                 </section>
               </div>
             </section>
-            <div className="mt-6 text-black dark:text-zinc-50">
+            <div className="mt-6">
               <ITsGrid itprojects={itprojects} />
             </div>
           </OnMouseOver>

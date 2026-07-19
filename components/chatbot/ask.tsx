@@ -20,35 +20,41 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
 
   return (
     <>
-      <div className="flex flew-row mb-2">
-        <div>
-          Ask me (voit kysyä myös suomeksi):{" "}
+      <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-end">
+        <div className="w-full">
+          <label
+            htmlFor="chatbot-question"
+            className="mb-2 block text-[15px] font-medium tracking-[0.02em] text-[var(--text-secondary)]"
+          >
+            Ask me (voit kysyä myos suomeksi):
+          </label>
           <form
             onSubmit={handleSubmit}
-            // className="mt-4 outline-1 text-sm sm:text-base text-black caret-black dark:text-zinc-50 dark:caret-white"
           >
             <input
+              id="chatbot-question"
               type="text"
               placeholder="Type your question"
-              // className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white  caret-blackfocus:outline-none focus:ring-2 focus:ring-zinc-400"
               className="
-              w-full sm:w-80
-              border border-zinc-700
-              bg-white text-black
-              dark:bg-zinc-900 dark:text-white
-              px-3 py-2 rounded-md  
-              caret-black dark:caret-white
-              focus:outline-none focus:ring-2 focus:ring-zinc-400
+              w-full
+              rounded-2xl
+              border border-[var(--border-soft)]
+              bg-[var(--surface)]
+              px-4 py-4
+              text-[17px] text-[#4f2f20]
+              placeholder:text-[#9c7258]
+              focus:border-[var(--accent)]
+              focus:outline-none focus:ring-2 focus:ring-[rgba(255,243,234,0.2)]
             "
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
             />
           </form>
         </div>
-        <div className="flex w-12 h-12 justify-center items-center h-full ">
+        <div className="flex min-h-12 items-center justify-center sm:w-16">
           {isLoading && (
-            <div className="w-10 h-8 animate-pulse">
-              <p className="mt-4 ml-2 text-sm text-zinc-900 dark:text-zinc-900 ">
+            <div className="h-8 w-10 animate-pulse">
+              <p className="text-[15px] text-[var(--text-secondary)]">
                 Hmm..
               </p>
             </div>

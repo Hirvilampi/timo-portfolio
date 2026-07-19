@@ -6,20 +6,20 @@ import OnMouseOver from "@/components/MouseOver";
 export default async function Technologies() {
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start  text-black dark:text-zinc-50">
+      <div className="page-shell">
+        <main className="page-frame page-stack max-w-4xl">
           <OnMouseOver>
             <BackButton />
 
             <section>
-              <h2 className="mt-6 text-xl sm:text-3xl">
+              <h1 className="mt-2">
                 Technologies &amp; Tools I have experience on
-              </h2>
+              </h1>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Programming Languages
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>Java 17</li>
                 <li>TypeScript</li>
                 <li>JavaScript</li>
@@ -28,10 +28,10 @@ export default async function Technologies() {
                 <li>Turbo Pascal</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Frontend &amp; Web
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>React</li>
                 <li>Next.js</li>
                 <li>Vite</li>
@@ -41,10 +41,10 @@ export default async function Technologies() {
                 <li>Figma</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Mobile Development
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>React Native</li>
                 <li>React Native Web</li>
                 <li>Expo (expo-router, status-bar, constants)</li>
@@ -52,10 +52,10 @@ export default async function Technologies() {
                 <li>UI libraries: react-native-paper, dropdown-picker</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Backend &amp; APIs
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>Node.js (backend JavaScript)</li>
                 <li>Spring Boot</li>
                 <li>Spring Web / Spring MVC (REST)</li>
@@ -67,10 +67,10 @@ export default async function Technologies() {
                 <li>REST APIs</li>
               </ul>
 
-            <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+            <h3 className="mt-6 text-[var(--text-primary)]">
                 AI / Backend &amp; APIs
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>OpenAI API</li>
                 <li>Vercel AI SDK</li>
                 <li>Supabase Vector Search</li>
@@ -78,10 +78,10 @@ export default async function Technologies() {
                 <li>Embeddings</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Databases &amp; Storage
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>PostgreSQL</li>
                 <li>
                   Firebase (Authentication, Realtime Database, Firestore,
@@ -93,19 +93,19 @@ export default async function Technologies() {
                 <li>Hibernate (JPA implementation)</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Testing &amp; Quality
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>Spring Boot Starter Test</li>
                 <li>JUnit</li>
                 <li>Mockito</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 DevOps &amp; Tooling
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>Maven (Spring Boot Maven)</li>
                 <li>GitHub, GitLab</li>
                 <li>Vercel (deployment & hosting)</li>
@@ -113,10 +113,10 @@ export default async function Technologies() {
                 <li>Linux, macOS, Windows</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 Mobile Device Features &amp; Media
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>AsyncStorage</li>
                 <li>Expo Image Picker</li>
                 <li>Expo Image Manipulator</li>
@@ -125,10 +125,10 @@ export default async function Technologies() {
                 <li>Gesture handler, Reanimated, Safe Area Context</li>
               </ul>
 
-              <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
+              <h3 className="mt-6 text-[var(--text-primary)]">
                 AI &amp; Productivity
               </h3>
-              <ul className="text-sm sm:text-base">
+              <ul>
                 <li>AI tools for coding</li>
                 <li>ChatGPT</li>
                 <li>OpenAI Codex</li>

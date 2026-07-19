@@ -16,14 +16,14 @@ export default function ShowItLink({ className, ...props }: CardProps) {
               <ImageSlideshow portfolio={"it"} />
             </div>
             <div className="py-4 sm:py-0">
-              <h2 className="text-sm sm:text-2xl  font-bold uppercase">
+              <h2 className={`${classes.title} text-[1.35rem] font-bold sm:text-[2rem]`}>
                 Software Developer
               </h2>
-              <p className="text-xs sm:text-xl">
+              <p className={`${classes.subtitle} text-[1rem] sm:text-[1.125rem]`}>
                 Frontend, Backend, Service Design
               </p>
-              <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
-                CLICK FOR PROJECTS
+              <p className={`${classes.cta} text-[0.95rem] font-semibold tracking-[0.04em] underline decoration-1 underline-offset-4`}>
+                Click for projects
               </p>
             </div>
           </div>

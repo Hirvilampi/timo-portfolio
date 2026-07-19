@@ -18,9 +18,9 @@ export default function Chatbot() {
 
   return (
     <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black dark:text-zinc-50">
-        <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start dark:text-zinc-50">
-          <Link href={"https://timolampinen.com"}>
+      <div className="page-shell">
+        <main className="page-frame page-stack max-w-4xl">
+          <Link className="eyebrow-link" href={"https://timolampinen.com"}>
             ← Back to timolampinen.com
           </Link>
           <div className="mt-2">

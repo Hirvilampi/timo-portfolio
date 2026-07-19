@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useRef } from "react";
 import Ask from "@/components/chatbot/ask";
 import classes from "./page.module.css";
 import type {
@@ -16,10 +15,6 @@ export default function ChatbotPanel({
   chatDisclaimer,
   maxHeight = "80",
 }: ChatbotPanelProps) {
-  // id creator for each new conversation
-  // const [conversationId, setConversationId] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
   const {
     messages,
     isLoading,
@@ -29,18 +24,20 @@ export default function ChatbotPanel({
   } = useChatbotConversation();
 
   return (
-    <section>
+    <section className="w-full max-w-[44rem]">
       <div className="items-center">
-        <h1 className="text-3xl  text-black dark:text-zinc-50">{chatHeader}</h1>
+        <h1>{chatHeader}</h1>
         {chatDisclaimer ? (
-          <div className="text-xs ml-1 mb-2  sm:ml-3 dark:text-zinc-50">{chatDisclaimer}</div>
+          <div className="meta-text mt-3 mb-4 max-w-[44rem]">
+            {chatDisclaimer}
+          </div>
         ) : (
           <div></div>
         )}
       </div>
 
-      <section>
-        <div className="flex flex-row gap-4">
+      <section className="space-y-4">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:gap-4">
           <Ask onAsk={handleAsk} isLoading={isLoading} />
           {hasSentFirstQuestion ? (
             <button className={classes.link} onClick={startNewConversation}>
