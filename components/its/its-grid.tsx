@@ -11,16 +11,16 @@ type ITsGridProps = {
 
 export default function ITsGrid({ itprojects }: ITsGridProps) {
   return (
-    <OnMouseOver>
+
       <ul className="classes.ul">
         {itprojects.map((p) => (
           <li className={classes.link} key={p.id}>
             <Link href={`/it/projects/${p.slug}`}>
               <article
                 key={p.slug}
-                className="rounded-xl border p-4 mt-2  text-black dark:text-zinc-50 hover:bg-gradient-to-r from-orange-500 to-orange-400 transition-colors duration-500"
+                className="rounded-xl border p-4 mt-2   hover:bg-gradient-to-r from-orange-500 to-orange-400 transition-colors duration-500"
               >
-                <div className="flex flex-col sm:flex-row gap-4  text-black dark:text-zinc-50">
+                <div className="flex flex-col sm:flex-row gap-4 ">
                   {p.image_small && (
                     <Image
                       src={p.image_small}
@@ -44,6 +44,6 @@ export default function ITsGrid({ itprojects }: ITsGridProps) {
           </li>
         ))}
       </ul>
-    </OnMouseOver>
+
   );
 }

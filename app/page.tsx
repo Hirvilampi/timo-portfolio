@@ -18,7 +18,7 @@ export default function Home() {
               <hr className="w-[6.5%] border-t border-[var(--color-gold)]" />
               <span className="font-bold italic">TL PORTFOLIO</span>
             </div>
-            <div className="hidden sm:flex items-center gap-4">
+            <div className="hidden sm:flex items-center gap-8">
               <Link href="/it/projects" className="font-bold">
                 <span className="font-bold text-[var(--text-secondary)] transition-colors hover:text-[var(--color-gold)]">
                   SOFTWARE
@@ -34,7 +34,7 @@ export default function Home() {
                   ASK AI
                 </span>
               </Link>
-              <Link href="/chatot" className="font-bold">
+              <Link href="" className="font-bold">
                 <span className="font-bold text-[var(--text-secondary)] transition-colors hover:text-[var(--color-gold)]">
                   CONTACT
                 </span>
@@ -46,13 +46,15 @@ export default function Home() {
             <section className="flex items-center justify-between gap-6">
               <div className="flex flex-col justify-center">
                 <h1 className="text-[4.5rem] sm:text-[6.5rem] leading-none color-gold">
-                  TIMO LAMPINEN
+                  TIMO <br />LAMPINEN
                 </h1>
-                <h2 className="mt-2 text-lg sm:text-2xl">
-                  {" "}
-                  Software Developer and Television Professional
-                </h2>
-                <div className="flex flex-col gap-6 mt-4 text-left sm:items-start sm:text-left">
+                <div className="flex flex-1 items-center gap-4 mt-1">
+                  <hr className="w-[6.5%] border-t border-[var(--color-gold)]" />
+                  <h3 className="font-bold italic text-secondary">
+                    Software Developer / Television Professional
+                  </h3>
+                </div>
+                <div className="flex flex-col gap-6 mt-6 text-left sm:items-start sm:text-left">
                   <p className="text-secondary max-w-xs hover:animate-flash-once">
                     Portfolio in software development and directing/writing tv
                     productions.
@@ -73,7 +75,7 @@ export default function Home() {
               />
             </section>
 
-            <hr className="my-6 mx-auto  w-7/8 border-t border-[var(--text-secondary)]" />
+            <hr className="my-6  w-7/8 border-t border-[var(--text-secondary)]" />
 
             <section>
               <div className="mt-6 mb-3 flex w-full items-start justify-center sm:mt-0 sm:justify-start">
@@ -91,7 +93,7 @@ export default function Home() {
                 <ShowTvLink />
               </div>
 
-              <hr className="my-6 mx-auto  w-7/8 border-t border-[var(--text-secondary)]" />
+              <hr className="my-6  w-7/8 border-t border-[var(--text-secondary)]" />
               <div className="section-gap items-center">
                 <span className="text-secondary">Contact:</span>
 

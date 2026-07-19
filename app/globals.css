@@ -9,6 +9,7 @@
   --surface-text: #4f2f20;
   --surface-text-secondary: #7a533d;
   --color-gold: #C9A45D;
+  --text-yellow: #e6c93c;
   --accent: #fff3ea;
   --accent-strong: #ffe4d2;
   --border-soft: #e1b79e;
@@ -89,6 +90,7 @@ h3 {
   font-size: clamp(1.5rem, 2.4vw, 1.75rem);
   font-weight: 600;
   line-height: 1.25;
+  color: var(--text-yellow);
 }
 
 p,
