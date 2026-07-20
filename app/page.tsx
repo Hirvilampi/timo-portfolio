@@ -8,7 +8,7 @@ import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 export default function Home() {
   const pageHeader: string = "Ask Timo's AI";
   const chatDisclaimer: string =
-    "This bot can tell you what Timo can do as software developer or tv-professional. You can also ask about him. (This is a chatbot and may produce incomplete or inaccurate responses.)";
+    "Ask about my software projects, TV productions or experience.";
   return (
     <>
       <div className="page-shell">
@@ -80,7 +80,7 @@ export default function Home() {
 
             <section className="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex w-full  flex-1 justify-start sm:flex-1 sm:justify-start">
-                <ChatbotPanel chatHeader={pageHeader} />
+                <ChatbotPanel chatHeader={pageHeader} chatDisclaimer={chatDisclaimer}/>
               </div>
 
               <div className="flex  w-full flex-1 justify-center sm:flex-1 sm:justify-start">
