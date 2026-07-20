@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   min-height: 180px;
   text-decoration: none;
   color: inherit;
@@ -17,8 +17,10 @@
 }
 
 .cardWrapper:hover {
-  transform: translateX(10px);
-  
+  /* transform: translateY(0px); */
+  transform: scale(1.035);
+    width: 100%;
+  max-width: 20rem;
 }
 
 .cardShape {
@@ -27,13 +29,35 @@
   align-items: center;
   gap: 2rem;
   padding-left: 1rem;
-  background: white;
+  background: var(--color-gold);
   clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
 }
 
 .cardShape:hover {
  background: linear-gradient(90deg, #f9572a, #ff9b05);
+ color: var(--background);
 }
+
+.yourBox {
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1 / 1.618;
+  border: 2px solid var(--text-yellow);
+  background-color: var(--color-gold);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.yourBox:hover {
+ background: linear-gradient(180deg, var(--color-gold), #ff9b05);
+  color: var(--background);
+}
+
 
 .cardBorder {
   position: absolute;
@@ -59,6 +83,16 @@
   gap: 20px;        
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+    align-items: flex-start; /* or center if you want */  
+}
+
 .title { margin: 0 0 0.5rem; font-weight: 600; }
 .text { margin: 0; opacity: 0.8; }
 
@@ -67,7 +101,7 @@
     /* Nyt sinun tarvitsee muuttaa vain tätä, "reunus" seuraa mukana */
     clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   }
-    .slideshowPlaceholder {
+.slideshowPlaceholder {
   width: 50px;
   height: 50px;
   top: 200px;
@@ -75,8 +109,10 @@
   flex-shrink: 0;
 }
 
-.row {
+.column {
     flex-direction: column;
     align-items: flex-start; /* or center if you want */  
 }
+
+
 }

@@ -5,45 +5,32 @@ import ImageSlideshow from "@/components/images/image-slideshow";
 
 type CardProps = ComponentPropsWithoutRef<"a">;
 
-export default function ShowItLink({ className, ...props }: CardProps) {
+export default function ItPage({ className, ...props }: CardProps) {
   return (
     <>
       {/* toimiva */}
       <Link href="/it/projects" className={classes.cardWrapper}>
-        <div className={classes.cardShape}>
-          <div className={classes.row}>
+        <div className={classes.yourBox}>
+          <div className={classes.column}>
             <div className={classes.slideshowPlaceholder}>
               <ImageSlideshow portfolio={"it"} />
             </div>
             <div className="py-4 sm:py-0">
               <h2 className="text-sm sm:text-2xl  font-bold uppercase">
-                Software Developer
+                SOFTWARE
               </h2>
               <p className="text-xs sm:text-xl">
-                Frontend, Backend, Service Design
+                Architecting digital systems with the same precision required for live broadcast. 
+                Full-stack engineering with a focus on modern frameworks, performance, and craft. 
+
               </p>
               <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
-                CLICK FOR PROJECTS
+                VIEW PROJECTS
               </p>
             </div>
           </div>
         </div>
 
-        {/* Reunus: piirtyy varmasti myös vinossa reunassa */}
-        {/* <svg
-          className={classes.cardBorder}
-          viewBox="0 0 200 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <polygon
-            points="0,0 200,0 176,100 0,100"
-            fill="none"
-            stroke="black"
-            strokeWidth="2"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg> */}
       </Link>
     </>
   );

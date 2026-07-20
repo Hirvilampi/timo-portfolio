@@ -8,6 +8,7 @@ import type {
 } from "@/types/embedding-types.ts";
 import ChatMessages from "./ChatMessages";
 import { useChatbotConversation } from "./useChatbotConversation";
+import boxClasses from "@/components/ui/box.module.css";
 
 // Vercel SDK AI tutorial used is AIHero in https://www.aihero.dev/tool-calls-with-vercel-ai-sdk
 
@@ -29,18 +30,18 @@ export default function ChatbotPanel({
   } = useChatbotConversation();
 
   return (
-    <section>
-      <div className="items-center">
-        <h2 className="text-xl">{chatHeader}</h2>
+    <section className={boxClasses.yourBox}>
+      <div className="px-4 pt-4">
+        <h2 className="mt-2">{chatHeader}</h2>
         {chatDisclaimer ? (
-          <div className="text-secondary ml-1 mb-2 sm:ml-3">{chatDisclaimer}</div>
+          <div className="text-primary ml-1 mb-2 sm:ml-3">{chatDisclaimer}</div>
         ) : (
           <div></div>
         )}
       </div>
 
       <section>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 px-4 pt-4">
           <Ask onAsk={handleAsk} isLoading={isLoading} />
           {hasSentFirstQuestion ? (
             <button className={classes.link} onClick={startNewConversation}>

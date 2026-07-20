@@ -22,21 +22,21 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
     <>
       <div className="flex flew-row mb-2">
         <div>
-          Ask me (voit kysyä myös suomeksi):{" "}
+       
           <form
             onSubmit={handleSubmit}
             // className="mt-4 outline-1 text-sm sm:text-base text-black caret-black dark:text-zinc-50 dark:caret-white"
           >
             <input
               type="text"
-              placeholder="Type your question"
+              placeholder="Ask a question..."
               // className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white  caret-blackfocus:outline-none focus:ring-2 focus:ring-zinc-400"
               className="
-              w-full sm:w-80
+              w-80 sm:w-70
               border border-zinc-700
-              bg-white text-black
+              
               dark:bg-zinc-900 dark:text-white
-              px-3 py-2 rounded-md  
+              px-2 py-2 rounded-md  
               caret-black dark:caret-white
               focus:outline-none focus:ring-2 focus:ring-zinc-400
             "

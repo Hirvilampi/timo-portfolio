@@ -1,0 +1,12 @@
+.yourBox {
+
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1 / 1.618;
+  border: 2px solid var(--text-yellow);
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  
+  overflow: hidden;
+
+}

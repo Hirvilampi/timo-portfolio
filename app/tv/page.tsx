@@ -4,23 +4,25 @@ import classes from "./page.module.css";
 
 import ImageSlideshow from "@/components/images/image-slideshow";
 
-export default function ShowTvLink() {
+export default function TvPage() {
 
   return (
     <>
       {/* toimiva */}
       <Link href="/tv/productions" className={classes.cardWrapper}>
-        <div className={classes.cardShape}>
-          <div className={classes.row}>
+        <div className={classes.yourBox}>
+          <div className={classes.column}>
             <div className={classes.slideshowPlaceholder}>
               <ImageSlideshow portfolio={"tv"} />
             </div>
             {/* sisältö */}
             <div className="py-4 sm:py-0">
               <h2 className="text-sm sm:text-2xl font-bold uppercase">
-                Television & Film
+                TELEVISION
               </h2>
-              <p className="text-xs sm:text-xl">Director, writer, editor</p>
+              <p className="text-xs sm:text-xl">Over two decades of experience in TV production & Film. 
+                Directing & writing the most popular tv-shows in high-pressure environments.
+              </p>
               <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
                 CLICK FOR PROJECTS
               </p>

@@ -75,8 +75,8 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.625rem, 4vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(2.825rem, 6vw, 4.5rem);
+  font-weight: 900;
   line-height: 1.15;
 }
 
@@ -91,6 +91,14 @@ h3 {
   font-weight: 600;
   line-height: 1.25;
   color: var(--text-yellow);
+}
+
+.menu-font {
+  display: inline-block;
+  font-size: clamp(0.95rem, 0.4vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  transform: scaleY(0.9);
 }
 
 p,
