@@ -4,6 +4,7 @@
   width: 100%;
   max-width: 600px;
   min-height: 180px;
+  height: 100%;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
@@ -41,7 +42,6 @@
 .yourBox {
   width: 100%;
   max-width: 20rem;
-  aspect-ratio: 1 / 1.618;
   border: 2px solid var(--text-yellow);
   background-color: var(--color-gold);
   border-radius: 0.5rem;
@@ -51,6 +51,13 @@
   align-items: center;
   justify-content: center;
   padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 1024px) {
+  .yourBox {
+    min-height: 32rem;
+  }
 }
 
 .yourBox:hover {

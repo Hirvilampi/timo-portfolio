@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import TvPage from "./tv/page";
 import ItPage from "./it/page";
-import OnMouseOver from "@/components/MouseOver";
 import ChatbotPanel from "@/components/chatbot/ChatbotPanel";
 
 export default function Home() {
@@ -34,7 +33,7 @@ export default function Home() {
                   ASK AI
                 </span>
               </Link>
-              <Link href="" className="font-bold">
+              <Link href="#contact" className="font-bold">
                 <span className="menu-font text-[var(--text-secondary)] transition-colors hover:text-[var(--color-gold)]">
                   CONTACT
                 </span>
@@ -43,12 +42,13 @@ export default function Home() {
           </div>
 
           <div className="grid w-full gap-6 ">
-            <section className="flex items-center justify-between gap-6">
-              <div className="flex flex-col justify-center">
-                <h1 className="text-[4.5rem] sm:text-[6.5rem] leading-none color-gold">
-                  TIMO <br />
-                  LAMPINEN
-                </h1>
+            <section className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 sm:gap-x-6">
+              <h1 className="col-span-2 text-[4.5rem] leading-none color-gold sm:col-span-1 sm:text-[6.5rem]">
+                TIMO <br />
+                LAMPINEN
+              </h1>
+
+              <div className="flex min-w-0 flex-col justify-center sm:col-start-1">
                 <div className="flex flex-1 items-center gap-4 mt-1">
                   <hr className="w-[6.5%] border-t border-[var(--color-gold)]" />
                   <h3 className="font-bold italic text-secondary">
@@ -57,12 +57,9 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-6 mt-6 text-left sm:items-start sm:text-left">
                   <p className="text-secondary max-w-xs hover:animate-flash-once">
-                    Portfolio in software development and directing/writing tv
-                    productions.
-                    <br /> <br />
-                    Currently looking for new opportunities in software
-                    development, but I'm still interested in directing and
-                    writing TV productions.
+                    Award-winning TV director, writer and software developer — 
+                    combining storytelling, leadership and technology to build experiences people care about.
+
                   </p>
                 </div>
               </div>
@@ -72,35 +69,35 @@ export default function Home() {
                 width={200}
                 height={50}
                 priority
-                className="border-1 rounded-xl border-[var(--text-secondary)]"
+                className="col-start-2 row-start-2 h-auto w-32 rounded-xl border border-[var(--text-secondary)] sm:row-span-2 sm:row-start-1 sm:w-[200px]"
               />
             </section>
 
             <hr className="my-6  w-7/8 border-t border-[var(--text-secondary)]" />
 
-            <section className="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-start lg:justify-between">
-              <div className="flex w-full  flex-1 justify-start sm:flex-1 sm:justify-start">
+            <section className="flex w-full flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:justify-between">
+              <div className="flex w-full flex-1 justify-start">
                 <ChatbotPanel chatHeader={pageHeader} chatDisclaimer={chatDisclaimer}/>
               </div>
 
-              <div className="flex  w-full flex-1 justify-center sm:flex-1 sm:justify-start">
+              <div className="flex w-full flex-1 justify-start">
                 <ItPage />
               </div>
 
-              <div className="flex w-full  flex-1 justify-end sm:flex-1 sm:justify-start">
+              <div className="flex w-full flex-1 justify-start">
                 <TvPage />
               </div>
             </section>
 
             <hr className="my-6  w-7/8 border-t border-[var(--text-secondary)]" />
 
-            <div className="section-gap items-center">
+            <div id="contact" className="items-center scroll-mt-6">
               <p className="items-start menu-font text-[var(--color-gold)] transition-colors hover:text-[var(--color-gold)]">
-                CONNECT
+                CONTACT
               </p>
 
               <p className="items-start text-[var(--text-secondary)] transition-colors hover:text-[var(--color-gold)]">
-                +358405363191
+                tel: +358405363191
               </p>
 
               <p >
@@ -117,6 +114,7 @@ export default function Home() {
                   // className={`${classes.thispage2} text-black dark:text-white`}
                   className="items-start text-secondary transition-colors hover:text-[var(--color-gold)]"
                   href="https://www.linkedin.com/in/timo-lampinen-4657b"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   {" "}
@@ -130,6 +128,7 @@ export default function Home() {
                 // className={`${classes.thispage2}  text-black dark:text-white`}
                 className="items-start text-secondary transition-colors hover:text-[var(--color-gold)]"
                 href="https://www.instagram.com/timolampinen"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {" "}
@@ -154,7 +153,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     This page is coded in Visual Studio Code by yours truly.
-                    Built with Next.js, Typescript and Tailwind CSS, deployed
+                    Built with Next.js, TypeScript and Tailwind CSS, deployed
                     with Vercel. It uses Supabase as database for productions
                     info and images. Click to see the code in GitHub.
                   </a>

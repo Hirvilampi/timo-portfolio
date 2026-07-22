@@ -12,7 +12,7 @@ type ITsGridProps = {
 export default function ITsGrid({ itprojects }: ITsGridProps) {
   return (
 
-      <ul className="classes.ul">
+      <ul className={classes.ul}>
         {itprojects.map((p) => (
           <li className={classes.link} key={p.id}>
             <Link href={`/it/projects/${p.slug}`}>
@@ -27,11 +27,11 @@ export default function ITsGrid({ itprojects }: ITsGridProps) {
                       alt={p.slug}
                       width={240}
                       height={180}
-                      className="rounded-md object cover"
+                      className="rounded-md object-cover"
                     />
                   )}
                   <div>
-                    <h3 className="text-lg font-semibold">{p.title}</h3>
+                    <h3 className="text-lg font-semibold color-gold">{p.title}</h3>
                     {p.technologies && (
                       <p className="text-sm opacity-70">{p.technologies}</p>
                     )}

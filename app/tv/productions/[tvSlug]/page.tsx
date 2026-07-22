@@ -31,12 +31,12 @@ async function ShowProductionPage({ slug }: { slug: string }) {
             alt={prod.slug}
             width={1280}
             height={800}
-            className="rounded-md object cover"
+            className="rounded-md object-cover"
           />
         )}
-        <div className="flex flex-row content-center justify-items-strech">
-          <h1 className="gap-6">{prod.title}</h1>
-          <p className="px-8 py-2 text-base opacity-70">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+          <h1>{prod.title}</h1>
+          <p className="mb-0 shrink-0 text-base opacity-70">
             {prod.seasons && prod.seasons} ({prod.year && prod.year})
           </p>
         </div>

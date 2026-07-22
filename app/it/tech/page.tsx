@@ -1,19 +1,20 @@
-import Link from "next/link";
-
 import BackButton from "@/components/BackButton";
-import OnMouseOver from "@/components/MouseOver";
 
 export default async function Technologies() {
   return (
-    <>
-      <div className="flex min-h-screen items-start justify-center bg-zinc-50 font-sans dark:bg-black">
-        <main className="flex w-full max-w-3xl flex-col items-center py-12 px-16 bg-white dark:bg-black sm:items-start  text-black dark:text-zinc-50">
-          <OnMouseOver>
-            <BackButton />
+    <div className="page-shell">
+      <main className="page-frame page-stack max-w-4xl">
+        <BackButton />
 
-            <section>
-              <h2 className="mt-6 text-xl sm:text-3xl">
-                Technologies &amp; Tools I have experience on
+            <section className="text-secondary">
+              <h1 className="color-gold">Technologies &amp; tools</h1>
+              <p className="mt-4">
+                Technologies and tools I have worked with in professional and
+                academic projects.
+              </p>
+
+              <h2 className="mt-8 text-xl sm:text-3xl">
+                Technical experience
               </h2>
 
               <h3 className="mt-4 text-lg sm:text-xl text-amber-500">
@@ -136,9 +137,7 @@ export default async function Technologies() {
                 <li>Slack</li>
               </ul>
             </section>
-          </OnMouseOver>
-        </main>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }

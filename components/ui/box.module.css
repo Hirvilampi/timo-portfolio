@@ -1,12 +1,17 @@
 .yourBox {
-
   width: 100%;
   max-width: 20rem;
-  aspect-ratio: 1 / 1.618;
   border: 2px solid var(--text-yellow);
   background-color: var(--background);
   border-radius: 0.5rem;
-  
   overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .yourBox {
+    height: 100%;
+    min-height: 32rem;
+  }
 
 }

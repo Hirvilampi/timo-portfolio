@@ -41,7 +41,7 @@ export default function ChatbotPanel({
       </div>
 
       <section>
-        <div className="flex flex-row gap-4 px-4 pt-4">
+        <div className="flex min-w-0 flex-row gap-2 px-4 pt-4">
           <Ask onAsk={handleAsk} isLoading={isLoading} />
           {hasSentFirstQuestion ? (
             <button className={classes.link} onClick={startNewConversation}>

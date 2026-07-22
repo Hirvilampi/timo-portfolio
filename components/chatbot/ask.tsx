@@ -20,10 +20,10 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
 
   return (
     <>
-      <div className="flex flew-row mb-2">
-        <div>
+      <div className="mb-2 flex min-w-0 flex-1 flex-row">
+        <div className="min-w-0 flex-1">
        
-          <form
+          <form className="w-full"
             onSubmit={handleSubmit}
             // className="mt-4 outline-1 text-sm sm:text-base text-black caret-black dark:text-zinc-50 dark:caret-white"
           >
@@ -32,7 +32,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
               placeholder="Ask a question..."
               // className="border border-zinc-700 bg-white text-black px-3 py-2 rounded-md dark:text-white  caret-blackfocus:outline-none focus:ring-2 focus:ring-zinc-400"
               className="
-              w-80 sm:w-70
+              w-full min-w-0
               border border-zinc-700
               
               dark:bg-zinc-900 dark:text-white
@@ -45,7 +45,7 @@ export default function Ask({ onAsk, isLoading }: AskProps) {
             />
           </form>
         </div>
-        <div className="flex w-12 h-12 justify-center items-center h-full ">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center">
           {isLoading && (
             <div className="w-10 h-8 animate-pulse">
               <p className="mt-4 ml-2 text-sm text-zinc-900 dark:text-zinc-900 ">

@@ -20,11 +20,11 @@ export default function TvPage() {
               <h2 className="text-sm sm:text-2xl font-bold uppercase">
                 TELEVISION
               </h2>
-              <p className="text-xs sm:text-xl">Over two decades of experience in TV production & Film. 
-                Directing & writing the most popular tv-shows in high-pressure environments.
+              <p className="text-xs sm:text-xl">Over two decades of experience in TV and film production.
+                Directing and writing popular TV shows in high-pressure environments.
               </p>
-              <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
-                CLICK FOR PROJECTS
+              <p className="mt-4 text-xs font-black underline decoration-2 underline-offset-4 sm:text-lg">
+                VIEW PRODUCTIONS
               </p>
             </div>
           </div>

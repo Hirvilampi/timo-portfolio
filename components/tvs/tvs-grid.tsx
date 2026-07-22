@@ -12,7 +12,7 @@ type TVsGridProps = {
 export default function TVsGrid({ tvproductions }: TVsGridProps) {
   return (
     <OnMouseOver>
-    <ul className="classes.ul" >
+    <ul className={classes.ul}>
       {tvproductions.map((p) => (
         <li  className={classes.link}  key={p.id}>
           <Link 
@@ -28,11 +28,11 @@ export default function TVsGrid({ tvproductions }: TVsGridProps) {
                     alt={p.slug}
                     width={240}
                     height={180}
-                    className="rounded-md object cover"
+                    className="rounded-md object-cover"
                   />
                 )}
                 <div>
-                  <h3 className="text-lg font-semibold">{p.title}</h3>
+                  <h3 className="text-lg font-semibold color-gold">{p.title}</h3>
                   <div className="flex flex-col sm:flex-row">
                     <p className="text-sm opacity-70 gap-2 flex flex-row">
                       {p.seasons && p.seasons} ({p.year && p.year})

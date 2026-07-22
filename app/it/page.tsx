@@ -24,7 +24,7 @@ export default function ItPage({ className, ...props }: CardProps) {
                 Full-stack engineering with a focus on modern frameworks, performance, and craft. 
 
               </p>
-              <p className="text-xs sm:text-l mt-4 font-black underline decoration-2 underline-offset-4">
+              <p className="mt-4 text-xs font-black underline decoration-2 underline-offset-4 sm:text-lg">
                 VIEW PROJECTS
               </p>
             </div>
